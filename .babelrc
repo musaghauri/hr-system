@@ -13,7 +13,8 @@
                     "@components": "./src/components",
                     "@config": "./config",
                     "@redux": "./src/redux",
-                    "@store": "./src/store"
+                    "@store": "./src/store",
+                    "@server": "./server"
                     // "@theme": "./src/theme"
                 }
             }

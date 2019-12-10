@@ -2,7 +2,7 @@ import express from 'express';
 import next from 'next';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-// import REALTY_IMPACT_API from 'server/routes';
+import HR_SYSTEM_API from '@server/routes';
 import { MONGO_URL } from '@config';
 
 const port = parseInt(process.env.PORT, 10) || 8000;
@@ -25,7 +25,7 @@ app.prepare().then(() => {
   // Bodyparser to receive body from API calls
   server.use(bodyParser.json({ limit: '20mb' }));
   server.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-  //   server.use('/api', REALTY_IMPACT_API);
+  server.use('/api', HR_SYSTEM_API);
 
   server.get('*', (req, res) => handle(req, res));
   // server
