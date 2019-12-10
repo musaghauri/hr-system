@@ -1,8 +1,13 @@
-import { UPDATE_VALUE, RESET_REDUCER } from './constants';
+import { UPDATE_VALUE, RESET_REDUCER, INITIATE_CLOCK } from './constants';
 
 export function resetReducer() {
   return {
     type: RESET_REDUCER,
+  };
+}
+export function initiateClock() {
+  return {
+    type: INITIATE_CLOCK,
   };
 }
 
