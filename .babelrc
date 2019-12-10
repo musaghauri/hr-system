@@ -11,7 +11,9 @@
                 ],
                 "alias": {
                     "@components": "./src/components",
-                    "@config": "./config"
+                    "@config": "./config",
+                    "@redux": "./src/redux",
+                    "@store": "./src/store"
                     // "@theme": "./src/theme"
                 }
             }
