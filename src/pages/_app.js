@@ -2,7 +2,9 @@ import App from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
 import withRedux from '@store';
-// import withReduxSaga from 'next-redux-saga';
+import '@assets/css/bootstrap.min.css';
+import '@assets/scss/paper-dashboard.scss';
+import '@assets/demo/demo.css';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

@@ -45,11 +45,42 @@ export default class MyDocument extends Document {
             content="width=device-width, height=device-height, initial-scale=1.0"
           />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+            rel="stylesheet"
+          />
+          <link
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+            rel="stylesheet"
+          />
+
           {/* <link rel="shortcut icon" href="/favicon.ico" /> */}
         </Head>
         <body>
           <Main />
           <NextScript />
+
+          <script src="/assets/js/core/jquery.min.js" />
+          <script src="/assets/js/core/popper.min.js" />
+          <script src="/assets/js/core/bootstrap.min.js" />
+          <script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js" />
+
+          <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE" />
+
+          <script src="/assets/js/plugins/chartjs.min.js" />
+
+          <script src="/assets/js/plugins/bootstrap-notify.js" />
+          <script
+            src="/assets/js/paper-dashboard.min.js?v=2.0.0"
+            type="text/javascript"
+          />
+          <script src="/assets/demo/demo.js" />
+          {/* <script>
+            $(document).ready(function(){' '}
+            {// Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+            demo.initChartsPages()}
+            );
+          </script> */}
         </body>
       </html>
     );

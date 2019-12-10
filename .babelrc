@@ -14,7 +14,8 @@
                     "@config": "./config",
                     "@redux": "./src/redux",
                     "@store": "./src/store",
-                    "@server": "./server"
+                    "@server": "./server",
+                    "@assets": "./src/assets"
                     // "@theme": "./src/theme"
                 }
             }
