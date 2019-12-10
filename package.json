@@ -5,11 +5,54 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start-next": "next start",
+    "development": "nodemon --exec cross-env NODE_ENV=development babel-node server",
+    "start": "cross-env NODE_ENV=production ENV=production babel-node server ",
+    "production": "npm run build && npm run start",
+    "heroku-postbuild": "npm run build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/musaghauri/hr-system.git"
+  },
+  "author": "Muhammad Musa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/musaghauri/hr-system/issues"
+  },
+  "homepage": "https://github.com/musaghauri/hr-system#readme",
   "dependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/register": "^7.7.4",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "body-parser": "^1.19.0",
+    "cross-env": "^6.0.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.0",
     "next": "9.1.5",
     "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react-dom": "16.12.0",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-wesbos": "0.0.19",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "nodemon": "^2.0.1",
+    "prettier": "^1.19.1",
+    "redux-devtools-extension": "^2.13.8"
   }
 }
