@@ -3,6 +3,7 @@ import next from 'next';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 // import REALTY_IMPACT_API from 'server/routes';
+import { MONGO_URL } from '@config';
 
 const port = parseInt(process.env.PORT, 10) || 8000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -10,14 +11,14 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 // // Set native promises as mongoose promise
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 // MongoDB Connection
-// mongoose.connect(MONGO_URL, error => {
-//   if (error) {
-//     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
-//     throw error;
-//   }
-// });
+mongoose.connect(MONGO_URL, error => {
+  if (error) {
+    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
+    throw error;
+  }
+});
 
 app.prepare().then(() => {
   const server = express(); // Express Server

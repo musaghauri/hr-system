@@ -7,8 +7,13 @@
             "module-resolver",
             {
                 "root": [
-                    "./"
-                ]
+                    "./src"
+                ],
+                "alias": {
+                    "@components": "./src/components",
+                    "@config": "./config"
+                    // "@theme": "./src/theme"
+                }
             }
         ],
         [
