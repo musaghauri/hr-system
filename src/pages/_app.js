@@ -2,6 +2,7 @@ import App from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
 import withRedux from '@store';
+import Dashboard from '@components/layouts/dashboard';
 import '@assets/css/bootstrap.min.css';
 import '@assets/scss/paper-dashboard.scss';
 import '@assets/demo/demo.css';
@@ -21,7 +22,9 @@ class MyApp extends App {
     const { Component, pageProps, store } = this.props;
     return (
       <Provider store={store}>
-        <Component {...pageProps} />
+        <Dashboard>
+          <Component {...pageProps} />
+        </Dashboard>
       </Provider>
     );
   }

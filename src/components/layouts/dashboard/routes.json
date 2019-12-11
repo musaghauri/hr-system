@@ -1,0 +1,14 @@
+[
+  {
+    "name": "dashboard",
+    "label": "Dashboard",
+    "route": "/dashboard",
+    "icon": "nc-icon nc-bank"
+  },
+  {
+    "name": "employees",
+    "label": "Employees",
+    "route": "/employees",
+    "icon": "nc-icon nc-single-02"
+  }
+]
