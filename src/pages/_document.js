@@ -65,7 +65,7 @@ export default class MyDocument extends Document {
           <script src="/assets/js/core/bootstrap.min.js" />
           <script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js" />
 
-          <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE" />
+          {/* <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE" /> */}
 
           <script src="/assets/js/plugins/chartjs.min.js" />
 
