@@ -10,13 +10,9 @@ const userSchema = new Schema(
       lowercase: true,
       required: true,
     },
-    accountType: {
-      type: String,
-      enum: ['professional', 'client', 'community_manager'],
-    },
-    isOnboarded: {
-      type: Boolean,
-      default: true,
+    role: {
+      type: Schema.Types.ObjectId,
+      ref: 'Role',
     },
     name: String,
     password: String,
@@ -26,26 +22,8 @@ const userSchema = new Schema(
     },
     isVerified: {
       type: Boolean,
-      default: false,
+      default: true,
     },
-    status: {
-      type: String,
-      default: 'waiting_for_approval',
-    },
-    address: {
-      street: String,
-      postCode: String,
-      town: String,
-      country: String,
-    },
-    phone: {
-      code: String,
-      number: String,
-    },
-    profilePicture: String,
-    about: String,
-    tva: String,
-    title: String,
   },
   { timestamps: true }
 );
