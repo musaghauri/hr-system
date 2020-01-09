@@ -3,12 +3,12 @@
     "name": "dashboard",
     "label": "Dashboard",
     "route": "/dashboard",
-    "icon": "nc-icon nc-bank"
+    "icon": "dashboard"
   },
   {
     "name": "employees",
     "label": "Employees",
     "route": "/employees",
-    "icon": "nc-icon nc-single-02"
+    "icon": "users"
   }
 ]

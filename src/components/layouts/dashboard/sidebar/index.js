@@ -1,47 +1,66 @@
 import React, { Component } from 'react';
+import { Header, Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import routes from '../routes.json';
 
-class Sidebar extends Component {
+class SidebarComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      animation: 'push',
+      direction: 'left',
+    };
+  }
+
   render() {
-    const { router } = this.props;
+    const { animation, direction } = this.state;
+    const { children, router } = this.props;
     return (
-      <div className="sidebar" data-color="white" data-active-color="danger">
-        <div className="logo">
-          <a
-            href="http://www.creative-tim.com"
-            className="simple-text logo-mini"
+      <div>
+        <Sidebar.Pushable
+          style={{
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            top: 70,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+          }}
+          as={Segment}
+        >
+          <Sidebar
+            as={Menu}
+            animation={animation}
+            direction={direction}
+            icon="labeled"
+            inverted
+            vertical
+            visible
+            width="thin"
           >
-            <div className="logo-image-small">
-              <img src="/assets/img/logo-small.png" alt="logo" />
-            </div>
-          </a>
-          <a
-            href="http://www.creative-tim.com"
-            className="simple-text logo-normal"
-          >
-            HR System
-          </a>
-        </div>
-        <div className="sidebar-wrapper">
-          {/* Warning for (index.js:1 Warning: Did not expect server HTML to contain a <div> in <div>.) */}
-          <ul className="nav">
             {routes.map((route, rI) => (
               <Link key={`route_${rI}`} href={route.route}>
-                <li className={router.asPath === route.route ? 'active' : ''}>
-                  <a>
-                    <i className={route.icon} />
-                    <p>{route.label}</p>
-                  </a>
-                </li>
+                <Menu.Item
+                  active={router.asPath === route.route}
+                  as={route.name}
+                >
+                  <Icon name={route.icon} />
+                  {route.label}
+                </Menu.Item>
               </Link>
             ))}
-          </ul>
-        </div>
+          </Sidebar>
+
+          <Sidebar.Pusher>
+            <Segment basic>{children}</Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </div>
     );
   }
 }
 
-export default withRouter(Sidebar);
+export default withRouter(SidebarComponent);
