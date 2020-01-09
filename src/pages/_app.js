@@ -3,9 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import withRedux from '@store';
 import Dashboard from '@components/layouts/dashboard';
-import '@assets/css/bootstrap.min.css';
-import '@assets/scss/paper-dashboard.scss';
-import '@assets/demo/demo.css';
+import 'semantic-ui-css/semantic.min.css';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

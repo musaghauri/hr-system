@@ -7,14 +7,11 @@ class Dashboard extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div className="wrapper">
-        <Sidebar />
-        <div className="main-panel">
-          <Header />
-          <div className="content">{children}</div>
-          <Footer />
-        </div>
-      </div>
+      <>
+        <Header />
+        <Sidebar>{children}</Sidebar>
+        {/* <Footer /> */}
+      </>
     );
   }
 }
