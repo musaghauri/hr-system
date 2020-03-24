@@ -24,6 +24,10 @@ const userSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
   },
   { timestamps: true }
 );
