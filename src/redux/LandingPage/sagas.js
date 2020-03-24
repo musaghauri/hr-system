@@ -3,7 +3,7 @@ import { INITIATE_CLOCK } from './constants';
 import { updateValue } from './actions';
 
 export function* initiateClock() {
-  yield put(updateValue(['clock'], 'Sidra Kanwal'));
+  yield put(updateValue(['clock'], 'HR System'));
 }
 
 export default function* landingPageUserWatcher() {
