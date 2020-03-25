@@ -29,7 +29,6 @@ const userSchema = new Schema(
       ref: 'User',
     },
     personal_information: {
-      name: String,
       company_email: {
         type: String,
         required: true,
