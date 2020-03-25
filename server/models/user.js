@@ -28,12 +28,6 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
-  },
-  { timestamps: true }
-);
-
-const employeeSchema = new Schema(
-  {
     personal_information: {
       name: String,
       company_email: {
@@ -141,9 +135,5 @@ const employeeSchema = new Schema(
 );
 
 const User = mongoose.model('User', userSchema);
-const Employee = mongoose.model('Employee', employeeSchema);
 
-module.exports = {
-  User: User,
-  Employee: Employee
-}
+export default User;
