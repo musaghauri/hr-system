@@ -1,15 +1,11 @@
 
 const MongoClient = require('mongodb').MongoClient;
+// import MONGO_URL from '@config';
+const Config = require('../config');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// const Permission = require('../server/models/permission');
-// const Role = require('../server/models/role');
-// const User = require('../server/models/user');
-
-const TEST_MONGO_URL = 'mongodb+srv://bitbytes:bitbytes123@hr-system-5a8n4.mongodb.net/development?retryWrites=true&w=majority';
-
-MongoClient.connect(TEST_MONGO_URL,
+MongoClient.connect(Config.MONGO_URL,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -25,66 +21,66 @@ MongoClient.connect(TEST_MONGO_URL,
         await db.collection("roles").remove();
         await db.collection("users").remove();
 
-        var permissionArray = [{
-            name: "create",
-            description: "create permission description",
-            createdBy: null,
-        }, {
-            name: "delete",
-            description: "delete permission description",
-            createdBy: null,
-        }, {
-            name: "view",
-            description: "view permission description",
-            createdBy: null,
-        }]
-        await db.collection("permissions").insertMany(permissionArray, function (err, res) {
-            if (err) throw err;
-        });
+        let permissions = [
+            {
+                name: "CREATE",
+                description: "create permission description",
+                createdBy: null,
+            },
+            {
+                name: "DELETE",
+                description: "delete permission description",
+                createdBy: null,
+            },
+            {
+                name: "VIEW",
+                description: "view permission description",
+                createdBy: null,
+            }
+        ]
+
+        // create permissions
+        let savedPermissions = await db.collection("permissions").insertMany(permissions);
+        let permissionIdsArray = [];
+        Object.keys(savedPermissions.insertedIds).map((key) => {
+            permissionIdsArray.push(savedPermissions.insertedIds[key])
+        })
+
+        let roles = []
+        createRole = (name, description, permissions) => {
+            return {
+                name,
+                description,
+                permissions,
+            }
+        }
+        roles.push(createRole('ADMIN', '', permissionIdsArray));
+        roles.push(createRole('EMPLOYEE', '', permissionIdsArray));
 
         // create roles
-        var rolesArray = [
-            {
-                name: 'admin',
-                description: '',
-                permissions: [],
-            },
-            {
-                name: 'employee',
-                description: '',
-                permissions: [],
-            },
-        ]
-        await db.collection("roles").insertMany(rolesArray, function (err, res) {
+        const savedRoles = await db.collection("roles").insertMany(roles);
+
+        let users = [];
+        createAdmin = (email, role, name, password, isActive, isVerified) => {
+            return {
+                email,
+                role,
+                name,
+                password: bcrypt.hashSync(password, 10),
+                isActive,
+                isVerified,
+            }
+        }
+        let adminRole = await db.collection("roles").findOne({ name: 'ADMIN' });
+
+        users.push(createAdmin('admin@gmail.com', adminRole._id, 'Admin', 'testing', true, true));
+        users.push(createAdmin('test@gmail.com', adminRole._id, 'Test', 'testing', true, true));
+        users.push(createAdmin('super@gmail.com', adminRole._id, 'Super', 'testing', true, true));
+
+        // create users
+        await db.collection("users").insertMany(users, (err, res) => {
             if (err) throw err;
         });
 
-        //  create users
-        var users = [{
-            email: "admin@gmail.com",
-            role: 'admin',
-            name: "seed1",
-            password: bcrypt.hashSync('testing', 10),
-            isActive: true,
-            isVerified: true,
-        }, {
-            email: "test@hotmail.com",
-            role: 'admin',
-            name: "seed1",
-            password: bcrypt.hashSync('testing', 10),
-            isActive: true,
-            isVerified: true,
-        }, {
-            email: "superadmin@hotmail.com",
-            role: 'admin',
-            name: "seed1",
-            password: bcrypt.hashSync('testing', 10),
-            isActive: true,
-            isVerified: true,
-        }];
-        await db.collection("users").insertMany(users, function (err, res) {
-            if (err) throw err;
-            // client.close();
-        });
-
+        // client.close();
     });
