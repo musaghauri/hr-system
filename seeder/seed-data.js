@@ -16,9 +16,9 @@ MongoClient.connect(MONGO_URL,
         }
         const db = client.db('development');
 
-        await db.collection("permissions").remove();
-        await db.collection("roles").remove();
-        await db.collection("users").remove();
+        await db.dropCollection("permissions");
+        await db.dropCollection("roles");
+        await db.dropCollection("users");
 
         let permissions = [
             {
@@ -76,6 +76,7 @@ MongoClient.connect(MONGO_URL,
         // create users
         await db.collection("users").insertMany(users, (err, res) => {
             if (err) throw err;
+            console.log('seeding completed');
         });
 
         client.close();
