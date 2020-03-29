@@ -1,7 +1,7 @@
 
 import { MongoClient } from 'mongodb';
 import { MONGO_URL } from '@config';
-import values from 'lodash/values';
+import _values from 'lodash/values';
 import bcrypt from 'bcrypt';
 
 MongoClient.connect(MONGO_URL,
@@ -40,7 +40,7 @@ MongoClient.connect(MONGO_URL,
 
         // create permissions
         let savedPermissions = await db.collection("permissions").insertMany(permissions);
-        let permissionIds = values(savedPermissions.insertedIds);
+        let permissionIds = _values(savedPermissions.insertedIds);
 
         let roles = []
         const createRole = (name, description, permissions) => {
