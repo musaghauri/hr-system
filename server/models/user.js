@@ -28,14 +28,17 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
-    personal_information: {
-      company_email: {
+    personalInformation: {
+      companyEmail: {
         type: String,
         required: true,
       },
-      father_name: String,
-      date_of_birth: Date,
-      gender: String,
+      fatherName: String,
+      dateOfBirth: Date,
+      gender: {
+        type: String,
+        enum: ['Male', 'Female']
+      },
       nationality: String,
       city: {
         type: Schema.Types.ObjectId,
@@ -46,47 +49,62 @@ const userSchema = new Schema(
         ref: 'Country'
       },
       religion: String,
-      marital_status: String,
-      blood_group: String,
+      maritalStatus: {
+        type: String,
+        enum: ['Single', 'Married', 'Divorced']
+      },
+      bloodGroup: {
+        type: String,
+        enum: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']
+      },
       disability: String,
       cnic: Number,
       ntn: Number,
-      domicile: Number
-    },
-    official_information: {
-      employee_id: {
+      domicile: {
         type: Schema.Types.ObjectId,
-        ref: 'Employee'
+        ref: 'City'
+      }
+    },
+    officialInformation: {
+      employeeId: Number,
+      employeeStatus: {
+        type: String,
+        enum: ['Permanent', 'Intern', 'Freelancer', 'Contractual']
       },
-      employee_status: String,
       designation: String,
-      social_security: Number,
-      health_benefits: [String],
-      provident_fund: Number,
+      socialSecurity: Number,
+      healthBenefits: [String],
+      providentFund: Number,
       department: {
         type: Schema.Types.ObjectId,
         ref: 'Department',
       },
-      joining_date: Date,
-      resignation_date: Date,
-      exit_date: Date
+      joiningDate: Date,
+      resignationDate: Date,
+      exitDate: Date
     },
-    contact_information: [
+    contactInformation: [
       {
-        title: String,
+        title: {
+          type: String,
+          enum: ['Mobile', 'Landline', 'Email']
+        },
         type: String,
         detail: String
       }
     ],
-    salary_settings: {
-      mode_of_payment: String,
-      ex_gratia_on_overtime: Number,
+    salarySettings: {
+      modeOfPayment: {
+        type: String,
+        enum: ['Bank Transfer', 'Cash']
+      },
+      exGratiaOnOvertime: Number,
       gratuity: Number,
-      bank_details: String,
+      bankDetails: String,
     },
     academics: [
       {
-        degree_name: String,
+        degreeName: String,
         board: String,
         university: String,
         marks: Number,
@@ -98,35 +116,44 @@ const userSchema = new Schema(
         organization: String,
         designation: String,
         duration: String,
-        leaving_reason: String,
+        leavingReason: String,
         salary: Number,
       },
     ],
     dependants: [
       {
         name: String,
-        gender: String,
-        relation: String,
+        gender: {
+          type: String,
+          enum: ['Male', 'Female']
+        },
+        relation: {
+          type: String,
+          enum: ['Father', 'Mother', 'Sibling', 'Wife', 'Husband', 'Son', 'Daughter']
+        },
         contact: Number,
-        date_of_birth: Date
+        dateOfBirth: Date
       },
     ],
-    company_assets: [
+    companyAssets: [
       {
-        name: String,
+        id: {
+          type: Schema.Types.ObjectId,
+          ref: 'Asset',
+        },
         detail: String,
         returnable: Boolean,
         status: String,
-        issue_data: Date
+        issueData: Date
       },
     ],
-    leave_balance: Number,
+    leaveBalance: Number,
     duties: [
       {
         job: String,
         frequency: String,
-        effective_from: Date,
-        enchanced_till: Date
+        effectiveFrom: Date,
+        enchancedTill: Date
       },
     ],
   },
