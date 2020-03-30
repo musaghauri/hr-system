@@ -4,15 +4,16 @@ import { Provider } from 'react-redux';
 import withRedux from '@store';
 import Dashboard from '@components/layouts/dashboard';
 import 'semantic-ui-css/semantic.min.css';
-import Login from '../components/login';
-import ForgotPassword from '../components/forgotPassword';
-import ResetPassword from '../components/resetPassword';
-import { Container } from 'semantic-ui-react'
+import cookie from 'react-cookies';
+import LoginPage from './login';
+import Router from 'next/router';
+// import { save, remove, load } from '../../utils/cookie'
 
 class MyApp extends App {
   constructor(props) {
     super(props)
     this.state = {
+      userId: false,
       login: false,
       forgotPassword: false,
       resetPassword: false
@@ -27,38 +28,35 @@ class MyApp extends App {
 
     return { pageProps };
   }
-  handleSubmit = () => {
-    this.setState({ login: true })
+  componentWillMount() {
+    this.setState({ userId: cookie.load('userId') })
   }
+  onLogin = (userId) => {
+    console.log('onlogin', userId);
+    this.setState({ userId });
+    cookie.save('userId', userId, { path: '/' })
+    Router.push('/dashboard')
+  }
+  onLogout = () => {
+    cookie.remove('userId', { path: '/' })
+    Router.push('/login')
+  }
+
   handleforgotPassword = () => {
     this.setState({ forgotPassword: true })
   }
 
   render() {
-    const { login, forgotPassword } = this.state;
+    const { userId } = this.state;
     const { Component, pageProps, store } = this.props;
     return (
       <Provider store={store}>
         {
-          !login && !forgotPassword &&
-          <Container textAlign='center'>
-            < Login
-              handleSubmit={this.handleSubmit}
-              handleforgotPassword={this.handleforgotPassword}
-            />
-          </Container>
+          !userId && <LoginPage onSuccess={this.onLogin} loginUserStatus={userId} />
         }
         {
-          !login && forgotPassword &&
-          <Container textAlign='center'>
-            <ForgotPassword
-              handleSubmit={this.handleSubmit}
-            />
-          </Container>
-        }
-        {
-          login &&
-          <Dashboard>
+          userId &&
+          <Dashboard onLogout={this.onLogout}>
             <Component {...pageProps} />
           </Dashboard>
         }
