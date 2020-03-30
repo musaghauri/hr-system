@@ -4,10 +4,9 @@ import { Provider } from 'react-redux';
 import withRedux from '@store';
 import Dashboard from '@components/layouts/dashboard';
 import 'semantic-ui-css/semantic.min.css';
-import cookie from 'react-cookies';
+import cookie from '../../utils/cookie';
 import LoginPage from './login';
 import Router from 'next/router';
-// import { save, remove, load } from '../../utils/cookie'
 
 class MyApp extends App {
   constructor(props) {
