@@ -1,6 +1,9 @@
-import ForgotPasswordContainer from '@redux/Auth/ForgotPassword';
-function ForgotPage() {
-    return <div><ForgotPasswordContainer /></div>
-}
+import React, { Component } from "react";
+import ForgotPasswordContainer from "@redux/Auth/ForgotPassword";
 
-export default ForgotPage
+class ForgotPassword extends Component {
+  render() {
+    return <ForgotPasswordContainer {...this.props} />;
+  }
+}
+export default ForgotPassword;

@@ -1,6 +1,9 @@
-import LoginContainer from '@redux/Auth/Login';
-function LoginPage({ onSuccess }) {
-  return <div><LoginContainer onSuccess={onSuccess} /> </div>
-}
+import React, { Component } from "react";
+import LoginContainer from "@redux/Auth/Login";
 
-export default LoginPage
+class Login extends Component {
+  render() {
+    return <LoginContainer {...this.props} />;
+  }
+}
+export default Login;

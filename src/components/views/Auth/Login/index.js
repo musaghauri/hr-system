@@ -1,46 +1,56 @@
-import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react';
-import Router from 'next/router';
-
-const options = [
-    { key: 'admin', text: 'Admin', value: 'admin' },
-    { key: 'employee', text: 'Employee', value: 'employee' },
-]
+import React, { Component } from "react";
+import { Button, Form } from "semantic-ui-react";
+import Link from "next/link";
+import { ROLE_OPTIONS } from "@config";
 
 class Login extends Component {
-    handleforgotPassword = () => {
-        Router.push('/forgot-password')
-    }
-    render() {
-        const { handleSubmit, onSuccess } = this.props
-        return (
-            <Form onSubmit={(e) => onSuccess('user_email')}>
-                <Form.Group widths="equal" >
-                    <Form.Input
-                        fluid
-                        label='Username'
-                        name="email"
-                        placeholder='Username or email'
-                        error={{ content: 'Please enter a valid username' }}
-                    />
-                    <Form.Input
-                        fluid
-                        label='Password'
-                        name="password"
-                        placeholder='Password'
-                        error={{ content: 'Password must be 6 characters or more' }}
-                    />
-                    <Form.Select
-                        fluid
-                        label='Role' options={options} placeholder='Role'
-                        name='role'
-                        error={{ content: 'Please select a role' }}
-                    />
-                </Form.Group>
-                <p onClick={this.handleforgotPassword}>Forgot password?</p>
-                <Button fluid type='submit'>Submit</Button>
-            </Form>
-        );
-    }
+  handleChange = (name, value) => {
+    this.props.updateFormDetails(name, value);
+  };
+  render() {
+    const { handleSubmit, formDetails } = this.props;
+    return (
+      <Form onSubmit={handleSubmit}>
+        <Form.Group widths="equal">
+          <Form.Input
+            fluid
+            type="email"
+            label="Username"
+            name="email"
+            value={formDetails.get("email").get("value") || ""}
+            placeholder="Username or email"
+            error={{ content: "Please enter a valid username" }}
+            onChange={(e, { name, value }) => this.handleChange(name, value)}
+          />
+          <Form.Input
+            fluid
+            type="password"
+            label="Password"
+            name="password"
+            value={formDetails.get("password").get("value") || ""}
+            placeholder="Password"
+            error={{ content: "Password must be 6 characters or more" }}
+            onChange={(e, { name, value }) => this.handleChange(name, value)}
+          />
+          <Form.Select
+            fluid
+            label="Role"
+            options={ROLE_OPTIONS}
+            placeholder="Role"
+            name="role"
+            value={formDetails.get("role").get("value") || ""}
+            error={{ content: "Please select a role" }}
+            onChange={(e, { name, value }) => this.handleChange(name, value)}
+          />
+        </Form.Group>
+        <Link href="/forgot-password">
+          <a>Forgot password?</a>
+        </Link>
+        <Button fluid type="submit">
+          Submit
+        </Button>
+      </Form>
+    );
+  }
 }
-export default Login
+export default Login;

@@ -1,6 +1,9 @@
-import ResetPasswordContainer from '@redux/Auth/ResetPassword';
-function ResetPage() {
-    return <div><ResetPasswordContainer /> </div>
-}
+import React, { Component } from "react";
+import ResetPasswordContainer from "@redux/Auth/ResetPassword";
 
-export default ResetPage
+class ResetPassword extends Component {
+  render() {
+    return <ResetPasswordContainer {...this.props} />;
+  }
+}
+export default ResetPassword;
