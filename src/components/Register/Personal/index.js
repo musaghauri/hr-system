@@ -10,21 +10,11 @@ import {
 } from "@config";
 
 class Personal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dateOfBirth: ""
-    };
-  }
   handleChange = (name, value) => {
-    console.log(name, value);
-    // let tempFormDetails = Object.assign(
-    //   {},
-    //   this.props.formDetails.get("personalInformation")
-    // );
-    // console.log(tempFormDetails);
-    // tempFormDetails.setIn([name, "value"], value);
-    this.props.updateFormDetails("personalInformation", name, value);
+    this.props.updateValue(
+      ["formDetails", "personalInformation", name, "value"],
+      value
+    );
   };
   saveAndContinue = e => {
     e.preventDefault();

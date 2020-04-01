@@ -1,4 +1,4 @@
-import { RESET_REDUCER, UPDATE_FORM_DETAILS } from "./constants";
+import { RESET_REDUCER, UPDATE_VALUE } from "./constants";
 
 export function resetReducer() {
   return {
@@ -6,10 +6,9 @@ export function resetReducer() {
   };
 }
 
-export function updateFormDetails(parentName, name, value) {
+export function updateValue(name, value) {
   return {
-    type: UPDATE_FORM_DETAILS,
-    parentName,
+    type: UPDATE_VALUE,
     name,
     value
   };

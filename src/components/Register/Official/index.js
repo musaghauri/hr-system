@@ -5,8 +5,10 @@ import { EMPLOYEE_STATUS_OPTIONS, DEPARTMENT_OPTIONS } from "@config";
 
 class Official extends Component {
   handleChange = (name, value) => {
-    console.log(name, value);
-    this.props.updateFormDetails("officialInformation", name, value);
+    this.props.updateValue(
+      ["formDetails", "officialInformation", name, "value"],
+      value
+    );
   };
   saveAndContinue = e => {
     e.preventDefault();

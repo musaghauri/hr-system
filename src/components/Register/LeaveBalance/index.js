@@ -3,8 +3,7 @@ import { Form, Button, Segment } from "semantic-ui-react";
 
 class LeaveBalance extends Component {
   handleChange = (name, value) => {
-    console.log(name, value);
-    this.props.updateFormDetails("leaveBalance", name, value);
+    this.props.updateValue(["formDetails", name, "value"], value);
   };
   saveAndContinue = e => {
     e.preventDefault();
@@ -28,10 +27,10 @@ class LeaveBalance extends Component {
               label="Leave Balance"
               type="text"
               name="leaveBalance"
-              // value={formDetails.getIn(["leaveBalance", "value"])}
+              value={formDetails.getIn(["leaveBalance", "value"])}
               placeholder="Leave Balance"
               error={{ content: "Please enter a value" }}
-              // onChange={(e, { name, value }) => this.handleChange(name, value)}
+              onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
           </Form.Group>
           <Button onClick={this.back}>Back</Button>

@@ -3,8 +3,7 @@ import { Form, Button, Segment } from "semantic-ui-react";
 
 class Academic extends Component {
   handleChange = (name, value) => {
-    console.log(name, value);
-    this.props.updateFormDetails("academics", name, value);
+    this.props.updateValue(["formDetails", "academics", name, "value"], value);
   };
   saveAndContinue = e => {
     e.preventDefault();

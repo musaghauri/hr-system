@@ -4,8 +4,10 @@ import { TYPE_OPTIONS } from "@config";
 
 class Contact extends Component {
   handleChange = (name, value) => {
-    console.log(name, value);
-    this.props.updateFormDetails("contactInformation", name, value);
+    this.props.updateValue(
+      ["formDetails", "contactInformation", name, "value"],
+      value
+    );
   };
   saveAndContinue = e => {
     e.preventDefault();

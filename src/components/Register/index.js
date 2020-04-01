@@ -35,13 +35,13 @@ class Register extends Component {
 
   render() {
     const { step } = this.state;
-    const { formDetails, updateFormDetails, handleSubmit } = this.props;
+    const { formDetails, updateValue, handleSubmit } = this.props;
     switch (step) {
       case 1:
         return (
           <Personal
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -50,7 +50,7 @@ class Register extends Component {
         return (
           <Official
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -59,7 +59,7 @@ class Register extends Component {
         return (
           <Contact
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -68,7 +68,7 @@ class Register extends Component {
         return (
           <Salary
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -77,7 +77,7 @@ class Register extends Component {
         return (
           <Academic
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -86,7 +86,7 @@ class Register extends Component {
         return (
           <Experience
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -95,7 +95,7 @@ class Register extends Component {
         return (
           <Dependent
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -104,7 +104,7 @@ class Register extends Component {
         return (
           <CompanyAsset
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -113,7 +113,7 @@ class Register extends Component {
         return (
           <LeaveBalance
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
           />
@@ -122,7 +122,7 @@ class Register extends Component {
         return (
           <Duty
             formDetails={formDetails}
-            updateFormDetails={updateFormDetails}
+            updateValue={updateValue}
             handleSubmit={handleSubmit}
             nextStep={this.nextStep}
             prevStep={this.prevStep}

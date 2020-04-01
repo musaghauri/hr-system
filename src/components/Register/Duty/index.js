@@ -5,8 +5,7 @@ import { DateInput } from "semantic-ui-calendar-react";
 
 class Duty extends Component {
   handleChange = (name, value) => {
-    console.log(name, value);
-    this.props.updateFormDetails("duties", name, value);
+    this.props.updateValue(["formDetails", "duties", name, "value"], value);
   };
   saveAndContinue = e => {
     e.preventDefault();

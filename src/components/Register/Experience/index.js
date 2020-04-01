@@ -3,8 +3,7 @@ import { Form, Button, Segment } from "semantic-ui-react";
 
 class Experience extends Component {
   handleChange = (name, value) => {
-    console.log(name, value);
-    this.props.updateFormDetails("experience", name, value);
+    this.props.updateValue(["formDetails", "experience", name, "value"], value);
   };
   saveAndContinue = e => {
     e.preventDefault();

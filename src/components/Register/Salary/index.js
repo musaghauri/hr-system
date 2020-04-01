@@ -4,8 +4,10 @@ import { MODE_OF_PAYMENT_OPTIONS } from "@config";
 
 class Salary extends Component {
   handleChange = (name, value) => {
-    console.log(name, value);
-    this.props.updateFormDetails("salarySettings", name, value);
+    this.props.updateValue(
+      ["formDetails", "salarySettings", name, "value"],
+      value
+    );
   };
   saveAndContinue = e => {
     e.preventDefault();
