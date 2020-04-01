@@ -12,7 +12,7 @@
           "@store": "./src/store",
           "@server": "./server",
           "@assets": "./src/assets",
-          "@cookie": "./utils/cookie"
+          "@utils": "./utils"
           // "@theme": "./src/theme"
         }
       }

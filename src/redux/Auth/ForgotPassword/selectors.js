@@ -1,13 +1,13 @@
 import { createSelector } from "reselect";
 
 /**
- * Direct selector to the viewDriver state domain
+ * Direct selector to the forgotPassword state domain
  */
 const selectForgotPasswordDomain = () => state => state.get("forgotPassword");
 
-const selectformDetails = () =>
+const selectFormDetails = () =>
   createSelector(selectForgotPasswordDomain(), forgotPasswordState =>
     forgotPasswordState.get("formDetails")
   );
 
-export { selectformDetails };
+export { selectFormDetails };

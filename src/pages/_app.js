@@ -4,15 +4,9 @@ import { Provider } from "react-redux";
 import withRedux from "@store";
 import Dashboard from "@components/layouts/dashboard";
 import "semantic-ui-css/semantic.min.css";
-import cookie from "@cookie";
+import cookie from "@utils/cookie";
 
 class MyApp extends App {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userId: false
-    };
-  }
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
@@ -22,16 +16,12 @@ class MyApp extends App {
 
     return { pageProps };
   }
-  componentWillMount() {
-    this.setState({ userId: cookie.load("userId") });
-  }
 
   render() {
-    const { userId } = this.state;
     const { Component, pageProps, store } = this.props;
     return (
       <Provider store={store}>
-        {userId ? (
+        {cookie.load("userId") ? (
           <Dashboard>
             {" "}
             <Component {...pageProps} />{" "}

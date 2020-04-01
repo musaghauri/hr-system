@@ -1,2 +1,2 @@
-export const UPDATE_FORM_DETAILS = "Auth/Login/UPDATE_FORM_DETAILS";
-export const RESET_REDUCER = "Auth/Login/RESET_REDUCER";
+export const UPDATE_VALUE = "HR_SYSTEM/Auth/Login/UPDATE_VALUE";
+export const RESET_REDUCER = "HR_SYSTEM/Auth/Login/RESET_REDUCER";

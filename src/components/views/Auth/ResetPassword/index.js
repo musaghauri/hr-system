@@ -3,7 +3,7 @@ import { Button, Form } from "semantic-ui-react";
 
 class ResetPassword extends Component {
   handleChange = (name, value) => {
-    this.props.updateFormDetails(name, value);
+    this.props.updateValue(["formDetails", name], value);
   };
   render() {
     const { handleSubmit, formDetails } = this.props;
@@ -17,7 +17,7 @@ class ResetPassword extends Component {
             type="password"
             label="Password"
             name="password"
-            value={formDetails.get("password").get("value") || ""}
+            value={formDetails.getIn(["password", "value"])}
             placeholder="Password"
             error={{ content: "Passwords does not match" }}
             onChange={(e, { name, value }) => this.handleChange(name, value)}
@@ -27,7 +27,7 @@ class ResetPassword extends Component {
             type="password"
             label="Confirm Password"
             name="confirmPassword"
-            value={formDetails.get("confirmPassword").get("value") || ""}
+            value={formDetails.getIn(["confirmPassword", "value"])}
             placeholder="Confirm Password"
             error={{ content: "Passwords does not match" }}
             onChange={(e, { name, value }) => this.handleChange(name, value)}

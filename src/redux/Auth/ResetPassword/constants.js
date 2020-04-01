@@ -1,2 +1,2 @@
-export const UPDATE_FORM_DETAILS = "Auth/ResetPassword/UPDATE_FORM_DETAILS";
-export const RESET_REDUCER = "Auth/ResetPassword/RESET_REDUCER";
+export const UPDATE_VALUE = "HR_SYSTEM/Auth/ResetPassword/UPDATE_VALUE";
+export const RESET_REDUCER = "HR_SYSTEM/Auth/ResetPassword/RESET_REDUCER";

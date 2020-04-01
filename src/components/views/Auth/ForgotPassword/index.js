@@ -4,7 +4,7 @@ import Link from "next/link";
 
 class ForgotPassword extends Component {
   handleChange = (name, value) => {
-    this.props.updateFormDetails(name, value);
+    this.props.updateValue(["formDetails", name], value);
   };
   render() {
     const { handleSubmit, formDetails } = this.props;
@@ -20,7 +20,7 @@ class ForgotPassword extends Component {
             fluid
             type="email"
             name="email"
-            value={formDetails.get("email").get("value") || ""}
+            value={formDetails.getIn(["email", "value"])}
             label="Email"
             placeholder="Email"
             error={{ content: "Please enter a valid email address" }}

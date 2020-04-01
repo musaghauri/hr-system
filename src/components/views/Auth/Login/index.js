@@ -5,7 +5,7 @@ import { ROLE_OPTIONS } from "@config";
 
 class Login extends Component {
   handleChange = (name, value) => {
-    this.props.updateFormDetails(name, value);
+    this.props.updateValue(["formDetails", name], value);
   };
   render() {
     const { handleSubmit, formDetails } = this.props;
@@ -17,7 +17,7 @@ class Login extends Component {
             type="email"
             label="Username"
             name="email"
-            value={formDetails.get("email").get("value") || ""}
+            value={formDetails.getIn(["email", "value"])}
             placeholder="Username or email"
             error={{ content: "Please enter a valid username" }}
             onChange={(e, { name, value }) => this.handleChange(name, value)}
@@ -27,7 +27,7 @@ class Login extends Component {
             type="password"
             label="Password"
             name="password"
-            value={formDetails.get("password").get("value") || ""}
+            value={formDetails.getIn(["password", "value"])}
             placeholder="Password"
             error={{ content: "Password must be 6 characters or more" }}
             onChange={(e, { name, value }) => this.handleChange(name, value)}
@@ -38,7 +38,7 @@ class Login extends Component {
             options={ROLE_OPTIONS}
             placeholder="Role"
             name="role"
-            value={formDetails.get("role").get("value") || ""}
+            value={formDetails.getIn(["role", "value"])}
             error={{ content: "Please select a role" }}
             onChange={(e, { name, value }) => this.handleChange(name, value)}
           />

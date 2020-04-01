@@ -5,21 +5,10 @@ import Router from "next/router";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { bindActionCreators } from "redux";
-import { resetReducer, updateFormDetails } from "./actions";
-import { selectformDetails } from "./selectors";
+import { resetReducer, updateValue } from "./actions";
+import { selectFormDetails } from "./selectors";
 
 class ForgotPasswordContainer extends Component {
-  // componentWillMount() {
-  //   console.log(cookie.load("userId"));
-  //   if (cookie.load("userId")) {
-  //     Router.push("/dashboard");
-  //   }
-  // }
-
-  updateFormDetails = (name, value) => {
-    this.props.onUpdateFormDetails(name, value);
-  };
-
   submitForm = () => {
     Router.push("/reset-password");
   };
@@ -29,23 +18,23 @@ class ForgotPasswordContainer extends Component {
   }
 
   render() {
-    const { formDetails } = this.props;
+    const { formDetails, onUpdateValue } = this.props;
     return (
       <ForgotPassword
         formDetails={formDetails}
-        updateFormDetails={this.updateFormDetails}
+        updateValue={onUpdateValue}
         handleSubmit={this.submitForm}
       />
     );
   }
 }
 const mapStateToProps = createStructuredSelector({
-  formDetails: selectformDetails()
+  formDetails: selectFormDetails()
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    onUpdateFormDetails: bindActionCreators(updateFormDetails, dispatch),
+    onUpdateValue: bindActionCreators(updateValue, dispatch),
     onResetReducer: bindActionCreators(resetReducer, dispatch)
   };
 }
