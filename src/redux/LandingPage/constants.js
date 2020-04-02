@@ -1,3 +1,3 @@
-export const RESET_REDUCER = 'HR_SYSTEM/LandingPage/RESET_REDUCER';
-export const UPDATE_VALUE = 'HR_SYSTEM/LandingPage/UPDATE_VALUE';
-export const INITIATE_CLOCK = 'HR_SYSTEM/LandingPage/INITIATE_CLOCK';
+export const RESET_REDUCER = "HRMS/LandingPage/RESET_REDUCER";
+export const UPDATE_VALUE = "HRMS/LandingPage/UPDATE_VALUE";
+export const INITIATE_CLOCK = "HRMS/LandingPage/INITIATE_CLOCK";

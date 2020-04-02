@@ -1,2 +1,2 @@
-export const UPDATE_VALUE = "HR_SYSTEM/Auth/ForgotPassword/UPDATE_VALUE";
-export const RESET_REDUCER = "HR_SYSTEM/Auth/ForgotPassword/RESET_REDUCER";
+export const UPDATE_VALUE = "HRMS/Auth/ForgotPassword/UPDATE_VALUE";
+export const RESET_REDUCER = "HRMS/Auth/ForgotPassword/RESET_REDUCER";

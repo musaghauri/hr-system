@@ -5,12 +5,13 @@ import { ROLE_OPTIONS } from "@config";
 
 class Login extends Component {
   handleChange = (name, value) => {
-    this.props.updateValue(["formDetails", name], value);
+    this.props.updateValue(["formDetails", name, "value"], value);
   };
   render() {
     const { handleSubmit, formDetails } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
+        <h1>Login</h1>
         <Form.Group widths="equal">
           <Form.Input
             fluid
@@ -47,7 +48,7 @@ class Login extends Component {
           <a>Forgot password?</a>
         </Link>
         <Button fluid type="submit">
-          Submit
+          Login
         </Button>
       </Form>
     );

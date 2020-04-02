@@ -4,13 +4,13 @@ import Link from "next/link";
 
 class ForgotPassword extends Component {
   handleChange = (name, value) => {
-    this.props.updateValue(["formDetails", name], value);
+    this.props.updateValue(["formDetails", name, "value"], value);
   };
   render() {
     const { handleSubmit, formDetails } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
-        <h1>Password Forgot</h1>
+        <h1>Forgot Password</h1>
         <p>
           To reset your password, enter the email address you used to sign into
           HRMS

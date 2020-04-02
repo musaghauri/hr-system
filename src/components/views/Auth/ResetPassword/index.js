@@ -3,13 +3,13 @@ import { Button, Form } from "semantic-ui-react";
 
 class ResetPassword extends Component {
   handleChange = (name, value) => {
-    this.props.updateValue(["formDetails", name], value);
+    this.props.updateValue(["formDetails", name, "value"], value);
   };
   render() {
     const { handleSubmit, formDetails } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
-        <h1>Reset Forgot</h1>
+        <h1>Reset Password</h1>
         <p>Enter new password</p>
         <Form.Group widths="equal">
           <Form.Input
@@ -33,7 +33,7 @@ class ResetPassword extends Component {
             onChange={(e, { name, value }) => this.handleChange(name, value)}
           />
         </Form.Group>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Reset Password</Button>
       </Form>
     );
   }
