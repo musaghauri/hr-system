@@ -1,7 +1,22 @@
 import React, { Component } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Container, Segment} from "semantic-ui-react";
 import Link from "next/link";
-
+import styled from 'styled-components';
+const StyledContainer = styled(Container)`
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100vh !important;
+`;
+const StyledSegment = styled(Segment)`
+  padding: 3em !important;
+`;
+const CenterHeading = styled.h1`
+  text-align: center;
+`;
+const StyeledA = styled.a`
+  cursor: pointer;
+`;
 class ForgotPassword extends Component {
   handleChange = (name, value) => {
     this.props.updateValue(["formDetails", name, "value"], value);
@@ -9,13 +24,10 @@ class ForgotPassword extends Component {
   render() {
     const { handleSubmit, formDetails } = this.props;
     return (
+      <StyledContainer>
+      <StyledSegment>
       <Form onSubmit={handleSubmit}>
-        <h1>Forgot Password</h1>
-        <p>
-          To reset your password, enter the email address you used to sign into
-          HRMS
-        </p>
-        <Form.Group widths="equal">
+        <CenterHeading>Forgot Password</CenterHeading>
           <Form.Input
             fluid
             type="email"
@@ -26,15 +38,16 @@ class ForgotPassword extends Component {
             error={{ content: "Please enter a valid email address" }}
             onChange={(e, { name, value }) => this.handleChange(name, value)}
           />
-        </Form.Group>
         <Button type="submit">Submit</Button>
         <p>
           Back to{" "}
           <Link href="/login">
-            <a>Login</a>
+            <StyeledA>Login</StyeledA>
           </Link>
         </p>
       </Form>
+      </StyledSegment>
+      </StyledContainer>
     );
   }
 }

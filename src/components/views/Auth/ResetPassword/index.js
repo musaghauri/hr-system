@@ -1,6 +1,23 @@
 import React, { Component } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Container, Segment} from "semantic-ui-react";
 
+import styled from 'styled-components';
+const StyledContainer = styled(Container)`
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100vh !important;
+`;
+const StyledSegment = styled(Segment)`
+  padding: 3em !important;
+`;
+const CenterHeading = styled.h1`
+  text-align: center;
+`;
+const StyeledA = styled.a`
+  display: inline-block;
+  margin-bottom: 5px;
+`;
 class ResetPassword extends Component {
   handleChange = (name, value) => {
     this.props.updateValue(["formDetails", name, "value"], value);
@@ -8,10 +25,11 @@ class ResetPassword extends Component {
   render() {
     const { handleSubmit, formDetails } = this.props;
     return (
+      <StyledContainer>
+      <StyledSegment>
       <Form onSubmit={handleSubmit}>
-        <h1>Reset Password</h1>
+        <CenterHeading>Reset Password</CenterHeading>
         <p>Enter new password</p>
-        <Form.Group widths="equal">
           <Form.Input
             fluid
             type="password"
@@ -32,9 +50,10 @@ class ResetPassword extends Component {
             error={{ content: "Passwords does not match" }}
             onChange={(e, { name, value }) => this.handleChange(name, value)}
           />
-        </Form.Group>
         <Button type="submit">Reset Password</Button>
       </Form>
+      </StyledSegment>
+      </StyledContainer>
     );
   }
 }
