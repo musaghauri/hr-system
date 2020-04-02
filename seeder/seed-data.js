@@ -2,6 +2,7 @@ import { MongoClient } from 'mongodb';
 import { MONGO_URL } from '@config';
 import _values from 'lodash/values';
 import bcrypt from 'bcrypt';
+import countries from './countries';
 
 MongoClient.connect(
   MONGO_URL,
@@ -19,6 +20,8 @@ MongoClient.connect(
     await db.dropCollection('permissions');
     await db.dropCollection('roles');
     await db.dropCollection('users');
+    await db.dropCollection('countries');
+    await db.dropCollection('states');
 
     const permissions = [
       {
@@ -107,6 +110,27 @@ MongoClient.connect(
 
     // create users
     await db.collection('users').insertMany(users, (err, res) => {
+      if (err) throw err;
+    });
+
+    //countries
+    await db
+      .collection('countries')
+      .insertMany(countries);
+
+    //States
+    const country = await db.collection('countries').findOne({ name: 'Pakistan' });
+    const states = [
+      {name: "Azad Jammu and Kashmir", country: country._id, createdBy : null}, 
+      {name: "Balochistan", country: country._id,  createdBy : null}, 
+      {name: "Gilgit Baltistan", country: country._id,  createdBy : null}, 
+      {name: "Islamabad Capital Territory", country: country._id,  createdBy : null}, 
+      {name: "Khyber Pakhtunkhwa", country: country._id,  createdBy : null}, 
+      {name: "Punjab", country: country._id,  createdBy : null}, 
+      {name: "Sindh", country: country._id,  createdBy : null}, 
+    ];
+
+    await db.collection('states').insertMany(states, (err, res) => {
       if (err) throw err;
       console.log('seeding completed');
     });
