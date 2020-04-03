@@ -12,7 +12,8 @@
     "heroku-postbuild": "npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "seed-data": "babel-node seeder/seed-data"
+    "seed-admins": "babel-node seeder/seed-admins",
+    "seed-locations": "babel-node seeder/seed-locations"
   },
   "repository": {
     "type": "git",

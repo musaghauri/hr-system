@@ -1,15 +1,14 @@
 import { MongoClient } from "mongodb";
 import { MONGO_URL } from "@config";
 import _values from "lodash/values";
-import bcrypt from "bcrypt";
-import { countries } from "./countries";
-import { CITIES_OF_PUNJAB } from "./punjab";
-import { CITIES_OF_SINDH } from "./sindh";
-import { CITIES_OF_KPK } from "./kpk";
-import { CITIES_OF_GB } from "./gb";
-import { CITIES_OF_AJK } from "./ajk";
-import { CITIES_OF_BALOCHISTAN } from "./balochistan";
-import { CITIES_OF_ISLAMABAD } from "./islamabad";
+import { countries } from "./Data/Cities/countries";
+import { CITIES_OF_PUNJAB } from "./Data/Cities/punjab";
+import { CITIES_OF_SINDH } from "./Data/Cities/sindh";
+import { CITIES_OF_KPK } from "./Data/Cities/kpk";
+import { CITIES_OF_GB } from "./Data/Cities/gb";
+import { CITIES_OF_AJK } from "./Data/Cities/ajk";
+import { CITIES_OF_BALOCHISTAN } from "./Data/Cities/balochistan";
+import { CITIES_OF_ISLAMABAD } from "./Data/Cities/islamabad";
 
 MongoClient.connect(
   MONGO_URL,
@@ -24,102 +23,9 @@ MongoClient.connect(
     }
     const db = client.db("development");
 
-    await db.dropCollection("permissions");
-    await db.dropCollection("roles");
-    await db.dropCollection("users");
     await db.dropCollection("countries");
     await db.dropCollection("states");
     await db.dropCollection("cities");
-
-    const permissions = [
-      {
-        name: "CREATE",
-        description: "create permission description",
-        createdBy: null
-      },
-      {
-        name: "DELETE",
-        description: "delete permission description",
-        createdBy: null
-      },
-      {
-        name: "VIEW",
-        description: "view permission description",
-        createdBy: null
-      }
-    ];
-
-    // create permissions
-    const savedPermissions = await db
-      .collection("permissions")
-      .insertMany(permissions);
-    const permissionIds = _values(savedPermissions.insertedIds);
-
-    const roles = [];
-    const createRole = (name, description, rolePermissions) => ({
-      name,
-      description,
-      permissions: rolePermissions
-    });
-    roles.push(createRole("ADMIN", "", permissionIds));
-    roles.push(createRole("EMPLOYEE", "", permissionIds));
-
-    // create roles
-    await db.collection("roles").insertMany(roles);
-
-    const users = [];
-    const createAdmin = (
-      email,
-      role,
-      name,
-      password,
-      isActive,
-      isVerified
-    ) => ({
-      email,
-      role,
-      name,
-      password: bcrypt.hashSync(password, 10),
-      isActive,
-      isVerified
-    });
-    const adminRole = await db.collection("roles").findOne({ name: "ADMIN" });
-
-    users.push(
-      createAdmin(
-        "admin@gmail.com",
-        adminRole._id,
-        "Admin",
-        "testing",
-        true,
-        true
-      )
-    );
-    users.push(
-      createAdmin(
-        "test@gmail.com",
-        adminRole._id,
-        "Test",
-        "testing",
-        true,
-        true
-      )
-    );
-    users.push(
-      createAdmin(
-        "super@gmail.com",
-        adminRole._id,
-        "Super Admin",
-        "testing",
-        true,
-        true
-      )
-    );
-
-    // create users
-    await db.collection("users").insertMany(users, (err, res) => {
-      if (err) throw err;
-    });
 
     //countries
     await db.collection("countries").insertMany(countries);
@@ -170,7 +76,6 @@ MongoClient.connect(
     const AJK = await db
       .collection("states")
       .findOne({ name: "Azad Jammu and Kashmir" });
-
     cities.push(
       ...CITIES_OF_PUNJAB.map(city => ({
         city,
