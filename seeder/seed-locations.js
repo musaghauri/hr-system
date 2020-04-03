@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import { MONGO_URL } from "@config";
 import _values from "lodash/values";
-import { countries } from "./Data/Cities/countries";
+import { countries } from "./Data/countries";
 import { CITIES_OF_PUNJAB } from "./Data/Cities/punjab";
 import { CITIES_OF_SINDH } from "./Data/Cities/sindh";
 import { CITIES_OF_KPK } from "./Data/Cities/kpk";
