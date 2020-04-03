@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
-import { COMPANY_ASSETS_OPTIONS, RELATION_OPTIONS } from "@config";
+import { COMPANY_ASSETS_OPTIONS } from "@config/constants/companyAsset";
 import { DateInput } from "semantic-ui-calendar-react";
 
 class CompanyAsset extends Component {

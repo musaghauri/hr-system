@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
-import {
-  GENDER_OPTIONS,
-  CITY_OPTIONS,
-  COUNTRY_OPTIONS,
-  MARITAL_STATUS_OPTIONS,
-  BLOOD_GROUP_OPTIONS
-} from "@config";
+import { GENDER_OPTIONS } from "@config/constants/gender";
+import { CITY_OPTIONS } from "@config/constants/city";
+import { COUNTRY_OPTIONS } from "@config/constants/countries";
+import { MARITAL_STATUS_OPTIONS } from "@config/constants/maritalStatus";
+import { BLOOD_GROUP_OPTIONS } from "@config/constants/bloodGroup";
 
 class Personal extends Component {
   handleChange = (name, value) => {
@@ -190,7 +188,7 @@ class Personal extends Component {
             <Form.Select
               fluid
               label="Blood Group"
-              options={BLOOD_GROUP_OPTIONS}
+              // options={BLOOD_GROUP_OPTIONS}
               type="text"
               name="bloodGroup"
               value={formDetails.getIn([

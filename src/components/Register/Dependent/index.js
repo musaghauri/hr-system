@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
-import { GENDER_OPTIONS, RELATION_OPTIONS } from "@config";
+import { GENDER_OPTIONS } from "@config/constants/gender";
+import { RELATION_OPTIONS } from "@config/constants/relation";
 import { DateInput } from "semantic-ui-calendar-react";
 
 class Dependent extends Component {

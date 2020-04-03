@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
-import { FREQUENCY_OPTIONS } from "@config";
+import { FREQUENCY_OPTIONS } from "@config/constants/frequency";
 import { DateInput } from "semantic-ui-calendar-react";
 
 class Duty extends Component {

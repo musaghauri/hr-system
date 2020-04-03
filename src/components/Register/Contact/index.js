@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
-import { TYPE_OPTIONS } from "@config";
+import { TYPE_OPTIONS } from "@config/constants/type";
 
 class Contact extends Component {
   handleChange = (name, value) => {

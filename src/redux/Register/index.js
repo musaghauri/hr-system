@@ -18,11 +18,13 @@ class RegisterContainer extends Component {
   render() {
     const { formDetails, onUpdateValue } = this.props;
     return (
+      <div style={{ marginLeft: "150px" }}>
       <Register
         formDetails={formDetails}
         updateValue={onUpdateValue}
         handleSubmit={this.submitForm}
       />
+      </div>
     );
   }
 }

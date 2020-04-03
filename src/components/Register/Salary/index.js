@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
-import { MODE_OF_PAYMENT_OPTIONS } from "@config";
+import { MODE_OF_PAYMENT_OPTIONS } from "@config/constants/payment";
 
 class Salary extends Component {
   handleChange = (name, value) => {

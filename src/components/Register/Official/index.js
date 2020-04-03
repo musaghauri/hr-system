@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
-import { EMPLOYEE_STATUS_OPTIONS, DEPARTMENT_OPTIONS } from "@config";
+import { EMPLOYEE_STATUS_OPTIONS} from "@config/constants/employee";
+import { DEPARTMENT_OPTIONS } from "@config/constants/department";
+import styled from 'styled-components';
+
+const CenterHeading = styled.h1`
+  text-align: center;
+`;
 
 class Official extends Component {
   handleChange = (name, value) => {
@@ -25,7 +31,7 @@ class Official extends Component {
     return (
       <Segment>
         <Form>
-          <h1 className="ui centered">Enter Official Details</h1>
+          <CenterHeading>Enter Official Details</CenterHeading>
           <Form.Group widths="equal">
             <Form.Input
               label="Employee ID"

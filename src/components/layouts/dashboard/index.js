@@ -12,7 +12,7 @@ class Dashboard extends Component {
       <>
         <Header />
         <Sidebar>{children}</Sidebar>
-        <Container textAlign="center" style={{ maxWidth: "calc(100%-152px" }}>
+        <Container style={{marginTop: "100px", marginLeftL: "152px"}}>
           <Register />
         </Container>
         {/* <Footer /> */}

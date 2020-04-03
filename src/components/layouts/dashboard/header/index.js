@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import { Menu, Button, Dropdown, Image, Input } from 'semantic-ui-react';
+import styled from 'styled-components';
+
+const StyledMenu = styled(Menu)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+`;
 
 class Header extends Component {
   constructor(props) {
@@ -14,7 +22,7 @@ class Header extends Component {
   render() {
     const { activeItem } = this.state;
     return (
-      <Menu size="massive" stackable>
+      <StyledMenu size="massive" stackable>
         <Menu.Item header>
           <Image src="/images/logo.png" size="mini" avatar /> <span>HRMS</span>
         </Menu.Item>
@@ -57,7 +65,7 @@ class Header extends Component {
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Menu>
-      </Menu>
+      </StyledMenu>
     );
   }
 }
