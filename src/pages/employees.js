@@ -1,17 +1,10 @@
-import React, { Component } from 'react';
-import LandingPageContainer from '@redux/LandingPage';
-import { initiateClock } from '@redux/LandingPage/actions';
+import React, { Component } from "react";
+import EmployeesList from "@components/views/EmployeesList";
 
-class LandingPage extends Component {
-  static getInitialProps(props) {
-    const { isServer, store } = props.ctx;
-    store.dispatch(initiateClock());
-    return { isServer };
-  }
-
+class Employees extends Component {
   render() {
-    return <h1>Employees</h1>;
+    return <EmployeesList />;
   }
 }
 
-export default LandingPage;
+export default Employees;
