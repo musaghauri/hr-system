@@ -9,12 +9,12 @@ class Salary extends Component {
       value
     );
   };
-  saveAndContinue = e => {
+  saveAndContinue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
 
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };
@@ -34,7 +34,7 @@ class Salary extends Component {
               value={formDetails.getIn([
                 "salarySettings",
                 "modeOfPayment",
-                "value"
+                "value",
               ])}
               placeholder="Select a type"
               error={{ content: "Please select a value" }}
@@ -43,9 +43,22 @@ class Salary extends Component {
             <Form.Input
               label="Ex-Gratia on Overtime"
               type="text"
-              name="exGratia"
-              value={formDetails.getIn(["salarySettings", "exGratia", "value"])}
+              name="exGratiaOnOvertime"
+              value={formDetails.getIn([
+                "salarySettings",
+                "exGratiaOnOvertime",
+                "value",
+              ])}
               placeholder="Ex-Gratia"
+              error={{ content: "Please enter a value" }}
+              onChange={(e, { name, value }) => this.handleChange(name, value)}
+            />
+            <Form.Input
+              label="Gratuity"
+              type="text"
+              name="gratuity"
+              value={formDetails.getIn(["salarySettings", "gratuity", "value"])}
+              placeholder="Gratuity"
               error={{ content: "Please enter a value" }}
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
@@ -56,7 +69,7 @@ class Salary extends Component {
               value={formDetails.getIn([
                 "salarySettings",
                 "bankDetails",
-                "value"
+                "value",
               ])}
               placeholder="Bank Details"
               error={{ content: "Please enter a value" }}

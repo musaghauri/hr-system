@@ -99,7 +99,7 @@ class Official extends Component {
                 "healthBenefits",
                 "value"
               ])}
-              placeholder="NTN"
+              placeholder="Health Benefits"
               error={{ content: "Please enter a value" }}
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
@@ -112,7 +112,7 @@ class Official extends Component {
                 "providentFund",
                 "value"
               ])}
-              placeholder="NTN"
+              placeholder="Provident Fund"
               error={{ content: "Please enter a value" }}
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
@@ -128,7 +128,7 @@ class Official extends Component {
                 "department",
                 "value"
               ])}
-              placeholder="Select department"
+              placeholder="Select a department"
               error={{ content: "Please select a city" }}
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />

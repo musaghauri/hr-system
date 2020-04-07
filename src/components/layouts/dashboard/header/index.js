@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Menu, Button, Dropdown, Image, Input } from 'semantic-ui-react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import { Menu, Button, Dropdown, Image, Input } from "semantic-ui-react";
+import styled from "styled-components";
 
 const StyledMenu = styled(Menu)`
   position: fixed;
@@ -13,7 +13,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: 'features',
+      activeItem: "features",
     };
   }
 
@@ -29,7 +29,7 @@ class Header extends Component {
 
         <Menu.Item
           name="features"
-          active={activeItem === 'features'}
+          active={activeItem === "features"}
           onClick={this.handleItemClick}
         >
           Features
@@ -37,7 +37,7 @@ class Header extends Component {
 
         <Menu.Item
           name="testimonials"
-          active={activeItem === 'testimonials'}
+          active={activeItem === "testimonials"}
           onClick={this.handleItemClick}
         >
           Testimonials
@@ -45,7 +45,7 @@ class Header extends Component {
 
         <Menu.Item
           name="sign-in"
-          active={activeItem === 'sign-in'}
+          active={activeItem === "sign-in"}
           onClick={this.handleItemClick}
         >
           Sign-in

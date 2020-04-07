@@ -14,12 +14,12 @@ class Personal extends Component {
       value
     );
   };
-  saveAndContinue = e => {
+  saveAndContinue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
 
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };
@@ -39,7 +39,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "name",
-                "value"
+                "value",
               ])}
               placeholder="Name"
               error={{ content: "Please enter a name" }}
@@ -53,7 +53,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "companyEmail",
-                "value"
+                "value",
               ])}
               placeholder="Company Email"
               error={{ content: "Please enter a valid email" }}
@@ -67,7 +67,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "fatherName",
-                "value"
+                "value",
               ])}
               placeholder="Father Name"
               error={{ content: "Please enter a name" }}
@@ -84,7 +84,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "dateOfBirth",
-                "value"
+                "value",
               ])}
               error={{ content: "Please enter select a date" }}
               onChange={(e, { name, value }) => this.handleChange(name, value)}
@@ -98,7 +98,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "gender",
-                "value"
+                "value",
               ])}
               placeholder="Select Gender"
               error={{ content: "Please select a gender" }}
@@ -114,7 +114,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "nationality",
-                "value"
+                "value",
               ])}
               placeholder="Select a value"
               error={{ content: "Please select a country" }}
@@ -131,7 +131,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "city",
-                "value"
+                "value",
               ])}
               placeholder="Select City"
               error={{ content: "Please select a city" }}
@@ -146,7 +146,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "country",
-                "value"
+                "value",
               ])}
               placeholder="Select Country"
               error={{ content: "Please select a country" }}
@@ -161,7 +161,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "religion",
-                "value"
+                "value",
               ])}
               placeholder="Religion"
               error={{ content: "Please enter a religion" }}
@@ -178,7 +178,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "maritalStatus",
-                "value"
+                "value",
               ])}
               placeholder="Select marital status"
               error={{ content: "Please select a status" }}
@@ -188,13 +188,13 @@ class Personal extends Component {
             <Form.Select
               fluid
               label="Blood Group"
-              // options={BLOOD_GROUP_OPTIONS}
+              options={BLOOD_GROUP_OPTIONS}
               type="text"
               name="bloodGroup"
               value={formDetails.getIn([
                 "personalInformation",
                 "bloodGroup",
-                "value"
+                "value",
               ])}
               placeholder="Select a group"
               error={{ content: "Please select a group" }}
@@ -204,13 +204,13 @@ class Personal extends Component {
               fluid
               label="Disablility"
               type="text"
-              name="disablility"
+              name="disability"
               value={formDetails.getIn([
                 "personalInformation",
-                "disablility",
-                "value"
+                "disability",
+                "value",
               ])}
-              placeholder="Disablility"
+              placeholder="Disability"
               error={{ content: "Please enter a value" }}
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
@@ -224,7 +224,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "cnic",
-                "value"
+                "value",
               ])}
               placeholder="CNIC"
               error={{ content: "Please enter a value" }}
@@ -249,7 +249,7 @@ class Personal extends Component {
               value={formDetails.getIn([
                 "personalInformation",
                 "domicile",
-                "value"
+                "value",
               ])}
               placeholder="Select a city"
               error={{ content: "Please select a city" }}

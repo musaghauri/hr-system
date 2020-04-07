@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Header, Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
-import Link from 'next/link';
-import { withRouter } from 'next/router';
-import routes from '../routes.json';
+import React, { Component } from "react";
+import { Header, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import Link from "next/link";
+import { withRouter } from "next/router";
+import routes from "../routes.json";
 
 class SidebarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animation: 'push',
-      direction: 'left',
+      animation: "push",
+      direction: "left",
     };
   }
 
@@ -20,13 +20,13 @@ class SidebarComponent extends Component {
       <div>
         <Sidebar.Pushable
           style={{
-            position: 'fixed',
+            position: "fixed",
             bottom: 0,
             left: 0,
             top: 70,
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
             flex: 1,
           }}
           as={Segment}
@@ -53,11 +53,10 @@ class SidebarComponent extends Component {
               </Link>
             ))}
           </Sidebar>
-
-          <Sidebar.Pusher>
-            <Segment basic>{children}</Segment>
-          </Sidebar.Pusher>
         </Sidebar.Pushable>
+        <Sidebar.Pusher>
+          <Segment basic>{children}</Segment>
+        </Sidebar.Pusher>
       </div>
     );
   }

@@ -10,5 +10,11 @@
     "label": "Employees",
     "route": "/employees",
     "icon": "users"
+  },
+  {
+    "name": "register",
+    "label": "Register Employee",
+    "route": "/register",
+    "icon": "users"
   }
 ]

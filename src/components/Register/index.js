@@ -12,14 +12,14 @@ import Academic from "./Academic";
 
 class Register extends Component {
   state = {
-    step: 1
+    step: 1,
   };
 
   nextStep = () => {
     const { step } = this.state;
     if (step < 10) {
       this.setState({
-        step: step + 1
+        step: step + 1,
       });
     }
   };
@@ -28,14 +28,19 @@ class Register extends Component {
     const { step } = this.state;
     if (step > 1) {
       this.setState({
-        step: step - 1
+        step: step - 1,
       });
     }
   };
 
   render() {
     const { step } = this.state;
-    const { formDetails, updateValue, handleSubmit } = this.props;
+    const {
+      formDetails,
+      updateValue,
+      handleSubmit,
+      addAnotherEntry,
+    } = this.props;
     switch (step) {
       case 1:
         return (
@@ -62,6 +67,7 @@ class Register extends Component {
             updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            addAnotherEntry={addAnotherEntry}
           />
         );
       case 4:
@@ -80,6 +86,7 @@ class Register extends Component {
             updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            addAnotherEntry={addAnotherEntry}
           />
         );
       case 6:
@@ -89,6 +96,7 @@ class Register extends Component {
             updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            addAnotherEntry={addAnotherEntry}
           />
         );
       case 7:
@@ -98,6 +106,7 @@ class Register extends Component {
             updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            addAnotherEntry={addAnotherEntry}
           />
         );
       case 8:
@@ -107,6 +116,7 @@ class Register extends Component {
             updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            addAnotherEntry={addAnotherEntry}
           />
         );
       case 9:
@@ -126,6 +136,7 @@ class Register extends Component {
             handleSubmit={handleSubmit}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
+            addAnotherEntry={addAnotherEntry}
           />
         );
     }
