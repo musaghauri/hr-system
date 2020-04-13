@@ -1,26 +1,24 @@
-import React, { Component } from "react";
-import Link from "next/link";
-import TableGenerator from "@components/widgets/TableGenerator";
-import { CenteredHeading } from "@components/views/Auth/custom-components";
-import { Segment, Button } from "semantic-ui-react";
-import Router from "next/router";
+import React, { Component } from 'react';
+import Link from 'next/link';
+import TableGenerator from '@components/widgets/TableGenerator';
+import { Container, Button, Header } from 'semantic-ui-react';
 
 class EmployeesList extends Component {
   render() {
     const { headings, employees } = this.props;
     return (
-      <Segment style={{ marginTop: "80px", marginLeft: "150px" }}>
-        <CenteredHeading>Employees List</CenteredHeading>
+      <Container style={{ margin: 20 }}>
+        <Header as="h3">Employees List</Header>
         <Link href="employees/new">
           <Button
-            content="Add New"
-            floated="right"
+            content="Add Employee"
+            floated="left"
             primary
-            style={{ marginBottom: "5px" }}
+            style={{ marginBottom: '5px' }}
           />
         </Link>
         <TableGenerator headings={headings} rows={employees} name="employee" />
-      </Segment>
+      </Container>
     );
   }
 }

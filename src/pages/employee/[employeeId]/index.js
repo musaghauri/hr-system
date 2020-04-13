@@ -1,13 +1,9 @@
-import React, { Component } from "react";
-import ViewEmployeeContainer from "@redux/Employees/View";
+import React, { Component } from 'react';
+import ViewEmployeeContainer from '@redux/Employees/View';
 
-class View extends Component {
+class ViewEmployee extends Component {
   render() {
-    return (
-      <div style={{ marginTop: "80px", marginLeft: "150px" }}>
-        <ViewEmployeeContainer/>
-      </div>
-    );
+    return <ViewEmployeeContainer />;
   }
 }
-export default View;
+export default ViewEmployee;

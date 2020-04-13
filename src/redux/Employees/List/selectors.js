@@ -1,16 +1,16 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the Employees List state domain
  */
-const selectEmployeesListDomain = () => (state) => state.get("employeesList");
+const selectEmployeesListDomain = () => state => state.get('employeesList');
 
-const selectHeading = () =>
-  createSelector(selectEmployeesListDomain(), (employeeListState) =>
-    employeeListState.get("headings")
+const selectHeadings = () =>
+  createSelector(selectEmployeesListDomain(), employeesListState =>
+    employeesListState.get('headings')
   );
 const selectEmployees = () =>
-  createSelector(selectEmployeesListDomain(), (employeeListState) =>
-    employeeListState.get("employees")
+  createSelector(selectEmployeesListDomain(), employeesListState =>
+    employeesListState.get('employees')
   );
-export { selectHeading, selectEmployees };
+export { selectHeadings, selectEmployees };

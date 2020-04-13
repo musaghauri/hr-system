@@ -1,13 +1,9 @@
-import React, { Component } from "react";
-import EditEmployeeContainer from "@redux/Employees/Edit";
+import React, { Component } from 'react';
+import EditEmployeeContainer from '@redux/Employees/Edit';
 
-class New extends Component {
+class EditEmployee extends Component {
   render() {
-    return (
-      <div style={{ marginTop: "80px", marginLeft: "150px" }}>
-        <EditEmployeeContainer />
-      </div>
-    );
+    return <EditEmployeeContainer />;
   }
 }
-export default New;
+export default EditEmployee;

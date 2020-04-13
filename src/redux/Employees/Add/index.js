@@ -1,30 +1,28 @@
-import React, { Component } from "react";
-import AddForm from "@components/views/Employees/Form";
-import Router from "next/router";
+import React, { Component } from 'react';
+import AddForm from '@components/views/Employees/Form';
 
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { bindActionCreators } from "redux";
-import { resetReducer} from "./actions";
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { bindActionCreators } from 'redux';
+import { resetReducer } from './actions';
 
 class AddEmployeeContainer extends Component {
   componentWillUnmount() {
-    this.props.onResetReducer();
+    const { onResetReducer } = this.props;
+    onResetReducer();
   }
 
   render() {
     return <AddForm />;
   }
 }
-const mapStateToProps = createStructuredSelector({
-});
+const mapStateToProps = createStructuredSelector({});
 
 function mapDispatchToProps(dispatch) {
   return {
     onResetReducer: bindActionCreators(resetReducer, dispatch),
   };
 }
-
 
 export default connect(
   mapStateToProps,

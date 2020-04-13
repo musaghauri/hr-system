@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import EmployeesListContainer from "@redux/Employees/List";
+import React, { Component } from 'react';
+import EmployeesListContainer from '@redux/Employees/List';
 
-class Employees extends Component {
+class EmployeesList extends Component {
   render() {
     return <EmployeesListContainer />;
   }
 }
 
-export default Employees;
+export default EmployeesList;

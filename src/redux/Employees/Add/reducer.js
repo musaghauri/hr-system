@@ -1,9 +1,9 @@
-import { fromJS } from "immutable";
-import { RESET_REDUCER } from "./constants";
+import { fromJS } from 'immutable';
+import { RESET_REDUCER } from './constants';
 
 export const initialState = fromJS({});
 
-function employeesAddReducer(state = initialState, action) {
+function addEmployeeReducer(state = initialState, action) {
   switch (action.type) {
     case RESET_REDUCER:
       return initialState;
@@ -12,4 +12,4 @@ function employeesAddReducer(state = initialState, action) {
   }
 }
 
-export default employeesAddReducer;
+export default addEmployeeReducer;

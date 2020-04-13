@@ -1,6 +1,6 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
 
 /**
- * Direct selector to the Employees View state domain
+ * Direct selector to the View Employee state domain
  */
-const selectEmployeesViewDomain = () => (state) => state.get("employeeView");
+const selectViewEmployeeDomain = () => state => state.get('viewEmployee');

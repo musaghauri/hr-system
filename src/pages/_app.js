@@ -1,10 +1,10 @@
-import App from "next/app";
-import React from "react";
-import { Provider } from "react-redux";
-import withRedux from "@store";
-import Dashboard from "@components/layouts/dashboard";
-import "semantic-ui-css/semantic.min.css";
-import cookie from "@utils/cookie";
+import App from 'next/app';
+import React from 'react';
+import { Provider } from 'react-redux';
+import withRedux from '@store';
+import Dashboard from '@components/layouts/dashboard';
+import 'semantic-ui-css/semantic.min.css';
+import cookie from '@utils/cookie';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -21,10 +21,10 @@ class MyApp extends App {
     const { Component, pageProps, store } = this.props;
     return (
       <Provider store={store}>
-        {cookie.load("userId") ? (
+        {cookie.load('userId') ? (
           <Dashboard>
-            {" "}
-            <Component {...pageProps} />{" "}
+            {' '}
+            <Component {...pageProps} />{' '}
           </Dashboard>
         ) : (
           <Component {...pageProps} />

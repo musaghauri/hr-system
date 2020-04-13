@@ -1,4 +1,4 @@
-import { RESET_REDUCER } from "./constants";
+import { RESET_REDUCER } from './constants';
 
 export function resetReducer() {
   return {

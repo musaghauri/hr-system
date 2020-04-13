@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { bindActionCreators } from "redux";
-import { resetReducer, updateValue } from "./actions";
-import { selectClock } from "./selectors";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { bindActionCreators } from 'redux';
+import { resetReducer, updateValue } from './actions';
+import { selectClock } from './selectors';
 
 class LandingPageContainer extends Component {
   componentWillUnmount() {
