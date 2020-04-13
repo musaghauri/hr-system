@@ -8,7 +8,7 @@ class EmployeesList extends Component {
     const { headings, employees } = this.props;
     return (
       <Container style={{ margin: 20 }}>
-        <Header as="h3">Employees List</Header>
+        <Header as="h3">Employees</Header>
         <Link href="employees/new">
           <Button
             content="Add Employee"

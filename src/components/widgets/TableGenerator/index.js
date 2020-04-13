@@ -8,8 +8,10 @@ class TableGenerator extends Component {
       <Table celled>
         <Table.Header>
           <Table.Row>
-            {headings.map(heading => (
-              <Table.HeaderCell>{heading.get('label')}</Table.HeaderCell>
+            {headings.map((heading, hI) => (
+              <Table.HeaderCell key={`heading_${hI}`}>
+                {heading.get('label')}
+              </Table.HeaderCell>
             ))}
           </Table.Row>
         </Table.Header>
