@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import EmployeesList from "@components/views/EmployeesList";
+import EmployeesListContainer from "@redux/Employees/List";
 
 class Employees extends Component {
   render() {
-    return <EmployeesList />;
+    return <EmployeesListContainer />;
   }
 }
 

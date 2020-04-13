@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import AddEmployeeContainer from "@redux/Employees/Add";
-class New extends Component {
+import ViewEmployeeContainer from "@redux/Employees/View";
+
+class View extends Component {
   render() {
     return (
       <div style={{ marginTop: "80px", marginLeft: "150px" }}>
-        <AddEmployeeContainer />
+        <ViewEmployeeContainer/>
       </div>
     );
   }
 }
-export default New;
+export default View;
