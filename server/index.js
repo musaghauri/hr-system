@@ -15,7 +15,7 @@ mongoose.Promise = global.Promise;
 // MongoDB Connection
 mongoose.connect(
   MONGO_URL,
-  { useUnifiedTopology: true, useNewUrlParser: true },
+  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true },
   error => {
     if (error) {
       console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console

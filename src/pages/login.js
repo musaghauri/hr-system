@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import LoginContainer from "@redux/Auth/Login";
+import React, { Component } from 'react';
+import LoginContainer from '@redux/Auth/Login';
 
 class Login extends Component {
   render() {
