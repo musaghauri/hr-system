@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LandingPageContainer from '@redux/LandingPage';
 import { initiateClock } from '@redux/LandingPage/actions';
+import { withAuthSync } from '@utils/auth';
 
 class LandingPage extends Component {
   static getInitialProps(props) {
@@ -14,4 +15,4 @@ class LandingPage extends Component {
   }
 }
 
-export default LandingPage;
+export default withAuthSync(LandingPage);

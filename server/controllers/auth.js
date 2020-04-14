@@ -3,9 +3,9 @@ import httpStatus from 'http-status';
 import AuthHelper from '../helpers/Auth';
 
 function login(req, res) {
-    const { email, password } = req.body;
+    const { email, role, password } = req.body;
 
-    AuthHelper.login(email, password)
+    AuthHelper.login(email, role, password)
         .then (user => res.json(user))
         .catch(e => {
             const { status = httpStatus.INTERNAL_SERVER_ERROR, err = e } = e;

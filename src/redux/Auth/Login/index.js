@@ -1,45 +1,70 @@
-import React, { Component } from "react";
-import Login from "@components/views/Auth/Login";
-import Router from "next/router";
-import cookie from "@utils/cookie";
-
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { bindActionCreators } from "redux";
-import { resetReducer, updateValue } from "./actions";
-import { selectFormDetails } from "./selectors";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { bindActionCreators } from 'redux';
+import { submitFormData } from '@utils/helperFuncs';
+import Login from '@components/views/Auth/Login';
+import { validateFormData } from '@utils/validations';
+import { login, resetReducer, updateValue } from './actions';
+import {
+  selectLoginStatus,
+  selectFormDetails,
+  selectRoles,
+  selectGetRolesStatus,
+} from './selectors';
 
 class LoginContainer extends Component {
-  submitForm = () => {
-    const userId = "uniqueId";
-    cookie.save("userId", userId, { path: "/" });
-    Router.push("/dashboard");
-  };
-
   componentWillUnmount() {
-    this.props.onResetReducer();
+    const { onResetReducer } = this.props;
+    onResetReducer();
   }
 
+  updateFormDetails = formDetails => {
+    const { onUpdateValue } = this.props;
+    onUpdateValue('formDetails', formDetails);
+  };
+
+  validateForm = formData => validateFormData(formData);
+
+  submitForm = formDetails => {
+    const { onLogin } = this.props;
+    const userData = submitFormData(formDetails);
+    onLogin(userData);
+  };
+
   render() {
-    const { formDetails, onUpdateValue } = this.props;
+    const {
+      loginStatus,
+      onUpdateValue,
+      formDetails,
+      roles,
+      getRolesStatus,
+    } = this.props;
     return (
       <Login
+        roles={roles.toJS()}
         formDetails={formDetails}
-        updateValue={onUpdateValue}
+        loginStatus={loginStatus}
+        validateForm={this.validateForm}
         handleSubmit={this.submitForm}
+        updateValue={onUpdateValue}
       />
     );
   }
 }
 
 const mapStateToProps = createStructuredSelector({
-  formDetails: selectFormDetails()
+  loginStatus: selectLoginStatus(),
+  formDetails: selectFormDetails(),
+  roles: selectRoles(),
+  getRolesStatus: selectGetRolesStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
+    onLogin: bindActionCreators(login, dispatch),
     onUpdateValue: bindActionCreators(updateValue, dispatch),
-    onResetReducer: bindActionCreators(resetReducer, dispatch)
+    onResetReducer: bindActionCreators(resetReducer, dispatch),
   };
 }
 

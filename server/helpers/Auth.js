@@ -13,9 +13,9 @@ import {
   SendTemplatedEmail
 } from './common/email';
 
-function login(email, password) {
+function login(email, role, password) {
   return new Promise((resolve, reject) => {
-    UserHelper.GetOne({ email }).then((user) => { //, isVerified: true 
+    UserHelper.GetOne({ email, role }).then((user) => { //, isVerified: true 
       if (!user) {
         const err = new APIError('Incorrect username or password', httpStatus.UNAUTHORIZED);
         return reject({
@@ -38,10 +38,9 @@ function login(email, password) {
           });
         } else {
           EncryptHelper.compare(password, user.password).then((res) => {
-            if(res){
+            if(res) {
               resolve(getSignInResponse(user));
-            }
-            else{
+            } else{
                 const err = new APIError('Incorrect username or password', httpStatus.UNAUTHORIZED);
                 reject({
                     status: httpStatus.UNAUTHORIZED,
@@ -132,8 +131,6 @@ function getSignInResponse(user) {
     role: user.role,
     _id: user._id,
     name: user.name,
-    image: user.avatar,
-    isSocial: !!user.social && !!user.social.id,
   };
 }
 

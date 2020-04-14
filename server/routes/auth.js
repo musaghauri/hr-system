@@ -1,6 +1,5 @@
 import express from 'express';
 import authCtrl from '../controllers/auth';
-// import config from '../../config/config';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
