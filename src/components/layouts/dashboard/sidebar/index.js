@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
 import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
-import routes from '../routes.json';
+import routes from '../routes';
 
 class SidebarComponent extends Component {
   constructor(props) {
@@ -41,19 +42,26 @@ class SidebarComponent extends Component {
             visible
             width="thin"
           >
-            {routes.map((route, rI) => (
-              <Link key={`route_${rI}`} href={route.route}>
-                <a>
-                  <Menu.Item
-                    active={router.asPath === route.route}
-                    as={route.name}
-                  >
-                    <Icon name={route.icon} />
-                    {route.label}
-                  </Menu.Item>
-                </a>
-              </Link>
-            ))}
+            {routes.map((route, rI) =>
+              route.type === 'eventHandler' ? (
+                <Menu.Item onClick={route.handleClick}>
+                  <Icon name={route.icon} />
+                  {route.label}
+                </Menu.Item>
+              ) : (
+                <Link key={`route_${rI}`} href={route.route}>
+                  <a>
+                    <Menu.Item
+                      active={router.asPath === route.route}
+                      as={route.name}
+                    >
+                      <Icon name={route.icon} />
+                      {route.label}
+                    </Menu.Item>
+                  </a>
+                </Link>
+              )
+            )}
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>{children}</Segment>

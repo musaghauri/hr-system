@@ -21,7 +21,7 @@ class MyApp extends App {
     const { Component, pageProps, store } = this.props;
     return (
       <Provider store={store}>
-        {cookie.load('userId') ? (
+        {cookie.load('hrms') ? (
           <Dashboard>
             {' '}
             <Component {...pageProps} />{' '}

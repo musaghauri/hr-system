@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
 import createSagaMiddleware from 'redux-saga';
+import withReduxSaga from 'next-redux-saga';
 // import thunkMiddleware from 'redux-thunk'
 import withRedux from 'next-redux-wrapper';
 import { createStore, applyMiddleware } from 'redux';
@@ -29,4 +30,4 @@ export const initStore = (initialState = {}, context) => {
   return store;
 };
 
-export default comp => withRedux(initStore)(comp);
+export default comp => withRedux(initStore)(withReduxSaga(comp));
