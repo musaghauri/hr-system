@@ -10,6 +10,7 @@ const ROLE_OPTIONS = [
   { key: 'admin', text: 'Admin', value: 'admin' },
   { key: 'employee', text: 'Employee', value: 'employee' },
 ];
+const ROLE_ADMIN = '5e8c81600d989e35800e2167';
 const JWT_SECRET_TOKEN = 'my_secret_key';
 export {
   MONGO_URL,
@@ -18,4 +19,5 @@ export {
   ROLE_OPTIONS,
   NEXT_API_URL,
   JWT_SECRET_TOKEN,
+  ROLE_ADMIN,
 };

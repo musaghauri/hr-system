@@ -1,0 +1,10 @@
+export const RESET_REDUCER = 'HRMS/Roles/Add/RESET_REDUCER';
+export const UPDATE_VALUE = 'HRMS/Roles/Add/UPDATE_VALUE';
+
+export const ADD_ROLE = 'HRMS/Roles/Add/ADD_ROLE';
+export const ADD_ROLE_SUCCESS = 'HRMS/Roles/Add/ADD_ROLE_SUCCESS';
+export const ADD_ROLE_FAIL = 'HRMS/Roles/Add/gin/ADD_ROLE_FAIL';
+
+export const GET_PERMISSIONS = 'HRMS/Roles/Add/GET_PERMISSIONS';
+export const GET_PERMISSIONS_SUCCESS = 'HRMS/Roles/Add/GET_PERMISSIONS_SUCCESS';
+export const GET_PERMISSIONS_FAIL = 'HRMS/Roles/Add/GET_PERMISSIONS_FAIL';

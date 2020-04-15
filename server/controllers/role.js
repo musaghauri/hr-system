@@ -37,6 +37,7 @@ function create(req, res) {
 }
 
 function list(req, res) {
+  const populateQuery = [{ path: 'permissions', model: 'Permission' }];
   const params = {
     limit: _get(req.query, 'limit', 0),
     skip: _get(req.query, 'skip', 0),
@@ -44,7 +45,7 @@ function list(req, res) {
     sort: _get(req.query, 'sort', 'name'),
     query: _omit(req.query, ['limit', 'skip', 'order', 'sort']),
   };
-  RoleHelper.Get(params)
+  RoleHelper.Get(params, populateQuery)
     .then(roles => {
       const { items, total_count } = roles;
       res.json({
@@ -75,9 +76,26 @@ function update(req, res) {
     });
 }
 
+/**
+ * Remove role.
+ * @returns {Role}
+ */
+function removeHard(req, res) {
+  const roleId = _get(req.params, 'roleId');
+  RoleHelper.Remove(roleId)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(e => {
+      const { status = httpStatus.INTERNAL_SERVER_ERROR, err = e } = e;
+      res.status(status).send(err);
+    });
+}
+
 export default {
   create,
   list,
   get,
   update,
+  removeHard,
 };

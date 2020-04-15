@@ -22,6 +22,12 @@ const routes = [
     icon: 'users',
   },
   {
+    name: 'roles',
+    label: 'Roles',
+    route: '/roles',
+    icon: 'male',
+  },
+  {
     name: 'permissions',
     label: 'Permissions',
     route: '/permissions',
