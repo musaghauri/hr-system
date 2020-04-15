@@ -6,6 +6,11 @@ import viewPermissionSagas from '@redux/Permissions/View/sagas';
 import addPermissionSagas from '@redux/Permissions/Add/sagas';
 import editPermissionSagas from '@redux/Permissions/Edit/sagas';
 
+import rolesListSagas from '@redux/Roles/List/sagas';
+import viewRoleSagas from '@redux/Roles/View/sagas';
+import addRoleSagas from '@redux/Roles/Add/sagas';
+import editRoleSagas from '@redux/Roles/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -14,5 +19,9 @@ export default function* mainSagas() {
     fork(viewPermissionSagas),
     fork(addPermissionSagas),
     fork(editPermissionSagas),
+    fork(rolesListSagas),
+    fork(viewRoleSagas),
+    fork(addRoleSagas),
+    fork(editRoleSagas),
   ]);
 }

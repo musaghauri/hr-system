@@ -10,5 +10,6 @@ router.get('/health-check', (req, res) => res.send('OK'));
 router.use('/auth', authRoutes);
 router.use('/roles', roleRoutes);
 router.use('/permissions', permissionRoutes);
+router.use('/roles', roleRoutes);
 
 export default router;
