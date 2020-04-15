@@ -75,6 +75,7 @@ export const submitFormData = formData => {
 };
 
 export const loadFormDetails = (formDetails, user, uploadImageStatus) => {
+  // console.log({ user });
   const tempFormDetails = formDetails;
   if (tempFormDetails) {
     Object.keys(tempFormDetails).forEach(item => {
@@ -96,23 +97,6 @@ export const loadFormDetails = (formDetails, user, uploadImageStatus) => {
               error: false,
             };
           });
-        } else if (item === 'collaborators') {
-          const newCollaborators = [];
-          itemValue.map(collaborator => {
-            const tempCollaborator = cloneDeep(tempFormDetails[item][0]);
-            tempCollaborator.name.value = collaborator.name;
-            tempCollaborator.type.value = collaborator.type;
-            newCollaborators.push(tempCollaborator);
-          });
-          tempFormDetails[item] = newCollaborators;
-        } else if (item === 'awards') {
-          const newAwards = [];
-          itemValue.map(award => {
-            const tempAward = cloneDeep(tempFormDetails[item][0]);
-            tempAward.name.value = award.name;
-            newAwards.push(tempAward);
-          });
-          tempFormDetails[item] = newAwards;
         } else {
           tempFormDetails[item].value = itemValue;
         }

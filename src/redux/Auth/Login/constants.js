@@ -7,4 +7,4 @@ export const GET_ROLES_SUCCESS = 'HRMS/Auth/Login/GET_ROLES_SUCCESS';
 export const GET_ROLES_FAIL = 'HRMS/Auth/Login/GET_ROLES_FAIL';
 
 export const RESET_REDUCER = 'HRMS/Auth/Login/RESET_REDUCER';
-export const UPDATE_VALUE = 'HRMS/Auth/ForgotPassword/UPDATE_VALUE';
+export const UPDATE_VALUE = 'HRMS/Auth/Login/UPDATE_VALUE';

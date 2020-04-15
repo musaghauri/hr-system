@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
+import AddPermission from '@components/views/Permissions/Form';
+
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { submitFormData } from '@utils/helperFuncs';
-import Login from '@components/views/Auth/Login';
 import { validateFormData } from '@utils/validations';
-import { login, resetReducer, updateValue } from './actions';
-import {
-  selectLoginStatus,
-  selectFormDetails,
-  selectRoles,
-  selectGetRolesStatus,
-} from './selectors';
+import { resetReducer, addPermission, updateValue } from './actions';
+import { selectFormDetails, selectAddPermissionStatus } from './selectors';
 
-class LoginContainer extends Component {
+class AddPermissionContainer extends Component {
   componentWillUnmount() {
     const { onResetReducer } = this.props;
     onResetReducer();
@@ -27,18 +23,20 @@ class LoginContainer extends Component {
   validateForm = formData => validateFormData(formData);
 
   submitForm = formDetails => {
-    const { onLogin } = this.props;
+    const { onAddPermission } = this.props;
     const userData = submitFormData(formDetails);
-    onLogin(userData);
+    onAddPermission(userData);
   };
 
   render() {
-    const { loginStatus, onUpdateValue, formDetails, roles } = this.props;
+    const { addPermissionStatus, onUpdateValue, formDetails } = this.props;
     return (
-      <Login
-        roles={roles.toJS()}
+      <AddPermission
+        submitLabel="Add Permission"
+        successMessage="Permission added successfully!"
+        submitColor="green"
         formDetails={formDetails}
-        loginStatus={loginStatus}
+        submitStatus={addPermissionStatus}
         validateForm={this.validateForm}
         handleSubmit={this.submitForm}
         updateValue={onUpdateValue}
@@ -48,18 +46,19 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  loginStatus: selectLoginStatus(),
+  addPermissionStatus: selectAddPermissionStatus(),
   formDetails: selectFormDetails(),
-  roles: selectRoles(),
-  getRolesStatus: selectGetRolesStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLogin: bindActionCreators(login, dispatch),
+    onAddPermission: bindActionCreators(addPermission, dispatch),
     onUpdateValue: bindActionCreators(updateValue, dispatch),
     onResetReducer: bindActionCreators(resetReducer, dispatch),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddPermissionContainer);
