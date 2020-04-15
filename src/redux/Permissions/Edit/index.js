@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
+import EditPermission from '@components/views/Permissions/Form';
+
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { submitFormData } from '@utils/helperFuncs';
-import Login from '@components/views/Auth/Login';
 import { validateFormData } from '@utils/validations';
-import { login, resetReducer, updateValue } from './actions';
+import { resetReducer, editPermission, updateValue } from './actions';
 import {
-  selectLoginStatus,
   selectFormDetails,
-  selectRoles,
-  selectGetRolesStatus,
+  selectEditPermissionStatus,
+  selectGetPermissionStatus,
 } from './selectors';
 
-class LoginContainer extends Component {
+class EditPermissionContainer extends Component {
   componentWillUnmount() {
     const { onResetReducer } = this.props;
     onResetReducer();
@@ -27,18 +27,21 @@ class LoginContainer extends Component {
   validateForm = formData => validateFormData(formData);
 
   submitForm = formDetails => {
-    const { onLogin } = this.props;
+    const { onEditPermission, query } = this.props;
+    const { permissionId } = query;
     const userData = submitFormData(formDetails);
-    onLogin(userData);
+    onEditPermission(userData, permissionId);
   };
 
   render() {
-    const { loginStatus, onUpdateValue, formDetails, roles } = this.props;
+    const { editPermissionStatus, onUpdateValue, formDetails } = this.props;
     return (
-      <Login
-        roles={roles.toJS()}
+      <EditPermission
+        submitLabel="Edit Permission"
+        successMessage="Permission edited successfully!"
+        submitColor="yellow"
         formDetails={formDetails}
-        loginStatus={loginStatus}
+        submitStatus={editPermissionStatus}
         validateForm={this.validateForm}
         handleSubmit={this.submitForm}
         updateValue={onUpdateValue}
@@ -48,18 +51,20 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  loginStatus: selectLoginStatus(),
+  getPermissionStatus: selectGetPermissionStatus(),
+  editPermissionStatus: selectEditPermissionStatus(),
   formDetails: selectFormDetails(),
-  roles: selectRoles(),
-  getRolesStatus: selectGetRolesStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLogin: bindActionCreators(login, dispatch),
+    onEditPermission: bindActionCreators(editPermission, dispatch),
     onUpdateValue: bindActionCreators(updateValue, dispatch),
     onResetReducer: bindActionCreators(resetReducer, dispatch),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditPermissionContainer);

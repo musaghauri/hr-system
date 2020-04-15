@@ -22,6 +22,12 @@ const routes = [
     icon: 'users',
   },
   {
+    name: 'permissions',
+    label: 'Permissions',
+    route: '/permissions',
+    icon: 'users',
+  },
+  {
     name: 'logout',
     label: 'Logout',
     icon: 'log out',
