@@ -11,6 +11,11 @@ import viewRoleSagas from '@redux/Roles/View/sagas';
 import addRoleSagas from '@redux/Roles/Add/sagas';
 import editRoleSagas from '@redux/Roles/Edit/sagas';
 
+import countriesListSagas from '@redux/Countries/List/sagas';
+import viewCountrySagas from '@redux/Countries/View/sagas';
+import addCountrySagas from '@redux/Countries/Add/sagas';
+import editCountrySagas from '@redux/Countries/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -23,5 +28,9 @@ export default function* mainSagas() {
     fork(viewRoleSagas),
     fork(addRoleSagas),
     fork(editRoleSagas),
+    fork(countriesListSagas),
+    fork(viewCountrySagas),
+    fork(addCountrySagas),
+    fork(editCountrySagas),
   ]);
 }
