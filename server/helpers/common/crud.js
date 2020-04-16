@@ -342,10 +342,8 @@ export default class CRUD {
         }: {
           ...values,
         };
-        console.log({ query })
         this.getOne(query)
          .then((user) => {
-           console.log({ user })
             if(user){
               resolve(true);
             } else {
