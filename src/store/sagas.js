@@ -16,6 +16,11 @@ import viewCountrySagas from '@redux/Countries/View/sagas';
 import addCountrySagas from '@redux/Countries/Add/sagas';
 import editCountrySagas from '@redux/Countries/Edit/sagas';
 
+import statesListSagas from '@redux/States/List/sagas';
+import viewStateSagas from '@redux/States/View/sagas';
+import addStateSagas from '@redux/States/Add/sagas';
+import editStateSagas from '@redux/States/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -32,5 +37,9 @@ export default function* mainSagas() {
     fork(viewCountrySagas),
     fork(addCountrySagas),
     fork(editCountrySagas),
+    fork(statesListSagas),
+    fork(viewStateSagas),
+    fork(addStateSagas),
+    fork(editStateSagas),
   ]);
 }

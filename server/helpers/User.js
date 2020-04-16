@@ -35,7 +35,7 @@ function UpdateById(userId, userBody, user = null) {
     const {
       email = null,
     } = userBody;
-    ifAttributeExists(email, 'email', userId).then(data => {
+    ifAttributeExists({ email }, 'email', userId).then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,
@@ -83,7 +83,7 @@ function Create(userBody, user = null) {
       email = null,
     } = userBody;
 
-    ifAttributeExists(email, 'email').then(data => {
+    ifAttributeExists({ email }, 'email').then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,
@@ -110,7 +110,7 @@ function Update(userId, userBody, user = null) {
     const {
       email = null,
     } = userBody;
-    ifAttributeExists(email, 'email', userId).then(data => {
+    ifAttributeExists({ email }, 'email', userId).then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,
@@ -176,7 +176,7 @@ function ChangeSecretInformation(id, userBody, attribute, user = null) {
           err,
         });
       } else {
-        ifAttributeExists(newEmail, 'email', id).then(data => {
+        ifAttributeExists({ email: newEmail }, 'email', id).then(data => {
           if(!!(_get(data, 'status'))) {
             reject({
               status: httpStatus.BAD_REQUEST,
@@ -216,9 +216,9 @@ function Remove(id, user = null) {
 
 
 
-function ifAttributeExists(value, key, exception = null) {
+function ifAttributeExists(values, key, exception = null) {
   return new Promise((resolve, reject) => {
-    CRUD.isUnique(key, value, exception).then((valueExists) => {
+    CRUD.isUnique(values, exception).then((valueExists) => {
       if (!!valueExists) {
         const err = new APIError(`${_startCase(key)} already exists`, httpStatus.BAD_REQUEST);
         resolve({

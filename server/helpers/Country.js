@@ -36,7 +36,7 @@ function UpdateById(countryId, countryBody, user = null) {
     const {
       name = null,
     } = countryBody;
-    ifAttributeExists(name, 'name', countryId).then(data => {
+    ifAttributeExists({ name }, name, countryId).then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,
@@ -59,7 +59,7 @@ function Create(countryBody, user = null) {
       name = null,
     } = countryBody;
     
-    ifAttributeExists(name, 'name').then(data => {
+    ifAttributeExists({ name }, name).then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,
@@ -83,9 +83,9 @@ function Remove(id, user = null) {
 
 
 
-function ifAttributeExists(value, key, exception = null) {
+function ifAttributeExists(values, key, exception = null) {
   return new Promise((resolve, reject) => {
-    CRUD.isUnique(key, value, exception).then((valueExists) => {
+    CRUD.isUnique(values, exception).then((valueExists) => {
       if (!!valueExists) {
         const err = new APIError(`${_startCase(key)} already exists`, httpStatus.BAD_REQUEST);
         resolve({

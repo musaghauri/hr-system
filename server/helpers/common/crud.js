@@ -2,6 +2,7 @@
 // import Promise from 'bluebird';
 import APIError from './APIError';
 import httpStatus from 'http-status';
+import _isEmpty from 'lodash/isEmpty';
 import _assign from 'lodash/assign';
 import _extend from 'lodash/extend';
 import _cloneDeep from 'lodash/cloneDeep';
@@ -329,19 +330,18 @@ export default class CRUD {
     });
   }
 
-  isUnique(attributeName, attributeValue, exception = null) {
+  isUnique(values, exception = null) {
     return new Promise((resolve, reject) => {
         // if the attributeValue is undefined, just by-pass that check
-        if(!attributeValue){
+        if(_isEmpty(values)){
           resolve(false);
         }
         const query = exception ? {
-          [attributeName] : attributeValue,
+          ...values,
           _id: { $ne: exception },
         }: {
-          [attributeName] : attributeValue,
+          ...values,
         };
-
         this.getOne(query)
          .then((user) => {
             if(user){
