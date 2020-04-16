@@ -1,16 +1,16 @@
 /* eslint-disable */
 import httpStatus from 'http-status';
-import Role from '../models/role';
+import State from '../models/state';
 import _startCase from 'lodash/startCase';
 import _get from 'lodash/get';
 import MongoHanlder from './common/mongo';
 import CrudHandler from './common/crud';
 import APIError from './common/APIError';
 
-const mongoDriver = new MongoHanlder(Role);
+const mongoDriver = new MongoHanlder(State);
 const activeDriver = mongoDriver;
 
-const CRUD = new CrudHandler('Role', activeDriver, mongoDriver);
+const CRUD = new CrudHandler('State', activeDriver, mongoDriver);
 
 function GetOne(query, populate= ['','']) {
   return CRUD.getOne(query, populate);
@@ -31,20 +31,21 @@ function Get(params, populate= ['','']) {
   return CRUD.get(query, skip, limit, sort, order, populate);
 }
 
-function UpdateById(roleId, roleBody, user = null) {
+function UpdateById(stateId, stateBody, user = null) {
   return new Promise((resolve, reject) => {
     const {
       name = null,
-    } = roleBody;
-    ifAttributeExists({ name }, name, roleId).then(data => {
+      country = null,
+    } = stateBody;
+    ifAttributeExists({ name, country }, name, stateId).then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,
           err: _get(data, 'err'),
         });
       } else {
-        CRUD.updateById(roleId, roleBody, user).then(updatedRole => {
-          resolve(updatedRole);
+        CRUD.updateById(stateId, stateBody, user).then(updatedState => {
+          resolve(updatedState);
         })
         .catch(e => reject(e));
       }
@@ -53,21 +54,22 @@ function UpdateById(roleId, roleBody, user = null) {
   });
 }
 
-function Create(roleBody, user = null) {
+function Create(stateBody, user = null) {
   return new Promise((resolve, reject) => {
     const {
       name = null,
-    } = roleBody;
+      country = null,
+    } = stateBody;
     
-    ifAttributeExists({ name }, name).then(data => {
+    ifAttributeExists({ name, country }, name).then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,
           err: _get(data, 'err'),
         });
       } else {
-        CRUD.create(Role, roleBody, user).then(savedRole => {
-          resolve(savedRole);
+        CRUD.create(State, stateBody, user).then(savedState => {
+          resolve(savedState);
         })
         .catch(e => reject(e));
       }

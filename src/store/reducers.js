@@ -26,6 +26,11 @@ import addCountryReducer from '@redux/Countries/Add/reducer';
 import editCountryReducer from '@redux/Countries/Edit/reducer';
 import viewCountryReducer from '@redux/Countries/View/reducer';
 
+import statesListReducer from '@redux/States/List/reducer';
+import addStateReducer from '@redux/States/Add/reducer';
+import editStateReducer from '@redux/States/Edit/reducer';
+import viewStateReducer from '@redux/States/View/reducer';
+
 export default combineReducers({
   landingPage: landingPageReducer,
   login: loginReducer,
@@ -47,4 +52,8 @@ export default combineReducers({
   addCountry: addCountryReducer,
   editCountry: editCountryReducer,
   viewCountry: viewCountryReducer,
+  statesList: statesListReducer,
+  addState: addStateReducer,
+  editState: editStateReducer,
+  viewState: viewStateReducer,
 });
