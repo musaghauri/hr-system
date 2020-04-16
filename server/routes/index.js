@@ -2,6 +2,7 @@ import express from 'express';
 import authRoutes from './auth';
 import roleRoutes from './role';
 import permissionRoutes from './permission';
+import countryRoutes from './country';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -11,5 +12,6 @@ router.use('/auth', authRoutes);
 router.use('/roles', roleRoutes);
 router.use('/permissions', permissionRoutes);
 router.use('/roles', roleRoutes);
+router.use('/countries', countryRoutes);
 
 export default router;

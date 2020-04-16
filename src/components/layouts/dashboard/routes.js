@@ -34,6 +34,12 @@ const routes = [
     icon: 'users',
   },
   {
+    name: 'countries',
+    label: 'Countries',
+    route: '/countries',
+    icon: 'map marker alternate',
+  },
+  {
     name: 'logout',
     label: 'Logout',
     icon: 'log out',
