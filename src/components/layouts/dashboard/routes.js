@@ -46,6 +46,12 @@ const routes = [
     icon: 'map marker alternate',
   },
   {
+    name: 'cities',
+    label: 'Cities',
+    route: '/cities',
+    icon: 'map marker alternate',
+  },
+  {
     name: 'logout',
     label: 'Logout',
     icon: 'log out',

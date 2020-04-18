@@ -75,31 +75,46 @@ MongoClient.connect(
       .findOne({ name: 'Azad Jammu and Kashmir' });
     cities.push(
       ...CITIES_OF_PUNJAB.map(city => ({
-        city,
+        name: city,
         state: Punjab._id,
       }))
     );
     cities.push(
       ...CITIES_OF_SINDH.map(city => ({
-        city,
+        name: city,
         state: Sindh._id,
       }))
     );
-    cities.push(...CITIES_OF_KPK.map(city => ({ city, state: KPK._id })));
+    cities.push(
+      ...CITIES_OF_KPK.map(city => ({
+        name: city,
+        state: KPK._id,
+      }))
+    );
     cities.push(
       ...CITIES_OF_ISLAMABAD.map(city => ({
-        city,
+        name: city,
         state: Islamabad._id,
       }))
     );
-    cities.push(...CITIES_OF_GB.map(city => ({ city, state: GB._id })));
+    cities.push(
+      ...CITIES_OF_GB.map(city => ({
+        name: city,
+        state: GB._id,
+      }))
+    );
     cities.push(
       ...CITIES_OF_BALOCHISTAN.map(city => ({
-        city,
+        name: city,
         state: Balochistan._id,
       }))
     );
-    cities.push(...CITIES_OF_AJK.map(city => ({ city, state: AJK._id })));
+    cities.push(
+      ...CITIES_OF_AJK.map(city => ({
+        name: city,
+        state: AJK._id,
+      }))
+    );
 
     await db.collection('cities').insertMany(cities, (err, res) => {
       if (err) throw err;
