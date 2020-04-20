@@ -3,20 +3,30 @@ import httpStatus from 'http-status';
 import _get from 'lodash/get';
 import _omit from 'lodash/omit';
 
-import StateHelper from '../helpers/State';
+import CityHelper from '../helpers/City';
 /**
- * Get new state
- * @returns {State}
+ * Get new city
+ * @returns {City}
  */
 function get(req, res) {
-  const { stateId } = req.params;
+  const { cityId } = req.params;
   const { populate = true } = req.query;
   let populateQuery = [];
+  console.log({ populate });
   if (populate === true)
-    populateQuery = [{ path: 'country', model: 'Country' }];
-  StateHelper.GetById(stateId, populateQuery)
-    .then(state => {
-      res.json(state);
+    populateQuery = [
+      {
+        path: 'state',
+        model: 'State',
+        populate: {
+          path: 'country',
+          model: 'Country',
+        },
+      },
+    ];
+  CityHelper.GetById(cityId, populateQuery)
+    .then(city => {
+      res.json(city);
     })
     .catch(e => {
       const { status = httpStatus.INTERNAL_SERVER_ERROR, err = e } = e;
@@ -24,14 +34,14 @@ function get(req, res) {
     });
 }
 /**
- * Create new state
- * @returns {State}
+ * Create new city
+ * @returns {City}
  */
 function create(req, res) {
-  const stateBody = req.body;
-  StateHelper.Create(stateBody, req.user)
-    .then(state => {
-      res.json(state);
+  const cityBody = req.body;
+  CityHelper.Create(cityBody, req.user)
+    .then(city => {
+      res.json(city);
     })
     .catch(e => {
       const { status = httpStatus.INTERNAL_SERVER_ERROR, err = e } = e;
@@ -40,7 +50,16 @@ function create(req, res) {
 }
 
 function list(req, res) {
-  const populateQuery = [{ path: 'country', model: 'Country' }];
+  const populateQuery = [
+    {
+      path: 'state',
+      model: 'State',
+      populate: {
+        path: 'country',
+        model: 'Country',
+      },
+    },
+  ];
   const params = {
     limit: _get(req.query, 'limit', 0),
     skip: _get(req.query, 'skip', 0),
@@ -48,9 +67,9 @@ function list(req, res) {
     sort: _get(req.query, 'sort', 'name'),
     query: _omit(req.query, ['limit', 'skip', 'order', 'sort']),
   };
-  StateHelper.Get(params, populateQuery)
-    .then(states => {
-      const { items, total_count } = states;
+  CityHelper.Get(params, populateQuery)
+    .then(cities => {
+      const { items, total_count } = cities;
       res.json({
         items,
         total_count,
@@ -63,15 +82,15 @@ function list(req, res) {
 }
 
 /**
- * Update state
- * @returns {State}
+ * Update city
+ * @returns {City}
  */
 function update(req, res) {
-  const { stateId } = req.params;
-  const stateBody = req.body;
-  StateHelper.UpdateById(stateId, stateBody, req.user)
-    .then(state => {
-      res.json(state);
+  const { cityId } = req.params;
+  const cityBody = req.body;
+  CityHelper.UpdateById(cityId, cityBody, req.user)
+    .then(city => {
+      res.json(city);
     })
     .catch(e => {
       const { status = httpStatus.INTERNAL_SERVER_ERROR, err = e } = e;
@@ -80,12 +99,12 @@ function update(req, res) {
 }
 
 /**
- * Remove state.
- * @returns {State}
+ * Remove city.
+ * @returns {City}
  */
 function removeHard(req, res) {
-  const stateId = _get(req.params, 'stateId');
-  StateHelper.Remove(stateId)
+  const cityId = _get(req.params, 'cityId');
+  CityHelper.Remove(cityId)
     .then(response => {
       res.json(response);
     })

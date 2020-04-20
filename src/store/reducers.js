@@ -36,6 +36,11 @@ import addAssetReducer from '@redux/Assets/Add/reducer';
 import editAssetReducer from '@redux/Assets/Edit/reducer';
 import viewAssetReducer from '@redux/Assets/View/reducer';
 
+import citiesListReducer from '@redux/Cities/List/reducer';
+import addCityReducer from '@redux/Cities/Add/reducer';
+import editCityReducer from '@redux/Cities/Edit/reducer';
+import viewCityReducer from '@redux/Cities/View/reducer';
+
 export default combineReducers({
   landingPage: landingPageReducer,
   login: loginReducer,
@@ -65,4 +70,8 @@ export default combineReducers({
   addAsset: addAssetReducer,
   editAsset: editAssetReducer,
   viewAsset: viewAssetReducer,
+  citiesList: citiesListReducer,
+  addCity: addCityReducer,
+  editCity: editCityReducer,
+  viewCity: viewCityReducer,
 });

@@ -5,6 +5,7 @@ import permissionRoutes from './permission';
 import countryRoutes from './country';
 import stateRoutes from './state';
 import assetRoutes from './asset';
+import cityRoutes from './city';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -17,5 +18,6 @@ router.use('/roles', roleRoutes);
 router.use('/countries', countryRoutes);
 router.use('/states', stateRoutes);
 router.use('/assets', assetRoutes);
+router.use('/cities', cityRoutes);
 
 export default router;
