@@ -52,17 +52,6 @@ export const initialState = fromJS({
       placeholder: 'Enter purchased at date',
       type: 'purchasedAt',
     },
-    usedBy: {
-      name: 'usedBy',
-      label: 'Used By',
-      status: true,
-      errorText: '',
-      value: '',
-      rules: ['isRequired'],
-      fieldName: 'usedBy',
-      placeholder: 'Enter Names',
-      type: 'usedBy',
-    },
   },
   addAssetStatus: {
     loading: false,

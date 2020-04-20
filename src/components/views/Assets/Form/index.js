@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import {DateInput} from 'semantic-ui-calendar-react';
+import { DateInput } from 'semantic-ui-calendar-react';
 import {
   Button,
   Form,
@@ -117,23 +117,7 @@ class AssetForm extends Component {
                   }
                   onChange={this.handleChange}
                 />
-                <Form.Input
-                  fluid
-                  label={formDetails.getIn(['usedBy', 'label'])}
-                  name={formDetails.getIn(['usedBy', 'name'])}
-                  value={formDetails.getIn(['usedBy', 'value'])}
-                  placeholder={formDetails.getIn([
-                    'usedBy',
-                    'placeholder',
-                  ])}
-                  error={
-                    !formDetails.getIn(['usedBy', 'status'])
-                      ? formDetails.getIn(['usedBy', 'errorText'])
-                      : false
-                  }
-                  onChange={this.handleChange}
-                />
-                <Link href="/employees">
+                <Link href="/assets">
                   <a>Back to Assets</a>
                 </Link>
                 <Button

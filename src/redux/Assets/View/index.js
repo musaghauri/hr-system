@@ -15,7 +15,7 @@ class ViewAssetContainer extends Component {
 
   render() {
     const { asset } = this.props;
-    return <ViewAsset permission={asset} />;
+    return <ViewAsset asset={asset} />;
   }
 }
 const mapStateToProps = createStructuredSelector({

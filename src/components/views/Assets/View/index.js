@@ -51,7 +51,7 @@ class ViewAsset extends Component {
                   </Header.Subheader>
                 </Header>
               </div>
-              <Link href="/employees">
+              <Link href="/assets">
                 <a>Back to Assets</a>
               </Link>
             </Segment>

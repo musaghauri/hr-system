@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EditAssetContainer from '@redux/Assets/Edit';
 import { withAuthSync } from '@utils/auth';
-import { getAsset } from '@redux/Roles/Edit/actions';
+import { getAsset } from '@redux/Assets/Edit/actions';
 
 class EditAsset extends Component {
   static getInitialProps(props) {

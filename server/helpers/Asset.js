@@ -55,26 +55,23 @@ function UpdateById(assetId, assetBody, user = null) {
 
 function Create(assetBody, user = null) {
   return new Promise((resolve, reject) => {
-    // const {
-    //   name = null,
-    // } = assetBody;
-    CRUD.create(Asset, assetBody, user).then(savedAsset => {
-      resolve(savedAsset);
+    const {
+      name = null,
+    } = assetBody;
+
+    ifAttributeExists({ name }, name).then(data => {
+      if(!!(_get(data, 'status'))) {
+        reject({
+          status: httpStatus.BAD_REQUEST,
+          err: _get(data, 'err'),
+        });
+      } else {
+        CRUD.create(Asset, assetBody, user).then(savedAsset => {
+          resolve(savedAsset);
+        })
+        .catch(e => reject(e));
+      }
     })
-   
-    // ifAttributeExists({ name }, name).then(data => {
-    //   if(!!(_get(data, 'status'))) {
-    //     reject({
-    //       status: httpStatus.BAD_REQUEST,
-    //       err: _get(data, 'err'),
-    //     });
-    //   } else {
-    //     CRUD.create(Asset, assetBody, user).then(savedAsset => {
-    //       resolve(savedAsset);
-    //     })
-    //     .catch(e => reject(e));
-    //   }
-    // })
     .catch(e => reject(e));
   });
 }

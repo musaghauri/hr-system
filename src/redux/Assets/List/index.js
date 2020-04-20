@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AssetsList from '@components/views/Assets/List';
 import Router from 'next/router';
-import { Icon, Header } from 'semantic-ui-react';
+import { Icon, Header, Label } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -15,10 +15,6 @@ import {
 } from './selectors';
 
 class AssetsListContainer extends Component {
-  componentWillMount(){
-    this.props.onGetAssets();
-  }
-
   componentWillUnmount() {
     const { onResetReducer } = this.props;
     onResetReducer();
@@ -61,6 +57,12 @@ class AssetsListContainer extends Component {
             isFunctional: true,
             handleChange: () =>
               this.deleteAsset(asset.get('_id'), eIndex),
+          };
+        }
+        if (heading.get('name') === 'usedBy') {
+          return {
+            value: <Label color="red" horizontal>Not Assigned</Label>,
+            isFunctional: false,
           };
         }
         return {
