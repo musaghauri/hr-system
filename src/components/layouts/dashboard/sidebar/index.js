@@ -44,7 +44,7 @@ class SidebarComponent extends Component {
           >
             {routes.map((route, rI) =>
               route.type === 'eventHandler' ? (
-                <Menu.Item onClick={route.handleClick}>
+                <Menu.Item key={`route_${rI}`} onClick={route.handleClick}>
                   <Icon name={route.icon} />
                   {route.label}
                 </Menu.Item>

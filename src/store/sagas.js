@@ -21,6 +21,11 @@ import viewStateSagas from '@redux/States/View/sagas';
 import addStateSagas from '@redux/States/Add/sagas';
 import editStateSagas from '@redux/States/Edit/sagas';
 
+import assetsListSagas from '@redux/Assets/List/sagas';
+import viewAssetSagas from '@redux/Assets/View/sagas';
+import addAssetSagas from '@redux/Assets/Add/sagas';
+import editAssetSagas from '@redux/Assets/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -41,5 +46,9 @@ export default function* mainSagas() {
     fork(viewStateSagas),
     fork(addStateSagas),
     fork(editStateSagas),
+    fork(assetsListSagas),
+    fork(viewAssetSagas),
+    fork(addAssetSagas),
+    fork(editAssetSagas),
   ]);
 }

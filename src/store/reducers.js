@@ -31,6 +31,11 @@ import addStateReducer from '@redux/States/Add/reducer';
 import editStateReducer from '@redux/States/Edit/reducer';
 import viewStateReducer from '@redux/States/View/reducer';
 
+import assetsListReducer from '@redux/Assets/List/reducer';
+import addAssetReducer from '@redux/Assets/Add/reducer';
+import editAssetReducer from '@redux/Assets/Edit/reducer';
+import viewAssetReducer from '@redux/Assets/View/reducer';
+
 export default combineReducers({
   landingPage: landingPageReducer,
   login: loginReducer,
@@ -56,4 +61,8 @@ export default combineReducers({
   addState: addStateReducer,
   editState: editStateReducer,
   viewState: viewStateReducer,
+  assetsList: assetsListReducer, 
+  addAsset: addAssetReducer,
+  editAsset: editAssetReducer,
+  viewAsset: viewAssetReducer,
 });
