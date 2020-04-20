@@ -34,6 +34,12 @@ const routes = [
     icon: 'users',
   },
   {
+    name: 'priorities',
+    label: 'Priorities',
+    route: '/priorities',
+    icon: 'star',
+  },
+  {
     name: 'countries',
     label: 'Countries',
     route: '/countries',

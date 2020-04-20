@@ -36,6 +36,11 @@ import addCityReducer from '@redux/Cities/Add/reducer';
 import editCityReducer from '@redux/Cities/Edit/reducer';
 import viewCityReducer from '@redux/Cities/View/reducer';
 
+import prioritiesListReducer from '@redux/Priorities/List/reducer';
+import addPriorityReducer from '@redux/Priorities/Add/reducer';
+import editPriorityReducer from '@redux/Priorities/Edit/reducer';
+import viewPriorityReducer from '@redux/Priorities/View/reducer';
+
 export default combineReducers({
   landingPage: landingPageReducer,
   login: loginReducer,
@@ -65,4 +70,8 @@ export default combineReducers({
   addCity: addCityReducer,
   editCity: editCityReducer,
   viewCity: viewCityReducer,
+  prioritiesList: prioritiesListReducer,
+  addPriority: addPriorityReducer,
+  editPriority: editPriorityReducer,
+  viewPriority: viewPriorityReducer,
 });

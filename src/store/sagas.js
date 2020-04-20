@@ -26,6 +26,11 @@ import viewCitySagas from '@redux/Cities/View/sagas';
 import addCitySagas from '@redux/Cities/Add/sagas';
 import editCitySagas from '@redux/Cities/Edit/sagas';
 
+import prioritiesListSagas from '@redux/Priorities/List/sagas';
+import viewPrioritySagas from '@redux/Priorities/View/sagas';
+import addPrioritySagas from '@redux/Priorities/Add/sagas';
+import editPrioritySagas from '@redux/Priorities/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -50,5 +55,9 @@ export default function* mainSagas() {
     fork(viewCitySagas),
     fork(addCitySagas),
     fork(editCitySagas),
+    fork(prioritiesListSagas),
+    fork(viewPrioritySagas),
+    fork(addPrioritySagas),
+    fork(editPrioritySagas),
   ]);
 }
