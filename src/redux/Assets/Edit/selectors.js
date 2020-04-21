@@ -7,21 +7,17 @@ const selectEditAssetDomain = () => state => state.get('editAsset');
 
 const selectGetAssetStatus = () =>
   createSelector(selectEditAssetDomain(), editAssetState =>
-  editAssetState.get('getAssetStatus')
+    editAssetState.get('getAssetStatus')
   );
 
 const selectEditAssetStatus = () =>
   createSelector(selectEditAssetDomain(), editAssetState =>
-  editAssetState.get('editAssetStatus')
+    editAssetState.get('editAssetStatus')
   );
 
 const selectFormDetails = () =>
   createSelector(selectEditAssetDomain(), editAssetState =>
-  editAssetState.get('formDetails')
+    editAssetState.get('formDetails')
   );
 
-export {
-  selectGetAssetStatus,
-  selectEditAssetStatus,
-  selectFormDetails,
-};
+export { selectGetAssetStatus, selectEditAssetStatus, selectFormDetails };

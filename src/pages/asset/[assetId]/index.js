@@ -10,6 +10,7 @@ class ViewAsset extends Component {
     store.dispatch(getAsset(assetId));
     return { isServer };
   }
+
   render() {
     return <ViewAssetContainer {...this.props} />;
   }

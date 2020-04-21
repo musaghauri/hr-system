@@ -7,12 +7,12 @@ const selectAddAssetDomain = () => state => state.get('addAsset');
 
 const selectAddAssetStatus = () =>
   createSelector(selectAddAssetDomain(), addAssetState =>
-  addAssetState.get('addAssetStatus')
+    addAssetState.get('addAssetStatus')
   );
 
 const selectFormDetails = () =>
   createSelector(selectAddAssetDomain(), addAssetState =>
-  addAssetState.get('formDetails')
+    addAssetState.get('formDetails')
   );
 
 export { selectAddAssetStatus, selectFormDetails };

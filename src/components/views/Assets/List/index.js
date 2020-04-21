@@ -17,11 +17,7 @@ class AssetsList extends Component {
             style={{ marginBottom: '5px' }}
           />
         </Link>
-        <TableGenerator
-          headings={headings}
-          rows={assets}
-          name="asset"
-        />
+        <TableGenerator headings={headings} rows={assets} name="asset" />
       </Container>
     );
   }

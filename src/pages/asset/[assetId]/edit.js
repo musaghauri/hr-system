@@ -10,6 +10,7 @@ class EditAsset extends Component {
     store.dispatch(getAsset(assetId));
     return { isServer, query };
   }
+
   render() {
     return <EditAssetContainer {...this.props} />;
   }

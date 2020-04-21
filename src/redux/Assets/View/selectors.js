@@ -7,12 +7,12 @@ const selectViewAssetDomain = () => state => state.get('viewAsset');
 
 const selectAsset = () =>
   createSelector(selectViewAssetDomain(), viewAssetState =>
-  viewAssetState.get('asset')
+    viewAssetState.get('asset')
   );
 
 const selectGetAssetStatus = () =>
   createSelector(selectViewAssetDomain(), viewAssetState =>
-  viewAssetState.get('getAssetStatus')
+    viewAssetState.get('getAssetStatus')
   );
 
 export { selectAsset, selectGetAssetStatus };

@@ -15,15 +15,12 @@ import { selectFormDetails } from './selectors';
 export function* getAsset(action) {
   const token = cookie.loadAuthCookie('token');
   const requestHeader = { authorization: `Bearer ${token}` };
-  const requestURL = `${NEXT_API_URL}/assets/${action.id}`;
+  const requestURL = `${NEXT_API_URL}/assets/${action.id}?populate=false`;
   const options = createRequestOptions('GET', null, requestHeader);
   const asset = yield call(request, requestURL, options);
   const FORMDETAILS = yield select(selectFormDetails());
   if (!asset.err) {
-    const formDetails = yield loadFormDetails(
-      FORMDETAILS.toJS(),
-      asset.data
-    );
+    const formDetails = yield loadFormDetails(FORMDETAILS.toJS(), asset.data);
     yield put(getAssetSuccess(formDetails));
   } else {
     yield put(getAssetFail(asset.err.reason));

@@ -7,21 +7,21 @@ const selectAssetsListDomain = () => state => state.get('assetsList');
 
 const selectHeadings = () =>
   createSelector(selectAssetsListDomain(), assetsListState =>
-  assetsListState.get('headings')
+    assetsListState.get('headings')
   );
 const selectAssets = () =>
   createSelector(selectAssetsListDomain(), assetsListState =>
-  assetsListState.get('assets')
+    assetsListState.get('assets')
   );
 
 const selectGetAssetsStatus = () =>
   createSelector(selectAssetsListDomain(), assetsListState =>
-  assetsListState.get('getAssetsStatus')
+    assetsListState.get('getAssetsStatus')
   );
 
 const selectDeleteAssetStatus = () =>
   createSelector(selectAssetsListDomain(), assetsListState =>
-  assetsListState.get('deleteAssetStatus')
+    assetsListState.get('deleteAssetStatus')
   );
 export {
   selectHeadings,

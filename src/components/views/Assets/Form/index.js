@@ -12,7 +12,7 @@ import {
 import _assign from 'lodash/assign';
 
 class AssetForm extends Component {
-  handleChange = (e, {name, value}) => {
+  handleChange = (e, { name, value }) => {
     const { updateValue } = this.props;
     updateValue(['formDetails', name, 'value'], value);
   };
@@ -89,10 +89,7 @@ class AssetForm extends Component {
                   label={formDetails.getIn(['cost', 'label'])}
                   name={formDetails.getIn(['cost', 'name'])}
                   value={formDetails.getIn(['cost', 'value'])}
-                  placeholder={formDetails.getIn([
-                    'cost',
-                    'placeholder',
-                  ])}
+                  placeholder={formDetails.getIn(['cost', 'placeholder'])}
                   error={
                     !formDetails.getIn(['cost', 'status'])
                       ? formDetails.getIn(['cost', 'errorText'])

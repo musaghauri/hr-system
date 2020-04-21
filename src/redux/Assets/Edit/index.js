@@ -64,7 +64,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditAssetContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EditAssetContainer);

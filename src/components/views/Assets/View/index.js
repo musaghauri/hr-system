@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Grid, Segment, Button } from 'semantic-ui-react';
+import { Header, Grid, Segment } from 'semantic-ui-react';
 import Link from 'next/link';
 
 class ViewAsset extends Component {
@@ -30,9 +30,7 @@ class ViewAsset extends Component {
               <div>
                 <Header as="h3">
                   Cost
-                  <Header.Subheader>
-                    {asset.get('cost')}
-                  </Header.Subheader>
+                  <Header.Subheader>{asset.get('cost')}</Header.Subheader>
                 </Header>
               </div>
               <div>
@@ -46,9 +44,7 @@ class ViewAsset extends Component {
               <div>
                 <Header as="h3">
                   Used By
-                  <Header.Subheader>
-                    {asset.get('usedBy')}
-                  </Header.Subheader>
+                  <Header.Subheader>{asset.get('usedBy')}</Header.Subheader>
                 </Header>
               </div>
               <Link href="/assets">
