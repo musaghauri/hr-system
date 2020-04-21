@@ -29,8 +29,8 @@ class EditAssetContainer extends Component {
   submitForm = formDetails => {
     const { onEditAsset, query } = this.props;
     const { assetId } = query;
-    const userData = submitFormData(formDetails);
-    onEditAsset(userData, assetId);
+    const assetData = submitFormData(formDetails);
+    onEditAsset(assetData, assetId);
   };
 
   render() {

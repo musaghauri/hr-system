@@ -24,8 +24,8 @@ class AddAssetContainer extends Component {
 
   submitForm = formDetails => {
     const { onAddAsset } = this.props;
-    const userData = submitFormData(formDetails);
-    onAddAsset(userData);
+    const assetData = submitFormData(formDetails);
+    onAddAsset(assetData);
   };
 
   render() {
