@@ -10,7 +10,9 @@ import AssetHelper from '../helpers/Asset';
  */
 function get(req, res) {
   const { assetId } = req.params;
-  const populateQuery = [];
+  const { populate = true } = req.query;
+  let populateQuery = [];
+  if (populate === true) populateQuery = [{ path: 'usedBy', model: 'User' }];
   AssetHelper.GetById(assetId, populateQuery)
     .then(asset => {
       res.json(asset);

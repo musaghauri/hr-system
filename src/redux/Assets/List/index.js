@@ -45,26 +45,27 @@ class AssetsListContainer extends Component {
             value: <Icon name="eye" color="blue" />,
             isFunctional: true,
             handleChange: () =>
-              Router.replace(
-                '/asset/[assetId]',
-                `/asset/${asset.get('_id')}`
-              ),
+              Router.replace('/asset/[assetId]', `/asset/${asset.get('_id')}`),
           };
         }
         if (heading.get('name') === 'delete') {
           return {
             value: <Icon name="trash alternate" color="red" />,
             isFunctional: true,
-            handleChange: () =>
-              this.deleteAsset(asset.get('_id'), eIndex),
+            handleChange: () => this.deleteAsset(asset.get('_id'), eIndex),
           };
         }
         if (heading.get('name') === 'usedBy') {
           return {
-            value: (  asset.get('usedBy') ? 
-                      <Label color="green" horizontal>{asset.get('usedBy')}</Label> :
-                      <Label color="red" horizontal>Not Asssigned</Label> 
-                    ),
+            value: asset.getIn(['usedBy', 'name']) ? (
+              <Label color="green" horizontal>
+                {asset.getIn(['usedBy', 'name'])}
+              </Label>
+            ) : (
+              <Label color="red" horizontal>
+                Not Asssigned
+              </Label>
+            ),
             isFunctional: false,
           };
         }
