@@ -1,0 +1,14 @@
+export const DELETE_ANNOUNCEMENT = 'HRMS/Announcements/List/DELETE_ANNOUNCEMENT';
+export const DELETE_ANNOUNCEMENT_SUCCESS =
+  'HRMS/Announcements/List/DELETE_ANNOUNCEMENT_SUCCESS';
+export const DELETE_ANNOUNCEMENT_FAIL =
+  'HRMS/Announcements/List/DELETE_ANNOUNCEMENT_FAIL';
+
+export const GET_ANNOUNCEMENTS = 'HRMS/Announcements/List/GET_ANNOUNCEMENTS';
+export const GET_ANNOUNCEMENTS_SUCCESS =
+  'HRMS/Announcements/List/GET_ANNOUNCEMENTS_SUCCESS';
+export const GET_ANNOUNCEMENTS_FAIL =
+  'HRMS/Announcements/List/GET_ANNOUNCEMENTS_FAIL';
+
+export const RESET_REDUCER = 'HRMS/Announcements/List/RESET_REDUCER';
+export const UPDATE_VALUE = 'HRMS/Announcements/List/UPDATE_VALUE';

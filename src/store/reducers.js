@@ -36,6 +36,11 @@ import addCityReducer from '@redux/Cities/Add/reducer';
 import editCityReducer from '@redux/Cities/Edit/reducer';
 import viewCityReducer from '@redux/Cities/View/reducer';
 
+import announcementsListReducer from '@redux/Announcements/List/reducer';
+import addAnnouncementReducer from '@redux/Announcements/Add/reducer';
+import editAnnouncementReducer from '@redux/Announcements/Edit/reducer';
+import viewAnnouncementReducer from '@redux/Announcements/View/reducer';
+
 export default combineReducers({
   landingPage: landingPageReducer,
   login: loginReducer,
@@ -65,4 +70,8 @@ export default combineReducers({
   addCity: addCityReducer,
   editCity: editCityReducer,
   viewCity: viewCityReducer,
+  announcementsList: announcementsListReducer,
+  addAnnouncement: addAnnouncementReducer,
+  editAnnouncement: editAnnouncementReducer, 
+  viewAnnouncement: viewAnnouncementReducer,
 });

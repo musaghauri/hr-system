@@ -26,6 +26,11 @@ import viewCitySagas from '@redux/Cities/View/sagas';
 import addCitySagas from '@redux/Cities/Add/sagas';
 import editCitySagas from '@redux/Cities/Edit/sagas';
 
+import announcementsListSagas from '@redux/Announcements/List/sagas';
+import viewAnnouncementSagas from '@redux/Announcements/View/sagas';
+import addAnnouncementSagas from '@redux/Announcements/Add/sagas';
+import editAnnouncementSagas from '@redux/Announcements/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -50,5 +55,9 @@ export default function* mainSagas() {
     fork(viewCitySagas),
     fork(addCitySagas),
     fork(editCitySagas),
+    fork(announcementsListSagas),
+    fork(viewAnnouncementSagas), 
+    fork(addAnnouncementSagas),
+    fork(editAnnouncementSagas),
   ]);
 }
