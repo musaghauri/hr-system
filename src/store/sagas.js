@@ -21,6 +21,11 @@ import viewStateSagas from '@redux/States/View/sagas';
 import addStateSagas from '@redux/States/Add/sagas';
 import editStateSagas from '@redux/States/Edit/sagas';
 
+import assetsListSagas from '@redux/Assets/List/sagas';
+import viewAssetSagas from '@redux/Assets/View/sagas';
+import addAssetSagas from '@redux/Assets/Add/sagas';
+import editAssetSagas from '@redux/Assets/Edit/sagas';
+
 import citiesListSagas from '@redux/Cities/List/sagas';
 import viewCitySagas from '@redux/Cities/View/sagas';
 import addCitySagas from '@redux/Cities/Add/sagas';
@@ -46,6 +51,10 @@ export default function* mainSagas() {
     fork(viewStateSagas),
     fork(addStateSagas),
     fork(editStateSagas),
+    fork(assetsListSagas),
+    fork(viewAssetSagas),
+    fork(addAssetSagas),
+    fork(editAssetSagas),
     fork(citiesListSagas),
     fork(viewCitySagas),
     fork(addCitySagas),

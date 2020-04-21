@@ -22,6 +22,12 @@ const routes = [
     icon: 'users',
   },
   {
+    name: 'assets',
+    label: 'Assets',
+    route: '/assets',
+    icon: 'laptop',
+  },
+  {
     name: 'roles',
     label: 'Roles',
     route: '/roles',
