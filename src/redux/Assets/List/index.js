@@ -61,10 +61,10 @@ class AssetsListContainer extends Component {
         }
         if (heading.get('name') === 'usedBy') {
           return {
-            value: {  asset.get('name') ? 
-                      <Label color="green" horizontal>{asset.get('name')}</Label> :
+            value: (  asset.get('usedBy') ? 
+                      <Label color="green" horizontal>{asset.get('usedBy')}</Label> :
                       <Label color="red" horizontal>Not Asssigned</Label> 
-                   },
+                    ),
             isFunctional: false,
           };
         }

@@ -77,7 +77,7 @@ function assetsListReducer(state = initialState, action) {
         .setIn(['deleteAssetStatus', 'loading'], false)
         .setIn(['deleteAssetStatus', 'loaded'], true)
         .setIn(['deleteAssetStatus', 'error'], false)
-        .deleteIn(['assetss', 'items', action.index]);
+        .deleteIn(['assets', 'items', action.index]);
     case DELETE_ASSET_FAIL:
       return state
         .setIn(['deleteAssetStatus', 'loading'], false)
