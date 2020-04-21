@@ -58,6 +58,12 @@ const routes = [
     icon: 'map marker alternate',
   },
   {
+    name: 'announcement',
+    label: 'Announcement',
+    route: '/announcements',
+    icon: 'announcement',
+  },
+  {
     name: 'logout',
     label: 'Logout',
     icon: 'log out',
