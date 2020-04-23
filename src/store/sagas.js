@@ -31,6 +31,11 @@ import viewCitySagas from '@redux/Cities/View/sagas';
 import addCitySagas from '@redux/Cities/Add/sagas';
 import editCitySagas from '@redux/Cities/Edit/sagas';
 
+import prioritiesListSagas from '@redux/Priorities/List/sagas';
+import viewPrioritySagas from '@redux/Priorities/View/sagas';
+import addPrioritySagas from '@redux/Priorities/Add/sagas';
+import editPrioritySagas from '@redux/Priorities/Edit/sagas';
+
 import announcementsListSagas from '@redux/Announcements/List/sagas';
 import viewAnnouncementSagas from '@redux/Announcements/View/sagas';
 import addAnnouncementSagas from '@redux/Announcements/Add/sagas';
@@ -64,6 +69,10 @@ export default function* mainSagas() {
     fork(viewCitySagas),
     fork(addCitySagas),
     fork(editCitySagas),
+    fork(prioritiesListSagas),
+    fork(viewPrioritySagas),
+    fork(addPrioritySagas),
+    fork(editPrioritySagas),
     fork(announcementsListSagas),
     fork(viewAnnouncementSagas), 
     fork(addAnnouncementSagas),
