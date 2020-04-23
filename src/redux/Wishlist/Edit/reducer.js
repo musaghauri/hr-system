@@ -8,6 +8,9 @@ import {
   EDIT_WISH,
   EDIT_WISH_SUCCESS,
   EDIT_WISH_FAIL,
+  GET_PRIORITIES,
+  GET_PRIORITIES_SUCCESS,
+  GET_PRIORITIES_FAIL
 } from './constants';
 
 export const initialState = fromJS({
@@ -92,6 +95,22 @@ function editWishReducer(state = initialState, action) {
         .setIn(['editWishStatus', 'loading'], false)
         .setIn(['editWishStatus', 'loaded'], false)
         .setIn(['editWishStatus', 'error'], action.error);
+        case GET_PRIORITIES:
+      return state
+        .setIn(['getPrioritiesStatus', 'loading'], true)
+        .setIn(['getPrioritiesStatus', 'loaded'], false)
+        .setIn(['getPrioritiesStatus', 'error'], false);
+    case GET_PRIORITIES_SUCCESS:
+      return state
+        .setIn(['getPrioritiesStatus', 'loading'], false)
+        .setIn(['getPrioritiesStatus', 'loaded'], true)
+        .setIn(['getPrioritiesStatus', 'error'], false)
+        .set('priorities', fromJS(action.priorities));
+    case GET_PRIORITIES_FAIL:
+      return state
+        .setIn(['getPrioritiesStatus', 'loading'], false)
+        .setIn(['getPrioritiesStatus', 'loaded'], false)
+        .setIn(['getPrioritiesStatus', 'error'], action.error);
     default:
       return state;
   }

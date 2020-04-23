@@ -25,10 +25,7 @@ export function* addWish(action) {
   }
 }
 export function* getPriorities() {
-  // const token = cookie.loadAuthCookie('token');
-  // const requestHeader = { authorization: `Bearer ${token}` };
   const requestURL = `${NEXT_API_URL}/priorities`;
-  // const options = createRequestOptions('GET', null, requestHeader);
   const priorities = yield call(request, requestURL);
   if (!priorities.err) {
     yield put(getPrioritiesSuccess(

@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { submitFormData } from '@utils/helperFuncs';
 import { validateFormData } from '@utils/validations';
-import { resetReducer, editWish, updateValue } from './actions';
+import { resetReducer, editWish, updateValue, selectPriorities,  } from './actions';
 import {
   selectFormDetails,
   selectEditWishStatus,
@@ -34,7 +34,7 @@ class EditWishContainer extends Component {
   };
 
   render() {
-    const { editWishStatus, onUpdateValue, formDetails } = this.props;
+    const { editWishStatus, onUpdateValue, formDetails, priorites } = this.props;
     return (
       <EditWish
         submitLabel="Edit Wish"
@@ -42,6 +42,7 @@ class EditWishContainer extends Component {
         submitColor="yellow"
         formDetails={formDetails}
         submitStatus={editWishStatus}
+        priorites={priorites}
         validateForm={this.validateForm}
         handleSubmit={this.submitForm}
         updateValue={onUpdateValue}
@@ -54,6 +55,7 @@ const mapStateToProps = createStructuredSelector({
   getWishStatus: selectGetWishStatus(),
   editWishStatus: selectEditWishStatus(),
   formDetails: selectFormDetails(),
+  priorites: selectPriorities(),
 });
 
 function mapDispatchToProps(dispatch) {

@@ -20,8 +20,15 @@ const selectFormDetails = () =>
     editWishState.get('formDetails')
   );
 
+  const selectPriorities = () =>
+  createSelector(selectEditWishDomain(), editWishState =>
+  editWishState.get('priorities')
+  );
+
+
 export {
   selectGetWishStatus,
   selectEditWishStatus,
   selectFormDetails,
+  selectPriorities,
 };

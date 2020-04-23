@@ -51,6 +51,11 @@ import addAnnouncementReducer from '@redux/Announcements/Add/reducer';
 import editAnnouncementReducer from '@redux/Announcements/Edit/reducer';
 import viewAnnouncementReducer from '@redux/Announcements/View/reducer';
 
+import wishlistReducer from '@redux/Wishlist/List/reducer';
+import addWishReducer from '@redux/Wishlist/Add/reducer';
+import editWishReducer from '@redux/Wishlist/Edit/reducer';
+import viewWishReducer from '@redux/Wishlist/View/reducer';
+
 
 export default combineReducers({
   landingPage: landingPageReducer,
@@ -93,4 +98,8 @@ export default combineReducers({
   addAnnouncement: addAnnouncementReducer,
   editAnnouncement: editAnnouncementReducer, 
   viewAnnouncement: viewAnnouncementReducer,
+  wishlist: wishlistReducer,
+  addWish: addWishReducer,
+  editWish: editWishReducer, 
+  viewWish: viewWishReducer,
 });

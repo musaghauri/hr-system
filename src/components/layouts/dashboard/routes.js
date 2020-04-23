@@ -46,6 +46,12 @@ const routes = [
     icon: 'star',
   },
   {
+    name: 'wishlist',
+    label: 'Wishlist',
+    route: '/wishlist',
+    icon: 'gift',
+  },
+  {
     name: 'countries',
     label: 'Countries',
     route: '/countries',

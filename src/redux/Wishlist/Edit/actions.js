@@ -7,6 +7,9 @@ import {
     EDIT_WISH,
     EDIT_WISH_SUCCESS,
     EDIT_WISH_FAIL,
+    GET_PRIORITIES,
+    GET_PRIORITIES_SUCCESS,
+    GET_PRIORITIES_FAIL,
   } from './constants';
   
   export function resetReducer() {
@@ -65,4 +68,22 @@ import {
       error,
     };
   }
-  
+  export function getPriorities() {
+    return {
+      type: GET_PRIORITIES,
+    };
+  }
+
+  export function getPrioritiesSuccess(priorities) {
+    return {
+      type: GET_PRIORITIES_SUCCESS,
+      priorities,
+    };
+  }
+
+  export function getPrioritiesFail(error) {
+    return {
+      type: GET_PRIORITIES_FAIL,
+      error,
+    };
+  }

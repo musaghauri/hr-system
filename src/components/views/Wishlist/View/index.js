@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 class ViewWish extends Component {
   render() {
-    const { announcement } = this.props;
+    const { wish } = this.props;
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
         <Grid.Row verticalAlign="middle">
@@ -15,19 +15,27 @@ class ViewWish extends Component {
               </div>
               <div>
                 <Header as="h3">
-                  Title
-                  <Header.Subheader>{announcement.get('title')}</Header.Subheader>
+                  Name
+                  <Header.Subheader>{wish.get('name')}</Header.Subheader>
                 </Header>
               </div>
               <div>
                 <Header as="h3">
                   Description
                   <Header.Subheader>
-                    {announcement.get('description')}
+                    {wish.get('description')}
                   </Header.Subheader>
                 </Header>
               </div>
-              <Link href="/announcements">
+              <div>
+                <Header as="h3">
+                  Priority
+                  <Header.Subheader>
+                    {wish.get('priority')}
+                  </Header.Subheader>
+                </Header>
+              </div>
+              <Link href="/wishlist">
                 <a>Back to Wishlist</a>
               </Link>
             </Segment>

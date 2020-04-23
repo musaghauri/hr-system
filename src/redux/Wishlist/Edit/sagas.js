@@ -3,12 +3,14 @@ import request from '@utils/request';
 import { createRequestOptions, loadFormDetails } from '@utils/helperFuncs';
 import { NEXT_API_URL } from '@config';
 import cookie from '@utils/cookie';
-import { EDIT_WISH, GET_WISH } from './constants';
+import { EDIT_WISH, GET_WISH, GET_PRIORITIES } from './constants';
 import {
   getWishSuccess,
   getWishFail,
   editWishSuccess,
   editWishFail,
+  getPrioritiesSuccess,
+  getPrioritiesFail,
 } from './actions';
 import { selectFormDetails } from './selectors';
 
@@ -29,6 +31,21 @@ export function* getWish(action) {
     yield put(getWishFail(wish.err.reason));
   }
 }
+export function* getPriorities() {
+  const requestURL = `${NEXT_API_URL}/priorities`;
+  const priorities = yield call(request, requestURL);
+  if (!priorities.err) {
+    yield put(getPrioritiesSuccess(
+        priorities.data.items.map(priority_ => ({
+          key: `priority_${priority_._id}`,
+          value: priority_._id,
+          text: priority_.name,
+        }))
+      ));
+  } else {
+    yield put(getPrioritiesFail(priorities.err.reason));
+  }
+}
 
 export function* editWish(action) {
   const token = cookie.loadAuthCookie('token');
@@ -47,4 +64,5 @@ export function* editWish(action) {
 export default function* editWishWatcher() {
   yield takeLatest(GET_WISH, getWish);
   yield takeLatest(EDIT_WISH, editWish);
+  yield takeLatest(GET_PRIORITIES, getPriorities);
 }

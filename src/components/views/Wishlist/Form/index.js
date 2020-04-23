@@ -36,6 +36,7 @@ class WishForm extends Component {
       submitLabel,
       successMessage,
       submitColor,
+      priorites
     } = this.props;
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
@@ -86,7 +87,7 @@ class WishForm extends Component {
                 <Form.Select
                   fluid
                   label={formDetails.getIn(['priority', 'label'])}
-                  options={[{key:"high", text:"High", value:"high"},{key:"low", text:"Low", value:"low"}]}
+                  options={priorites}
                   placeholder={formDetails.getIn(['priority', 'placeholder'])}
                   name={formDetails.getIn(['priority', 'name'])}
                   value={formDetails.getIn(['priority', 'value'])}
