@@ -29,8 +29,8 @@ class EditPriorityContainer extends Component {
   submitForm = formDetails => {
     const { onEditPriority, query } = this.props;
     const { priorityId } = query;
-    const userData = submitFormData(formDetails);
-    onEditPriority(userData, priorityId);
+    const priorityData = submitFormData(formDetails);
+    onEditPriority(priorityData, priorityId);
   };
 
   render() {

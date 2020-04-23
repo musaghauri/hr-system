@@ -14,18 +14,8 @@ const selectFormDetails = () =>
   createSelector(selectAddPriorityDomain(), addPriorityState =>
   addPriorityState.get('formDetails')
   );
-const selectPriorities = () =>
-  createSelector(selectAddPriorityDomain(), addPriorityState =>
-  addPriorityState.get('priorities')
-  );
 
-const selectGetPrioritiesStatus = () =>
-  createSelector(selectAddPriorityDomain(), addPriorityState =>
-  addPriorityState.get('getPrioritiesStatus')
-  );
 export {
   selectAddPriorityStatus,
   selectFormDetails,
-  selectPriorities,
-  selectGetPrioritiesStatus,
 };

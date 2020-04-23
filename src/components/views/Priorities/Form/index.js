@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
+import { ChromePicker } from 'react-color';
 import {
   Button,
   Form,
@@ -11,8 +12,17 @@ import {
 import _assign from 'lodash/assign';
 
 class PriorityForm extends Component {
-  handleChange = e => {
-    const { name, value } = e.target;
+  constructor(props){
+    super(props);
+    this.state = {
+      displayColorPicker: false,
+    }
+  }
+  handleChange = (e, {name, value}) => {
+    if(!name & !value){
+      name="colour";
+      value=e.hex;
+    }
     const { updateValue } = this.props;
     updateValue(['formDetails', name, 'value'], value);
   };
@@ -29,8 +39,26 @@ class PriorityForm extends Component {
       handleSubmit(newFormDetails);
     }
   };
+  handleClick = () => {
+    this.setState({ displayColorPicker: !this.state.displayColorPicker })
+  };
+
+  handleClose = () => {
+    this.setState({ displayColorPicker: false })
+  };
 
   render() {
+    const popover = {
+      position: 'absolute',
+      zIndex: '2',
+    }
+    const cover = {
+      position: 'fixed',
+      top: '0px',
+      right: '0px',
+      bottom: '0px',
+      left: '0px',
+    }
     const {
       formDetails,
       submitStatus,
@@ -38,6 +66,7 @@ class PriorityForm extends Component {
       successMessage,
       submitColor,
     } = this.props;
+    const { displayColorPicker } = this.state;
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
         <Grid.Row verticalAlign="middle">
@@ -84,8 +113,22 @@ class PriorityForm extends Component {
                   }
                   onChange={this.handleChange}
                 />
+                <div>
+                  { displayColorPicker &&
+                    (<div style={ popover }>
+                      <div style={ cover } onClick={ this.handleClose }/>
+                      <ChromePicker 
+                        color = {formDetails.getIn(['colour', 'value'])}
+                        disableAlpha
+                        onChange={this.handleChange}
+                      />
+                    </div> ) 
+                  }
+                </div>
                 <Form.Input
                   fluid
+                  autoComplete="off"
+                  onFocus={ this.handleClick }
                   label={formDetails.getIn(['colour', 'label'])}
                   name={formDetails.getIn(['colour', 'name'])}
                   value={formDetails.getIn(['colour', 'value'])}
@@ -98,7 +141,6 @@ class PriorityForm extends Component {
                       ? formDetails.getIn(['colour', 'errorText'])
                       : false
                   }
-                  onChange={this.handleChange}
                 />
                 <Link href="/priorities">
                   <a>Back to Priorities</a>

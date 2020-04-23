@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Grid, Segment, Button } from 'semantic-ui-react';
+import { Header, Grid, Segment, Label } from 'semantic-ui-react';
 import Link from 'next/link';
 
 class ViewPriority extends Component {
@@ -31,7 +31,7 @@ class ViewPriority extends Component {
                 <Header as="h3">
                   Colour
                   <Header.Subheader>
-                    {priority.get('colour')}
+                  <Label style={{ "backgroundColor" : `${priority.get('colour')}`}} >{priority.get('colour')}</Label>
                   </Header.Subheader>
                 </Header>
               </div>

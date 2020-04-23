@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PrioritiesList from '@components/views/Priorities/List';
 import Router from 'next/router';
-import { Icon, Header } from 'semantic-ui-react';
+import { Icon, Header, Label } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -57,6 +57,12 @@ class PrioritiesListContainer extends Component {
             isFunctional: true,
             handleChange: () =>
               this.deletePriority(priority.get('_id'), eIndex),
+          };
+        }
+        if (heading.get('name') === 'colour') {
+          return {
+            value: <Label style={{ "backgroundColor" : `${priority.get('colour')}` }}>{priority.get('colour')}</Label>,
+            isFunctional: true,
           };
         }
         return {

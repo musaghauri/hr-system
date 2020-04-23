@@ -24,8 +24,8 @@ class AddPriorityContainer extends Component {
 
   submitForm = formDetails => {
     const { onAddPriority } = this.props;
-    const userData = submitFormData(formDetails);
-    onAddPriority(userData);
+    const priorityData = submitFormData(formDetails);
+    onAddPriority(priorityData);
   };
 
   render() {

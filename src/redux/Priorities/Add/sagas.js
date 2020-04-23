@@ -12,11 +12,11 @@ export function* addPriority(action) {
   const requestURL = `${NEXT_API_URL}/priorities`;
   const requestBody = action.priorityInfo;
   const options = createRequestOptions('POST', requestBody, requestHeader);
-  const Priority = yield call(request, requestURL, options);
-  if (!Priority.err) {
-    yield put(addPrioritySuccess(Priority.data));
+  const priority = yield call(request, requestURL, options);
+  if (!priority.err) {
+    yield put(addPrioritySuccess(priority.data));
   } else {
-    yield put(addPriorityFail(Priority.err.reason));
+    yield put(addPriorityFail(priority.err.reason));
   }
 }
 

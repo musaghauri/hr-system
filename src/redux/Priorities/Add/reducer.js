@@ -42,7 +42,6 @@ export const initialState = fromJS({
       type: 'colour',
     },
   },
-  priorities: [],
   addPriorityStatus: {
     loading: false,
     loaded: false,

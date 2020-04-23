@@ -50,6 +50,7 @@
     "next-redux-wrapper": "^4.0.1",
     "node-uuid": "^1.4.8",
     "react": "^16.13.1",
+    "react-color": "^2.18.0",
     "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.1.3",
