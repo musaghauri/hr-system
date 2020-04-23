@@ -20,11 +20,11 @@ class TableGenerator extends Component {
             <Table.Row key={`row_${rowIndex}`}>
               {row.map((column, i) =>
                 column.isFunctional ? (
-                  <Table.Cell onClick={column.handleChange}>
+                  <Table.Cell onClick={column.handleChange} key={`row_${rowIndex}_cell_${i}`}>
                     {column.value}
                   </Table.Cell>
                 ) : (
-                  <Table.Cell>{column.value}</Table.Cell>
+                  <Table.Cell key={`row_${rowIndex}_cell_${i}`}>{column.value}</Table.Cell>
                 )
               )}
             </Table.Row>

@@ -31,6 +31,11 @@ import addStateReducer from '@redux/States/Add/reducer';
 import editStateReducer from '@redux/States/Edit/reducer';
 import viewStateReducer from '@redux/States/View/reducer';
 
+import assetsListReducer from '@redux/Assets/List/reducer';
+import addAssetReducer from '@redux/Assets/Add/reducer';
+import editAssetReducer from '@redux/Assets/Edit/reducer';
+import viewAssetReducer from '@redux/Assets/View/reducer';
+
 import citiesListReducer from '@redux/Cities/List/reducer';
 import addCityReducer from '@redux/Cities/Add/reducer';
 import editCityReducer from '@redux/Cities/Edit/reducer';
@@ -40,6 +45,12 @@ import prioritiesListReducer from '@redux/Priorities/List/reducer';
 import addPriorityReducer from '@redux/Priorities/Add/reducer';
 import editPriorityReducer from '@redux/Priorities/Edit/reducer';
 import viewPriorityReducer from '@redux/Priorities/View/reducer';
+
+import announcementsListReducer from '@redux/Announcements/List/reducer';
+import addAnnouncementReducer from '@redux/Announcements/Add/reducer';
+import editAnnouncementReducer from '@redux/Announcements/Edit/reducer';
+import viewAnnouncementReducer from '@redux/Announcements/View/reducer';
+
 
 export default combineReducers({
   landingPage: landingPageReducer,
@@ -66,6 +77,10 @@ export default combineReducers({
   addState: addStateReducer,
   editState: editStateReducer,
   viewState: viewStateReducer,
+  assetsList: assetsListReducer, 
+  addAsset: addAssetReducer,
+  editAsset: editAssetReducer,
+  viewAsset: viewAssetReducer,
   citiesList: citiesListReducer,
   addCity: addCityReducer,
   editCity: editCityReducer,
@@ -74,4 +89,8 @@ export default combineReducers({
   addPriority: addPriorityReducer,
   editPriority: editPriorityReducer,
   viewPriority: viewPriorityReducer,
+  announcementsList: announcementsListReducer,
+  addAnnouncement: addAnnouncementReducer,
+  editAnnouncement: editAnnouncementReducer, 
+  viewAnnouncement: viewAnnouncementReducer,
 });

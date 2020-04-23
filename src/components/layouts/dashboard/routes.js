@@ -22,6 +22,12 @@ const routes = [
     icon: 'users',
   },
   {
+    name: 'assets',
+    label: 'Assets',
+    route: '/assets',
+    icon: 'laptop',
+  },
+  {
     name: 'roles',
     label: 'Roles',
     route: '/roles',
@@ -56,6 +62,12 @@ const routes = [
     label: 'Cities',
     route: '/cities',
     icon: 'map marker alternate',
+  },
+  {
+    name: 'announcement',
+    label: 'Announcement',
+    route: '/announcements',
+    icon: 'announcement',
   },
   {
     name: 'logout',

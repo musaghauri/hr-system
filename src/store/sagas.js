@@ -21,6 +21,11 @@ import viewStateSagas from '@redux/States/View/sagas';
 import addStateSagas from '@redux/States/Add/sagas';
 import editStateSagas from '@redux/States/Edit/sagas';
 
+import assetsListSagas from '@redux/Assets/List/sagas';
+import viewAssetSagas from '@redux/Assets/View/sagas';
+import addAssetSagas from '@redux/Assets/Add/sagas';
+import editAssetSagas from '@redux/Assets/Edit/sagas';
+
 import citiesListSagas from '@redux/Cities/List/sagas';
 import viewCitySagas from '@redux/Cities/View/sagas';
 import addCitySagas from '@redux/Cities/Add/sagas';
@@ -30,6 +35,11 @@ import prioritiesListSagas from '@redux/Priorities/List/sagas';
 import viewPrioritySagas from '@redux/Priorities/View/sagas';
 import addPrioritySagas from '@redux/Priorities/Add/sagas';
 import editPrioritySagas from '@redux/Priorities/Edit/sagas';
+
+import announcementsListSagas from '@redux/Announcements/List/sagas';
+import viewAnnouncementSagas from '@redux/Announcements/View/sagas';
+import addAnnouncementSagas from '@redux/Announcements/Add/sagas';
+import editAnnouncementSagas from '@redux/Announcements/Edit/sagas';
 
 export default function* mainSagas() {
   yield all([
@@ -51,6 +61,10 @@ export default function* mainSagas() {
     fork(viewStateSagas),
     fork(addStateSagas),
     fork(editStateSagas),
+    fork(assetsListSagas),
+    fork(viewAssetSagas),
+    fork(addAssetSagas),
+    fork(editAssetSagas),
     fork(citiesListSagas),
     fork(viewCitySagas),
     fork(addCitySagas),
@@ -59,5 +73,9 @@ export default function* mainSagas() {
     fork(viewPrioritySagas),
     fork(addPrioritySagas),
     fork(editPrioritySagas),
+    fork(announcementsListSagas),
+    fork(viewAnnouncementSagas), 
+    fork(addAnnouncementSagas),
+    fork(editAnnouncementSagas),
   ]);
 }
