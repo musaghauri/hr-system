@@ -31,7 +31,7 @@ class ViewWish extends Component {
                 <Header as="h3">
                   Priority
                   <Header.Subheader>
-                    {wish.get('priority')}
+                  {wish.getIn(['priority', 'name'])}
                   </Header.Subheader>
                 </Header>
               </div>

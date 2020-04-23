@@ -46,6 +46,7 @@ export const initialState = fromJS({
         placeholder: 'Enter priority',
       },
   },
+  priorities: [],
   getWishStatus: {
     loading: false,
     loaded: false,

@@ -87,7 +87,7 @@ class WishForm extends Component {
                 <Form.Select
                   fluid
                   label={formDetails.getIn(['priority', 'label'])}
-                  options={priorites}
+                  options={priorites.toJS()}
                   placeholder={formDetails.getIn(['priority', 'placeholder'])}
                   name={formDetails.getIn(['priority', 'name'])}
                   value={formDetails.getIn(['priority', 'value'])}

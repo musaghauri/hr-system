@@ -6,11 +6,12 @@ import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { submitFormData } from '@utils/helperFuncs';
 import { validateFormData } from '@utils/validations';
-import { resetReducer, editWish, updateValue, selectPriorities,  } from './actions';
+import { resetReducer, editWish, updateValue  } from './actions';
 import {
   selectFormDetails,
   selectEditWishStatus,
   selectGetWishStatus,
+  selectPriorities,
 } from './selectors';
 
 class EditWishContainer extends Component {

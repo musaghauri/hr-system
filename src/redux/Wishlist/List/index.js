@@ -59,6 +59,12 @@ class WishlistContainer extends Component {
               this.deleteWish(wish.get('_id'), eIndex),
           };
         }
+        if (heading.get('name') === 'priority') {
+          return {
+            value: wish.getIn(['priority', 'name']),
+            isFunctional: false,
+          };
+        }
         return {
           value: wish.get(heading.get('name')),
           isFunctional: false,

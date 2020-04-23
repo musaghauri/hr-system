@@ -10,7 +10,12 @@ import WishHelper from '../helpers/Wish';
  */
 function get(req, res) {
   const { wishId } = req.params;
-  const populateQuery = [];
+  const populateQuery = [
+    {
+      path: 'priority',
+      model: 'Priority',
+    },
+  ];
   WishHelper.GetById(wishId, populateQuery)
     .then(wish => {
       res.json(wish);
@@ -37,14 +42,20 @@ function create(req, res) {
 }
 
 function list(req, res) {
+  const populateQuery = [
+    {
+      path: 'priority',
+      model: 'Priority',
+    },
+  ];
   const params = {
     limit: _get(req.query, 'limit', 0),
     skip: _get(req.query, 'skip', 0),
     order: _get(req.query, 'order', 'asc'),
-    sort: _get(req.query, 'sort', 'title'),
+    sort: _get(req.query, 'sort', 'name'),
     query: _omit(req.query, ['limit', 'skip', 'order', 'sort']),
   };
-  WishHelper.Get(params)
+  WishHelper.Get(params, populateQuery)
     .then(wishlist => {
       const { items, total_count } = wishlist;
       res.json({

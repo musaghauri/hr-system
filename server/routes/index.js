@@ -8,6 +8,7 @@ import assetRoutes from './asset';
 import cityRoutes from './city';
 import priorityRoutes from './priority';
 import announcementRoutes from './announcement';
+import wishlistRoutes from './wish';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -23,5 +24,6 @@ router.use('/assets', assetRoutes);
 router.use('/cities', cityRoutes);
 router.use('/priorities', priorityRoutes);
 router.use('/announcements', announcementRoutes);
+router.use('/wishlist', wishlistRoutes);
 
 export default router;

@@ -24,7 +24,12 @@ export function* getWish(action) {
   if (!wish.err) {
     const formDetails = yield loadFormDetails(
       FORMDETAILS.toJS(),
-      wish.data
+      {
+        _id: wish.data._id,
+        name: wish.data.name,
+        description: wish.data.description,
+        priority: wish.data.priority._id,
+      }
     );
     yield put(getWishSuccess(formDetails));
   } else {
