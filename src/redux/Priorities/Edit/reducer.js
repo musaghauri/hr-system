@@ -31,7 +31,6 @@ export const initialState = fromJS({
       rules: ['isRequired'],
       fieldName: 'description',
       placeholder: 'Enter description',
-      type: 'description',
     },
     colour: {
       name: 'colour',
