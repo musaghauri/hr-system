@@ -68,19 +68,6 @@ class DepartmentForm extends Component {
                   }
                   onChange={this.handleChange}
                 />
-                <Form.Input
-                  fluid
-                  label={formDetails.getIn(['company', 'label'])}
-                  name={formDetails.getIn(['company', 'name'])}
-                  value={formDetails.getIn(['company', 'value'])}
-                  placeholder={formDetails.getIn(['company', 'placeholder'])}
-                  error={
-                    !formDetails.getIn(['company', 'status'])
-                      ? formDetails.getIn(['company', 'errorText'])
-                      : false
-                  }
-                  onChange={this.handleChange}
-                />
                 <Link href="/departments">
                   <a>Back to Departments</a>
                 </Link>

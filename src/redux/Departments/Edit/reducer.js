@@ -21,17 +21,7 @@ export const initialState = fromJS({
           rules: ['isRequired'],
           fieldName: 'Name',
           placeholder: 'Enter department name',
-        },
-        company: {
-          name: 'company',
-          label: 'Company',
-          status: true,
-          errorText: '',
-          value: '',
-          rules: ['isRequired'],
-          fieldName: 'Company',
-          placeholder: 'Enter company name',
-        },
+        }
       },
   getDepartmentStatus: {
     loading: false,

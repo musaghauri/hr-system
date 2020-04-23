@@ -19,12 +19,6 @@ class ViewDepartment extends Component {
                   <Header.Subheader>{department.get('name')}</Header.Subheader>
                 </Header>
               </div>
-              <div>
-                <Header as="h3">
-                  Company Name
-                  <Header.Subheader>{department.get('company')}</Header.Subheader>
-                </Header>
-              </div>
               <Link href="/departments">
                 <a>Back to Departments</a>
               </Link>
