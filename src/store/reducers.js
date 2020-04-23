@@ -51,6 +51,10 @@ import addAnnouncementReducer from '@redux/Announcements/Add/reducer';
 import editAnnouncementReducer from '@redux/Announcements/Edit/reducer';
 import viewAnnouncementReducer from '@redux/Announcements/View/reducer';
 
+import departmentsListReducer from '@redux/Departments/List/reducer';
+import addDepartmentReducer from '@redux/Departments/Add/reducer';
+import editDepartmentReducer from '@redux/Departments/Edit/reducer';
+import viewDepartmentReducer from '@redux/Departments/View/reducer';
 
 export default combineReducers({
   landingPage: landingPageReducer,
@@ -93,4 +97,8 @@ export default combineReducers({
   addAnnouncement: addAnnouncementReducer,
   editAnnouncement: editAnnouncementReducer, 
   viewAnnouncement: viewAnnouncementReducer,
+  departmentsList: departmentsListReducer,
+  addDepartment: addDepartmentReducer,
+  editDepartment: editDepartmentReducer, 
+  viewDepartment: viewDepartmentReducer,
 });

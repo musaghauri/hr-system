@@ -41,6 +41,11 @@ import viewAnnouncementSagas from '@redux/Announcements/View/sagas';
 import addAnnouncementSagas from '@redux/Announcements/Add/sagas';
 import editAnnouncementSagas from '@redux/Announcements/Edit/sagas';
 
+import departmentsListSagas from '@redux/Departments/List/sagas';
+import viewDepartmentSagas from '@redux/Departments/View/sagas';
+import addDepartmentSagas from '@redux/Departments/Add/sagas';
+import editDepartmentSagas from '@redux/Departments/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -77,5 +82,10 @@ export default function* mainSagas() {
     fork(viewAnnouncementSagas), 
     fork(addAnnouncementSagas),
     fork(editAnnouncementSagas),
+    fork(departmentsListSagas),
+    fork(viewDepartmentSagas),
+    fork(addDepartmentSagas),
+    fork(editDepartmentSagas)
   ]);
 }
+ 
