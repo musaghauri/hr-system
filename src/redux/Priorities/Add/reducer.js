@@ -32,14 +32,13 @@ export const initialState = fromJS({
     },
     colour: {
       name: 'colour',
-      label: 'colour',
+      label: 'Colour',
       status: true,
       errorText: '',
       value: '',
       rules: ['isRequired'],
-      fieldName: 'colour',
-      placeholder: 'colour',
-      type: 'colour',
+      fieldName: 'Colour',
+      placeholder: 'Select Colour',
     },
   },
   addPriorityStatus: {

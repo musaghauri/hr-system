@@ -11,50 +11,49 @@ import {
 } from './constants';
 
 export const initialState = fromJS({
-    formDetails: {
-        name: {
-            name: 'name',
-            label: 'Name',
-            status: true,
-            errorText: '',
-            value: '',
-            rules: ['isRequired'],
-            fieldName: 'name',
-            placeholder: 'Enter priority name',
-        },
-        description: {
-            name: 'description',
-            label: 'Description',
-            status: true,
-            errorText: '',
-            value: '',
-            rules: ['isRequired'],
-            fieldName: 'description',
-            placeholder: 'Enter description',
-            type: 'description',
-        },
-        colour: {
-            name: 'colour',
-            label: 'colour',
-            status: true,
-            errorText: '',
-            value: '',
-            rules: ['isRequired'],
-            fieldName: 'colour',
-            placeholder: 'colour',
-            type: 'colour',
-        },
+  formDetails: {
+    name: {
+      name: 'name',
+      label: 'Name',
+      status: true,
+      errorText: '',
+      value: '',
+      rules: ['isRequired'],
+      fieldName: 'name',
+      placeholder: 'Enter priority name',
     },
-    getPriorityStatus: {
-        loading: false,
-        loaded: false,
-        error: false,
-      },
-      editPriorityStatus: {
-        loading: false,
-        loaded: false,
-        error: false,
-      },
+    description: {
+      name: 'description',
+      label: 'Description',
+      status: true,
+      errorText: '',
+      value: '',
+      rules: ['isRequired'],
+      fieldName: 'description',
+      placeholder: 'Enter description',
+      type: 'description',
+    },
+    colour: {
+      name: 'colour',
+      label: 'Colour',
+      status: true,
+      errorText: '',
+      value: '',
+      rules: ['isRequired'],
+      fieldName: 'Colour',
+      placeholder: 'Select Colour',
+    },
+  },
+  getPriorityStatus: {
+    loading: false,
+    loaded: false,
+    error: false,
+  },
+  editPriorityStatus: {
+    loading: false,
+    loaded: false,
+    error: false,
+  },
 });
 
 function editPriorityReducer(state = initialState, action) {

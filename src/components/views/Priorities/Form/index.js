@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import { ChromePicker } from 'react-color';
 import {
   Button,
   Form,
@@ -10,19 +9,10 @@ import {
   Segment,
 } from 'semantic-ui-react';
 import _assign from 'lodash/assign';
+import ColourPicker from '@components/widgets/ColourPicker';
 
 class PriorityForm extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      displayColorPicker: false,
-    }
-  }
-  handleChange = (e, {name, value}) => {
-    if(!name & !value){
-      name="colour";
-      value=e.hex;
-    }
+  handleChange = (e, { name, value }) => {
     const { updateValue } = this.props;
     updateValue(['formDetails', name, 'value'], value);
   };
@@ -39,26 +29,8 @@ class PriorityForm extends Component {
       handleSubmit(newFormDetails);
     }
   };
-  handleClick = () => {
-    this.setState({ displayColorPicker: !this.state.displayColorPicker })
-  };
-
-  handleClose = () => {
-    this.setState({ displayColorPicker: false })
-  };
 
   render() {
-    const popover = {
-      position: 'absolute',
-      zIndex: '2',
-    }
-    const cover = {
-      position: 'fixed',
-      top: '0px',
-      right: '0px',
-      bottom: '0px',
-      left: '0px',
-    }
     const {
       formDetails,
       submitStatus,
@@ -66,7 +38,6 @@ class PriorityForm extends Component {
       successMessage,
       submitColor,
     } = this.props;
-    const { displayColorPicker } = this.state;
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
         <Grid.Row verticalAlign="middle">
@@ -114,34 +85,11 @@ class PriorityForm extends Component {
                   onChange={this.handleChange}
                 />
                 <div>
-                  { displayColorPicker &&
-                    (<div style={ popover }>
-                      <div style={ cover } onClick={ this.handleClose }/>
-                      <ChromePicker 
-                        color = {formDetails.getIn(['colour', 'value'])}
-                        disableAlpha
-                        onChange={this.handleChange}
-                      />
-                    </div> ) 
-                  }
+                  <ColourPicker
+                    colour={formDetails.get('colour')}
+                    handleChange={this.handleChange}
+                  />
                 </div>
-                <Form.Input
-                  fluid
-                  autoComplete="off"
-                  onFocus={ this.handleClick }
-                  label={formDetails.getIn(['colour', 'label'])}
-                  name={formDetails.getIn(['colour', 'name'])}
-                  value={formDetails.getIn(['colour', 'value'])}
-                  placeholder={formDetails.getIn([
-                    'colour',
-                    'placeholder',
-                  ])}
-                  error={
-                    !formDetails.getIn(['colour', 'status'])
-                      ? formDetails.getIn(['colour', 'errorText'])
-                      : false
-                  }
-                />
                 <Link href="/priorities">
                   <a>Back to Priorities</a>
                 </Link>
