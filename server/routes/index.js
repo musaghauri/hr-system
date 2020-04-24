@@ -9,6 +9,7 @@ import cityRoutes from './city';
 import priorityRoutes from './priority';
 import announcementRoutes from './announcement';
 import departmentRoutes from './department';
+import branchRoutes from './branch';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -25,5 +26,6 @@ router.use('/cities', cityRoutes);
 router.use('/priorities', priorityRoutes);
 router.use('/announcements', announcementRoutes);
 router.use('/departments', departmentRoutes);
+router.use('/branches', branchRoutes);
 
 export default router;
