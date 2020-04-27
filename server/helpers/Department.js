@@ -1,9 +1,11 @@
 /* eslint-disable */
+import httpStatus from 'http-status';
 import Department from '../models/department';
 import _startCase from 'lodash/startCase';
 import _get from 'lodash/get';
 import MongoHanlder from './common/mongo';
 import CrudHandler from './common/crud';
+import APIError from './common/APIError';
 
 const mongoDriver = new MongoHanlder(Department);
 const activeDriver = mongoDriver;
@@ -30,16 +32,68 @@ function Get(params, populate= ['','']) {
 }
 
 function UpdateById(departmentId, departmentBody, user = null) {
-  return CRUD.updateById(departmentId, departmentBody, user);
+  return new Promise((resolve, reject) => {
+    const { name = null } = departmentBody;
+
+    ifAttributeExists({ name }, name, departmentId).then(data => {
+      if(!!(_get(data, 'status'))) {
+        reject({
+          status: httpStatus.BAD_REQUEST,
+          err: _get(data, 'err'),
+        });
+      } else {
+        CRUD.updateById(departmentId, departmentBody, user).then(updatedDepartment => {
+          resolve(updatedDepartment);
+        })
+        .catch(e => reject(e));
+      }
+    })
+    .catch(e => reject(e));
+  });
 }
 
 function Create(departmentBody, user = null) {
-  return CRUD.create(Department, departmentBody, user);
+  return new Promise((resolve, reject) => {
+    const { name = null } = departmentBody;
+    
+    ifAttributeExists({ name }, name).then(data => {
+      if(!!(_get(data, 'status'))) {
+        reject({
+          status: httpStatus.BAD_REQUEST,
+          err: _get(data, 'err'),
+        });
+      } else {
+        CRUD.create(Department, departmentBody, user).then(savedDepartment => {
+          resolve(savedDepartment);
+        })
+        .catch(e => reject(e));
+      }
+    })
+    .catch(e => reject(e));
+  });
 }
-
 
 function Remove(id, user = null) {
   return CRUD.remove(id, user);
+}
+
+function ifAttributeExists(values, key, exception = null) {
+  return new Promise((resolve, reject) => {
+    CRUD.isUnique(values, exception).then((valueExists) => {
+      if (!!valueExists) {
+        const err = new APIError(`${_startCase(key)} already exists`, httpStatus.BAD_REQUEST);
+        resolve({
+          status: true,
+          err,
+        });
+      } else {
+        resolve({
+            status: false
+        });
+      }
+    })
+    .catch(e => reject(e));
+  });
 }
 
 
