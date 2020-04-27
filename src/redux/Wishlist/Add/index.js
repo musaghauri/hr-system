@@ -9,7 +9,7 @@ import { validateFormData } from '@utils/validations';
 import { resetReducer, addWish, updateValue } from './actions';
 import { selectFormDetails, selectAddWishStatus, selectPriorities, } from './selectors';
 
-class AddWishContainer extends Component {
+class AddWishlistContainer extends Component {
   componentWillUnmount() {
     const { onResetReducer } = this.props;
     onResetReducer();
@@ -63,4 +63,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddWishContainer);
+)(AddWishlistContainer);

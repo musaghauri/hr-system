@@ -1,49 +1,49 @@
 import express from 'express';
 import expressJwt from 'express-jwt';
 import { JWT_SECRET_TOKEN } from '@config';
-import wishCtrl from '../controllers/wish';
+import wishlistCtrl from '../controllers/wishlist';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
 router
   .route('/')
-  /** POST /api/wishlist - Create new wish */
+  /** POST /api/wishlist - Create new wishlist */
   .post(
     expressJwt({
       secret: JWT_SECRET_TOKEN,
     }),
-    wishCtrl.create
+    wishlistCtrl.create
   )
   /** GET /api/wishlist - Get list of wishlist */
   .get(
     // expressJwt({
     //   secret: JWT_SECRET_TOKEN,
     // }),
-    wishCtrl.list
+    wishlistCtrl.list
   );
 
 router
-  .route('/:wishId')
-  /** GET /api/wishlist/:wishId - Get wish */
+  .route('/:wishlistId')
+  /** GET /api/wishlist/:wishlistId - Get wishlist */
   .get(
     // expressJwt({
     //   secret: JWT_SECRET_TOKEN,
     // }),
-    wishCtrl.get
+    wishlistCtrl.get
   )
-  /** PUT /api/wishlist/:wishId - Update wish */
+  /** PUT /api/wishlist/:wishlistId - Update wishlist */
   .put(
     expressJwt({
       secret: JWT_SECRET_TOKEN,
     }),
-    wishCtrl.update
+    wishlistCtrl.update
   )
-  /** DELETE /api/wishlist/:wishId - Delete wish */
+  /** DELETE /api/wishlist/:wishlistId - Delete wishlist */
   .delete(
     expressJwt({
       secret: JWT_SECRET_TOKEN,
     }),
-    wishCtrl.removeHard
+    wishlistCtrl.removeHard
   );
 
 export default router;

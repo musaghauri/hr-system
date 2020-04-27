@@ -52,9 +52,9 @@ import editAnnouncementReducer from '@redux/Announcements/Edit/reducer';
 import viewAnnouncementReducer from '@redux/Announcements/View/reducer';
 
 import wishlistReducer from '@redux/Wishlist/List/reducer';
-import addWishReducer from '@redux/Wishlist/Add/reducer';
-import editWishReducer from '@redux/Wishlist/Edit/reducer';
-import viewWishReducer from '@redux/Wishlist/View/reducer';
+import addWishlistReducer from '@redux/Wishlist/Add/reducer';
+import editWishlistReducer from '@redux/Wishlist/Edit/reducer';
+import viewWishlistReducer from '@redux/Wishlist/View/reducer';
 
 
 export default combineReducers({
@@ -99,7 +99,7 @@ export default combineReducers({
   editAnnouncement: editAnnouncementReducer, 
   viewAnnouncement: viewAnnouncementReducer,
   wishlist: wishlistReducer,
-  addWish: addWishReducer,
-  editWish: editWishReducer, 
-  viewWish: viewWishReducer,
+  addWishlist: addWishlistReducer,
+  editWishlist: editWishlistReducer, 
+  viewWishlist: viewWishlistReducer,
 });

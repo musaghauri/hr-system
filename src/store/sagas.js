@@ -42,9 +42,9 @@ import addAnnouncementSagas from '@redux/Announcements/Add/sagas';
 import editAnnouncementSagas from '@redux/Announcements/Edit/sagas';
 
 import wishlistSagas from '@redux/Wishlist/List/sagas';
-import viewWishSagas from '@redux/Wishlist/View/sagas';
-import addWishSagas from '@redux/Wishlist/Add/sagas';
-import editWishSagas from '@redux/Wishlist/Edit/sagas';
+import viewWishlistSagas from '@redux/Wishlist/View/sagas';
+import addWishlistSagas from '@redux/Wishlist/Add/sagas';
+import editWishlistSagas from '@redux/Wishlist/Edit/sagas';
 
 export default function* mainSagas() {
   yield all([
@@ -83,8 +83,8 @@ export default function* mainSagas() {
     fork(addAnnouncementSagas),
     fork(editAnnouncementSagas),
     fork(wishlistSagas),
-    fork(viewWishSagas),
-    fork(addWishSagas),
-    fork(editWishSagas)
+    fork(viewWishlistSagas),
+    fork(addWishlistSagas),
+    fork(editWishlistSagas)
   ]);
 }

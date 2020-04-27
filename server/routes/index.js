@@ -8,7 +8,7 @@ import assetRoutes from './asset';
 import cityRoutes from './city';
 import priorityRoutes from './priority';
 import announcementRoutes from './announcement';
-import wishlistRoutes from './wish';
+import wishlistRoutes from './wishlist';
 
 const router = express.Router(); // eslint-disable-line new-cap
 

@@ -3,22 +3,22 @@ import httpStatus from 'http-status';
 import _get from 'lodash/get';
 import _omit from 'lodash/omit';
 
-import WishHelper from '../helpers/Wish';
+import WishlistHelper from '../helpers/Wishlist';
 /**
- * Get new wish
- * @returns {Wish}
+ * Get new wishlist
+ * @returns {Wishlist}
  */
 function get(req, res) {
-  const { wishId } = req.params;
+  const { wishlistId } = req.params;
   const populateQuery = [
     {
       path: 'priority',
       model: 'Priority',
     },
   ];
-  WishHelper.GetById(wishId, populateQuery)
-    .then(wish => {
-      res.json(wish);
+  WishlistHelper.GetById(wishlistId, populateQuery)
+    .then(wishlist => {
+      res.json(wishlist);
     })
     .catch(e => {
       const { status = httpStatus.INTERNAL_SERVER_ERROR, err = e } = e;
@@ -26,14 +26,14 @@ function get(req, res) {
     });
 }
 /**
- * Create new wish
- * @returns {Wish}
+ * Create new wishlist
+ * @returns {Wishlist}
  */
 function create(req, res) {
-  const wishBody = req.body;
-  WishHelper.Create(wishBody, req.user)
-    .then(wish => {
-      res.json(wish);
+  const wishlistBody = req.body;
+  WishlistHelper.Create(wishlistBody, req.user)
+    .then(wishlist => {
+      res.json(wishlist);
     })
     .catch(e => {
       const { status = httpStatus.INTERNAL_SERVER_ERROR, err = e } = e;
@@ -55,7 +55,7 @@ function list(req, res) {
     sort: _get(req.query, 'sort', 'name'),
     query: _omit(req.query, ['limit', 'skip', 'order', 'sort']),
   };
-  WishHelper.Get(params, populateQuery)
+  WishlistHelper.Get(params, populateQuery)
     .then(wishlist => {
       const { items, total_count } = wishlist;
       res.json({
@@ -70,15 +70,15 @@ function list(req, res) {
 }
 
 /**
- * Update wish
- * @returns {Wish}
+ * Update wishlist
+ * @returns {Wishlist}
  */
 function update(req, res) {
-  const { wishId } = req.params;
-  const wishBody = req.body;
-  WishHelper.UpdateById(wishId, wishBody, req.user)
-    .then(wish => {
-      res.json(wish);
+  const { wishlistId } = req.params;
+  const wishlistBody = req.body;
+  WishlistHelper.UpdateById(wishlistId, wishlistBody, req.user)
+    .then(wishlist => {
+      res.json(wishlist);
     })
     .catch(e => {
       const { status = httpStatus.INTERNAL_SERVER_ERROR, err = e } = e;
@@ -87,12 +87,12 @@ function update(req, res) {
 }
 
 /**
- * Remove wish.
- * @returns {Wish}
+ * Remove wishlist.
+ * @returns {Wishlist}
  */
 function removeHard(req, res) {
-  const wishId = _get(req.params, 'wishId');
-  WishHelper.Remove(wishId)
+  const wishlistId = _get(req.params, 'wishlistId');
+  WishlistHelper.Remove(wishlistId)
     .then(response => {
       res.json(response);
     })

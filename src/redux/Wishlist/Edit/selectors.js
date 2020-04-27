@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the Edit Wish state domain
  */
-const selectEditWishDomain = () => state => state.get('editWish');
+const selectEditWishDomain = () => state => state.get('editWishlist');
 
 const selectGetWishStatus = () =>
   createSelector(selectEditWishDomain(), editWishState =>

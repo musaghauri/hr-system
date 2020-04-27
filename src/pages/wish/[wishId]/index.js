@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ViewWishContainer from '@redux/Wishlist/View';
+import ViewWishlistContainer from '@redux/Wishlist/View';
 import { withAuthSync } from '@utils/auth';
 import { getWish } from '@redux/Wishlist/View/actions';
 
@@ -12,7 +12,7 @@ class ViewWish extends Component {
   }
 
   render() {
-    return <ViewWishContainer {...this.props} />;
+    return <ViewWishlistContainer {...this.props} />;
   }
 }
 

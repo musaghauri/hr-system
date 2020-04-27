@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddWishContainer from '@redux/Wishlist/Add';
+import AddWishlistContainer from '@redux/Wishlist/Add';
 import { withAuthSync } from '@utils/auth';
 import { getPriorities } from '@redux/Wishlist/Add/actions';
 
@@ -11,7 +11,7 @@ class AddWish extends Component {
   }
 
   render() {
-    return <AddWishContainer />;
+    return <AddWishlistContainer />;
   }
 }
 

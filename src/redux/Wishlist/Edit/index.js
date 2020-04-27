@@ -14,7 +14,7 @@ import {
   selectPriorities,
 } from './selectors';
 
-class EditWishContainer extends Component {
+class EditWishlistContainer extends Component {
   componentWillUnmount() {
     const { onResetReducer } = this.props;
     onResetReducer();
@@ -70,4 +70,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditWishContainer);
+)(EditWishlistContainer);

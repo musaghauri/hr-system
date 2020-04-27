@@ -29,12 +29,12 @@ function Get(params, populate= ['','']) {
   return CRUD.get(query, skip, limit, sort, order, populate);
 }
 
-function UpdateById(wishId, wishBody, user = null) {
-  return CRUD.updateById(wishId, wishBody, user);
+function UpdateById(wishlistId, wishlistBody, user = null) {
+  return CRUD.updateById(wishlistId, wishlistBody, user);
 }
 
-function Create(wishBody, user = null) {
-  return CRUD.create(Wishlist, wishBody, user);
+function Create(wishlistBody, user = null) {
+  return CRUD.create(Wishlist, wishlistBody, user);
 }
 
 

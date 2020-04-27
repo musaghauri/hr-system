@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { resetReducer } from './actions';
 import { selectWish, selectGetWishStatus } from './selectors';
 
-class ViewWishContainer extends Component {
+class ViewWishlistContainer extends Component {
   componentWillUnmount() {
     const { onResetReducer } = this.props;
     onResetReducer();
@@ -32,4 +32,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ViewWishContainer);
+)(ViewWishlistContainer);

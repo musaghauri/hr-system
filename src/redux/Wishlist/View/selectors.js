@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the View Wish state domain
  */
-const selectViewWishDomain = () => state => state.get('viewWish');
+const selectViewWishDomain = () => state => state.get('viewWishlist');
 
 const selectWish = () =>
   createSelector(selectViewWishDomain(), viewWishState =>
