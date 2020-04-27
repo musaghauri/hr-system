@@ -6,15 +6,25 @@ import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { submitFormData } from '@utils/helperFuncs';
 import { validateFormData } from '@utils/validations';
-import { resetReducer, editBranch, updateValue } from './actions';
+import { 
+  resetReducer, 
+  editBranch, 
+  updateValue,
+  getStates, 
+  getCities
+} from './actions';
 import {
   selectFormDetails,
   selectEditBranchStatus,
   selectGetBranchStatus,
   selectDepartments,
   selectGetDepartmentsStatus,
+  selectCountries,
+  selectGetCountriesStatus,
+  selectStates,
+  selectGetStatesStatus,
   selectCities,
-  selectGetCitiesStatus
+  selectGetCitiesStatus,
 } from './selectors';
 
 class EditBranchContainer extends Component {
@@ -38,15 +48,37 @@ class EditBranchContainer extends Component {
   };
 
   render() {
-    const { editBranchStatus, onUpdateValue, formDetails, departments, cities } = this.props;
+    const { 
+      editBranchStatus, 
+      onUpdateValue, 
+      formDetails, 
+      departments, 
+      states,
+      countries,
+      cities,
+      onGetStates,
+      onGetCities,
+      getCountriesStatus,
+      getStatesStatus,
+      getCitiesStatus,
+      getDepartmentsStatus
+    } = this.props;
     return (
       <EditBranch
         submitLabel="Edit Branch"
         successMessage="Branch edited successfully!"
         submitColor="yellow"
+        getStates={onGetStates}
+        getCities={onGetCities}
         formDetails={formDetails}
+        countries={countries}
+        states={states}
         cities={cities}
         departments={departments}
+        getCountriesStatus={getCountriesStatus}
+        getStatesStatus={getStatesStatus}
+        getCitiesStatus={getCitiesStatus}
+        getDepartmentsStatus={getDepartmentsStatus}
         submitStatus={editBranchStatus}
         validateForm={this.validateForm}
         handleSubmit={this.submitForm}
@@ -61,14 +93,20 @@ const mapStateToProps = createStructuredSelector({
   editBranchStatus: selectEditBranchStatus(),
   formDetails: selectFormDetails(),
   departments: selectDepartments(),
-  getDepartmentsStatus: selectGetDepartmentsStatus(),
+  countries: selectCountries(),
+  states: selectStates(),
   cities: selectCities(),
+  getDepartmentsStatus: selectGetDepartmentsStatus(),
+  getCountriesStatus: selectGetCountriesStatus(),
+  getStatesStatus: selectGetStatesStatus(),
   getCitiesStatus: selectGetCitiesStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     onEditBranch: bindActionCreators(editBranch, dispatch),
+    onGetStates: bindActionCreators(getStates, dispatch),
+    onGetCities: bindActionCreators(getCities, dispatch),
     onUpdateValue: bindActionCreators(updateValue, dispatch),
     onResetReducer: bindActionCreators(resetReducer, dispatch),
   };

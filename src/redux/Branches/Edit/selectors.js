@@ -28,7 +28,26 @@ const selectGetDepartmentsStatus = () =>
   createSelector(selectEditBranchDomain(), editBranchState =>
   editBranchState.get('getDepartmentsStatus')
   );
-  const selectCities = () =>
+const selectCountries = () =>
+  createSelector(selectEditBranchDomain(), editBranchState =>
+  editBranchState.get('countries')
+  );
+
+const selectGetCountriesStatus = () =>
+  createSelector(selectEditBranchDomain(), editBranchState =>
+  editBranchState.get('getCountriesStatus')
+  );
+const selectStates = () =>
+  createSelector(selectEditBranchDomain(), editBranchState =>
+  editBranchState.get('states')
+  );
+
+const selectGetStatesStatus = () =>
+  createSelector(selectEditBranchDomain(), editBranchState =>
+  editBranchState.get('getStatesStatus')
+  );
+
+const selectCities = () =>
   createSelector(selectEditBranchDomain(), editBranchState =>
   editBranchState.get('cities')
   );
@@ -44,6 +63,10 @@ export {
   selectFormDetails,
   selectDepartments,
   selectGetDepartmentsStatus,
+  selectCountries,
+  selectGetCountriesStatus,
+  selectStates,
+  selectGetStatesStatus,
   selectCities,
-  selectGetCitiesStatus
+  selectGetCitiesStatus 
 };

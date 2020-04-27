@@ -10,7 +10,10 @@ import BranchHelper from '../helpers/Branch';
  */
 function get(req, res) {
   const { branchId } = req.params;
-  const populateQuery = [
+  const { populate = true } = req.query;
+  let populateQuery = [];
+  if (populate === true){
+    populateQuery = [
       {
           path: "city",
           model: "City",
@@ -28,6 +31,7 @@ function get(req, res) {
         model: "Department",
       }
     ];
+  }
   BranchHelper.GetById(branchId, populateQuery)
     .then(branch => {
       res.json(branch);

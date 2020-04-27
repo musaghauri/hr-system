@@ -12,7 +12,9 @@ import _assign from 'lodash/assign';
 
 class BranchForm extends Component {
   handleChange = (e, { name, value }) => {
-    const { updateValue } = this.props;
+    const { updateValue, getStates, getCities } = this.props;
+    if (name === 'country') getStates(value);
+    if (name === 'state') getCities(value);
     updateValue(['formDetails', name, 'value'], value);
   };
 
@@ -36,8 +38,14 @@ class BranchForm extends Component {
       submitLabel,
       successMessage,
       submitColor,
+      countries,
+      states,
       cities,
-      departments
+      departments,
+      getCountriesStatus,
+      getStatesStatus,
+      getCitiesStatus,
+      getDepartmentsStatus
     } = this.props;
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
@@ -56,7 +64,38 @@ class BranchForm extends Component {
                 <Message success>{successMessage}</Message>
               )}
               <Form onSubmit={this.handleSubmit} stacked="true">
+              <Form.Select
+                  label={formDetails.getIn(['country', 'label'])}
+                  options={countries.toJS()}
+                  loading={getCountriesStatus.get('loading')}
+                  placeholder={formDetails.getIn([
+                    'country',
+                    'placeholder',
+                  ])}
+                  search
+                  fluid
+                  name={formDetails.getIn(['country', 'name'])}
+                  value={formDetails.getIn(['country', 'value'])}
+                  onChange={this.handleChange}
+                />
                 <Form.Select
+                  disabled={!getStatesStatus.get('loaded')}
+                  loading={getStatesStatus.get('loading')}
+                  label={formDetails.getIn(['state', 'label'])}
+                  options={states.toJS()}
+                  placeholder={formDetails.getIn([
+                    'state',
+                    'placeholder',
+                  ])}
+                  search
+                  fluid
+                  name={formDetails.getIn(['state', 'name'])}
+                  value={formDetails.getIn(['state', 'value'])}
+                  onChange={this.handleChange}
+                />
+                <Form.Select
+                  disabled={!getCitiesStatus.get('loaded')}
+                  loading={getCitiesStatus.get('loading')}
                   label={formDetails.getIn(['city', 'label'])}
                   options={cities.toJS()}
                   placeholder={formDetails.getIn([
@@ -87,22 +126,23 @@ class BranchForm extends Component {
                 />
                 <Form.Input
                   fluid
-                  label={formDetails.getIn(['contact', 'label'])}
-                  name={formDetails.getIn(['contact', 'name'])}
-                  value={formDetails.getIn(['contact', 'value'])}
+                  label={formDetails.getIn(['contact', 'landline', 'label'])}
+                  name={formDetails.getIn(['contact', 'landline', 'name'])}
+                  value={formDetails.getIn(['contact', 'landline', 'value'])}
                   placeholder={formDetails.getIn([
                     'contact',
                     'placeholder',
                   ])}
                   error={
-                    !formDetails.getIn(['contact', 'status'])
-                      ? formDetails.getIn(['contact', 'errorText'])
+                    !formDetails.getIn(['contact', 'landline', 'status'])
+                      ? formDetails.getIn(['contact', 'landline', 'errorText'])
                       : false
                   }
                   onChange={this.handleChange}
                 />
                 <Form.Select
-                label={formDetails.getIn(['departments', 'label'])}
+                  label={formDetails.getIn(['departments', 'label'])}
+                  loading={getDepartmentsStatus.get('loading')}
                   options={departments.toJS()}
                   placeholder={formDetails.getIn([
                     'departments',
