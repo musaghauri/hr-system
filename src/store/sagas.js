@@ -41,6 +41,11 @@ import viewAnnouncementSagas from '@redux/Announcements/View/sagas';
 import addAnnouncementSagas from '@redux/Announcements/Add/sagas';
 import editAnnouncementSagas from '@redux/Announcements/Edit/sagas';
 
+import wishlistSagas from '@redux/Wishlist/List/sagas';
+import viewWishlistSagas from '@redux/Wishlist/View/sagas';
+import addWishlistSagas from '@redux/Wishlist/Add/sagas';
+import editWishlistSagas from '@redux/Wishlist/Edit/sagas';
+
 import departmentsListSagas from '@redux/Departments/List/sagas';
 import viewDepartmentSagas from '@redux/Departments/View/sagas';
 import addDepartmentSagas from '@redux/Departments/Add/sagas';
@@ -79,13 +84,16 @@ export default function* mainSagas() {
     fork(addPrioritySagas),
     fork(editPrioritySagas),
     fork(announcementsListSagas),
-    fork(viewAnnouncementSagas), 
+    fork(viewAnnouncementSagas),
     fork(addAnnouncementSagas),
     fork(editAnnouncementSagas),
+    fork(wishlistSagas),
+    fork(viewWishlistSagas),
+    fork(addWishlistSagas),
+    fork(editWishlistSagas),
     fork(departmentsListSagas),
     fork(viewDepartmentSagas),
     fork(addDepartmentSagas),
-    fork(editDepartmentSagas)
+    fork(editDepartmentSagas),
   ]);
 }
- 
