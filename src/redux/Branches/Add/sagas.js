@@ -100,7 +100,6 @@ export function* getCities(action) {
   const requestURL = `${NEXT_API_URL}/cities?state=${action.stateId}`;
   const cities = yield call(request, requestURL);
   if (!cities.err) {
-    console.log(cities.data.total_count)
     yield put(getCitiesSuccess(
       cities.data.items.map(city => ({
         key: `city${city._id}`,

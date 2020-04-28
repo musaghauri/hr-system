@@ -63,7 +63,7 @@ export const initialState = fromJS({
     },
     contact: {
       landline: {
-        name: 'contact',
+        name: 'contact,landline',
         label: 'Contact',
         status: true,
         errorText: '',

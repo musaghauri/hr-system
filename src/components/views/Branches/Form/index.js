@@ -12,12 +12,8 @@ import _assign from 'lodash/assign';
 
 class BranchForm extends Component {
   handleChange = (e, { name, value }) => {
-    const { updateValue, getStates, getCities } = this.props;
-    if (name === 'country') getStates(value);
-    if (name === 'state') getCities(value);
-    name === 'contact' ? 
-      updateValue(['formDetails', name, 'landline', 'value'], value) :
-      updateValue(['formDetails', name, 'value'], value);
+    const { updateValue } = this.props;
+      updateValue(['formDetails', ...name.split(','), 'value'], value);
   };
 
   handleSubmit = e => {
@@ -47,9 +43,10 @@ class BranchForm extends Component {
       getCountriesStatus,
       getStatesStatus,
       getCitiesStatus,
-      getDepartmentsStatus
+      getDepartmentsStatus,
+      getStates, 
+      getCities
     } = this.props;
-    console.log(formDetails.toJS())
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
         <Grid.Row verticalAlign="middle">
@@ -67,7 +64,7 @@ class BranchForm extends Component {
                 <Message success>{successMessage}</Message>
               )}
               <Form onSubmit={this.handleSubmit} stacked="true">
-              <Form.Select
+                <Form.Select
                   label={formDetails.getIn(['country', 'label'])}
                   options={countries.toJS()}
                   loading={getCountriesStatus.get('loading')}
@@ -79,7 +76,11 @@ class BranchForm extends Component {
                   fluid
                   name={formDetails.getIn(['country', 'name'])}
                   value={formDetails.getIn(['country', 'value'])}
-                  onChange={this.handleChange}
+                  onChange={(e, {name, value} ) => {
+                        getStates(value);
+                        this.handleChange(e, {name, value});
+                      }
+                  }
                 />
                 <Form.Select
                   disabled={!getStatesStatus.get('loaded')}
@@ -94,7 +95,11 @@ class BranchForm extends Component {
                   fluid
                   name={formDetails.getIn(['state', 'name'])}
                   value={formDetails.getIn(['state', 'value'])}
-                  onChange={this.handleChange}
+                  onChange={(e, {name, value}) => {
+                      getCities(value);
+                      this.handleChange(e, {name, value});
+                    }
+                  }
                 />
                 <Form.Select
                   disabled={!getCitiesStatus.get('loaded')}
@@ -143,7 +148,7 @@ class BranchForm extends Component {
                   }
                   onChange={this.handleChange}
                 />
-                <Form.Select
+                 <Form.Select
                   label={formDetails.getIn(['departments', 'label'])}
                   loading={getDepartmentsStatus.get('loading')}
                   options={departments.toJS()}

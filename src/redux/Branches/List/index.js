@@ -78,14 +78,8 @@ class BranchesListContainer extends Component {
               this.deleteBranch(branch.get('_id'), eIndex),
           };
         }
-        if (heading.get('name') === 'contact') {
-          return {
-            value: branch.getIn(['contact','landline']),
-            isFunctional: false,
-          };
-        }
         return {
-          value: branch.get(heading.get('name')),
+          value: branch.getIn(heading.get('name').split(',')),
           isFunctional: false,
         };
       })

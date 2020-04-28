@@ -22,7 +22,7 @@ export const initialState = fromJS({
     },
     {
       label: 'Contact No',
-      name: 'contact',
+      name: 'contact,landline',
     },
     {
       label: 'Departments',
