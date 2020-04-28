@@ -46,6 +46,11 @@ import viewWishlistSagas from '@redux/Wishlist/View/sagas';
 import addWishlistSagas from '@redux/Wishlist/Add/sagas';
 import editWishlistSagas from '@redux/Wishlist/Edit/sagas';
 
+import departmentsListSagas from '@redux/Departments/List/sagas';
+import viewDepartmentSagas from '@redux/Departments/View/sagas';
+import addDepartmentSagas from '@redux/Departments/Add/sagas';
+import editDepartmentSagas from '@redux/Departments/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -86,5 +91,10 @@ export default function* mainSagas() {
     fork(viewWishlistSagas),
     fork(addWishlistSagas),
     fork(editWishlistSagas)
+    fork(departmentsListSagas),
+    fork(viewDepartmentSagas),
+    fork(addDepartmentSagas),
+    fork(editDepartmentSagas)
   ]);
 }
+ 

@@ -70,8 +70,14 @@ const routes = [
     icon: 'map marker alternate',
   },
   {
+    name: 'departments',
+    label: 'Departments',
+    route: '/departments',
+    icon: 'building',
+  },
+  {
     name: 'announcement',
-    label: 'Announcement',
+    label: 'Announcements',
     route: '/announcements',
     icon: 'announcement',
   },

@@ -56,6 +56,10 @@ import addWishlistReducer from '@redux/Wishlist/Add/reducer';
 import editWishlistReducer from '@redux/Wishlist/Edit/reducer';
 import viewWishlistReducer from '@redux/Wishlist/View/reducer';
 
+import departmentsListReducer from '@redux/Departments/List/reducer';
+import addDepartmentReducer from '@redux/Departments/Add/reducer';
+import editDepartmentReducer from '@redux/Departments/Edit/reducer';
+import viewDepartmentReducer from '@redux/Departments/View/reducer';
 
 export default combineReducers({
   landingPage: landingPageReducer,
@@ -82,7 +86,7 @@ export default combineReducers({
   addState: addStateReducer,
   editState: editStateReducer,
   viewState: viewStateReducer,
-  assetsList: assetsListReducer, 
+  assetsList: assetsListReducer,
   addAsset: addAssetReducer,
   editAsset: editAssetReducer,
   viewAsset: viewAssetReducer,
@@ -96,10 +100,14 @@ export default combineReducers({
   viewPriority: viewPriorityReducer,
   announcementsList: announcementsListReducer,
   addAnnouncement: addAnnouncementReducer,
-  editAnnouncement: editAnnouncementReducer, 
+  editAnnouncement: editAnnouncementReducer,
   viewAnnouncement: viewAnnouncementReducer,
   wishlist: wishlistReducer,
   addWishlist: addWishlistReducer,
-  editWishlist: editWishlistReducer, 
+  editWishlist: editWishlistReducer,
   viewWishlist: viewWishlistReducer,
+  departmentsList: departmentsListReducer,
+  addDepartment: addDepartmentReducer,
+  editDepartment: editDepartmentReducer,
+  viewDepartment: viewDepartmentReducer,
 });

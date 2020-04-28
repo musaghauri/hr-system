@@ -12,7 +12,7 @@ const departmentSchema = new Schema(
     company: {
       type: Schema.Types.ObjectId,
       ref: 'Company',
-      required: true,
+      // required: true,
     },
     createdBy: {
       type: Schema.Types.ObjectId,
