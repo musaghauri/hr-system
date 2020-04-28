@@ -8,6 +8,7 @@ import assetRoutes from './asset';
 import cityRoutes from './city';
 import priorityRoutes from './priority';
 import announcementRoutes from './announcement';
+import wishlistRoutes from './wishlist';
 import departmentRoutes from './department';
 import branchRoutes from './branch';
 
@@ -25,6 +26,7 @@ router.use('/assets', assetRoutes);
 router.use('/cities', cityRoutes);
 router.use('/priorities', priorityRoutes);
 router.use('/announcements', announcementRoutes);
+router.use('/wishlist', wishlistRoutes);
 router.use('/departments', departmentRoutes);
 router.use('/branches', branchRoutes);
 
