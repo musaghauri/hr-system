@@ -17,20 +17,12 @@ import { selectFormDetails } from './selectors';
 export function* getWish(action) {
   const token = cookie.loadAuthCookie('token');
   const requestHeader = { authorization: `Bearer ${token}` };
-  const requestURL = `${NEXT_API_URL}/wishlist/${action.id}`;
+  const requestURL = `${NEXT_API_URL}/wishlist/${action.id}?populate=false`;
   const options = createRequestOptions('GET', null, requestHeader);
   const wish = yield call(request, requestURL, options);
   const FORMDETAILS = yield select(selectFormDetails());
   if (!wish.err) {
-    const formDetails = yield loadFormDetails(
-      FORMDETAILS.toJS(),
-      {
-        _id: wish.data._id,
-        name: wish.data.name,
-        description: wish.data.description,
-        priority: wish.data.priority._id,
-      }
-    );
+    const formDetails = yield loadFormDetails(FORMDETAILS.toJS(), wish.data);
     yield put(getWishSuccess(formDetails));
   } else {
     yield put(getWishFail(wish.err.reason));
@@ -40,13 +32,15 @@ export function* getPriorities() {
   const requestURL = `${NEXT_API_URL}/priorities`;
   const priorities = yield call(request, requestURL);
   if (!priorities.err) {
-    yield put(getPrioritiesSuccess(
+    yield put(
+      getPrioritiesSuccess(
         priorities.data.items.map(priority_ => ({
           key: `priority_${priority_._id}`,
           value: priority_._id,
           text: priority_.name,
         }))
-      ));
+      )
+    );
   } else {
     yield put(getPrioritiesFail(priorities.err.reason));
   }

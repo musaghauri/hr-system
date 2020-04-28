@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Wishlist from '@components/views/Wishlist/List';
 import Router from 'next/router';
-import { Icon, Header } from 'semantic-ui-react';
+import { Icon, Header, Label } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -45,23 +45,26 @@ class WishlistContainer extends Component {
             value: <Icon name="eye" color="blue" />,
             isFunctional: true,
             handleChange: () =>
-              Router.replace(
-                '/wish/[wishId]',
-                `/wish/${wish.get('_id')}`
-              ),
+              Router.replace('/wish/[wishId]', `/wish/${wish.get('_id')}`),
           };
         }
         if (heading.get('name') === 'delete') {
           return {
             value: <Icon name="trash alternate" color="red" />,
             isFunctional: true,
-            handleChange: () =>
-              this.deleteWish(wish.get('_id'), eIndex),
+            handleChange: () => this.deleteWish(wish.get('_id'), eIndex),
           };
         }
         if (heading.get('name') === 'priority') {
           return {
-            value: wish.getIn(['priority', 'name']),
+            value: (
+              <Label
+                style={{ backgroundColor: wish.getIn(['priority', 'colour']) }}
+                horizontal
+              >
+                {wish.getIn(['priority', 'name'])}
+              </Label>
+            ),
             isFunctional: false,
           };
         }
@@ -99,7 +102,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WishlistContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(WishlistContainer);

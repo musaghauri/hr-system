@@ -10,12 +10,10 @@ import WishlistHelper from '../helpers/Wishlist';
  */
 function get(req, res) {
   const { wishlistId } = req.params;
-  const populateQuery = [
-    {
-      path: 'priority',
-      model: 'Priority',
-    },
-  ];
+  const { populate = true } = req.query;
+  let populateQuery = [];
+  if (populate === true)
+    populateQuery = [{ path: 'priority', model: 'Priority' }];
   WishlistHelper.GetById(wishlistId, populateQuery)
     .then(wishlist => {
       res.json(wishlist);

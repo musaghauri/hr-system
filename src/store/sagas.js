@@ -84,17 +84,16 @@ export default function* mainSagas() {
     fork(addPrioritySagas),
     fork(editPrioritySagas),
     fork(announcementsListSagas),
-    fork(viewAnnouncementSagas), 
+    fork(viewAnnouncementSagas),
     fork(addAnnouncementSagas),
     fork(editAnnouncementSagas),
     fork(wishlistSagas),
     fork(viewWishlistSagas),
     fork(addWishlistSagas),
-    fork(editWishlistSagas)
+    fork(editWishlistSagas),
     fork(departmentsListSagas),
     fork(viewDepartmentSagas),
     fork(addDepartmentSagas),
-    fork(editDepartmentSagas)
+    fork(editDepartmentSagas),
   ]);
 }
- 

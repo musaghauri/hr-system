@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Grid, Segment, Button } from 'semantic-ui-react';
+import { Header, Grid, Segment, Label } from 'semantic-ui-react';
 import Link from 'next/link';
 
 class ViewWish extends Component {
@@ -22,16 +22,21 @@ class ViewWish extends Component {
               <div>
                 <Header as="h3">
                   Description
-                  <Header.Subheader>
-                    {wish.get('description')}
-                  </Header.Subheader>
+                  <Header.Subheader>{wish.get('description')}</Header.Subheader>
                 </Header>
               </div>
               <div>
                 <Header as="h3">
                   Priority
                   <Header.Subheader>
-                  {wish.getIn(['priority', 'name'])}
+                    <Label
+                      style={{
+                        backgroundColor: wish.getIn(['priority', 'colour']),
+                      }}
+                      horizontal
+                    >
+                      {wish.getIn(['priority', 'name'])}
+                    </Label>
                   </Header.Subheader>
                 </Header>
               </div>
