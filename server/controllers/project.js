@@ -10,7 +10,16 @@ import ProjectHelper from '../helpers/Project.js';
  */
 function get(req, res) {
   const { projectId } = req.params;
-  const populateQuery = [];
+  const { populate = true } = req.query;
+  let populateQuery = [];
+  if (populate === true){
+    populateQuery = [
+      {
+        path: 'employees',
+        model: 'User',
+      },
+    ];
+  }
   ProjectHelper.GetById(projectId, populateQuery)
     .then(project => {
       res.json(project);
@@ -37,6 +46,12 @@ function create(req, res) {
 }
 
 function list(req, res) {
+  const populateQuery = [
+    {
+      path: 'employees',
+      model: 'User',
+    },
+  ];
   const params = {
     limit: _get(req.query, 'limit', 0),
     skip: _get(req.query, 'skip', 0),
@@ -44,7 +59,7 @@ function list(req, res) {
     sort: _get(req.query, 'sort', 'title'),
     query: _omit(req.query, ['limit', 'skip', 'order', 'sort']),
   };
-  ProjectHelper.Get(params)
+  ProjectHelper.Get(params, populateQuery)
     .then(projects => {
       const { items, total_count } = projects;
       res.json({

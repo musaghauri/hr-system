@@ -12,3 +12,7 @@ export const GET_PROJECT_SUCCESS =
   'HRMS/Projects/Edit/GET_PROJECT_SUCCESS';
 export const GET_PROJECT_FAIL =
   'HRMS/Projects/Edit/GET_PROJECT_FAIL';
+
+export const GET_EMPLOYEES = 'HRMS/Projects/Edit/GET_EMPLOYEES';
+export const GET_EMPLOYEES_SUCCESS = 'HRMS/Projects/Edit/GET_EMPLOYEES_SUCCESS';
+export const GET_EMPLOYEES_FAIL = 'HRMS/Projects/Edit/GET_EMPLOYEES_FAIL';

@@ -10,7 +10,8 @@ import { resetReducer, addProject, updateValue } from './actions';
 import { 
   selectFormDetails, 
   selectAddProjectStatus, 
-  selectEmployees 
+  selectEmployees,
+  selectGetEmployeesStatus 
 } from './selectors';
 
 class AddProjectContainer extends Component {
@@ -38,6 +39,7 @@ class AddProjectContainer extends Component {
       onUpdateValue, 
       formDetails, 
       employees,
+      getEmployeesStatus
     } = this.props;
     return (
       <AddProject
@@ -46,6 +48,7 @@ class AddProjectContainer extends Component {
         submitColor="green"
         formDetails={formDetails}
         employees={employees}
+        getEmployeesStatus={getEmployeesStatus}
         submitStatus={addProjectStatus}
         validateForm={this.validateForm}
         handleSubmit={this.submitForm}
@@ -59,6 +62,7 @@ const mapStateToProps = createStructuredSelector({
   addProjectStatus: selectAddProjectStatus(),
   formDetails: selectFormDetails(),
   employees: selectEmployees(),
+  getEmployeesStatus: selectGetEmployeesStatus(),
 });
 
 function mapDispatchToProps(dispatch) {

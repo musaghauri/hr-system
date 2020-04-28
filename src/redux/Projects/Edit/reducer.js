@@ -8,6 +8,9 @@ import {
   EDIT_PROJECT,
   EDIT_PROJECT_SUCCESS,
   EDIT_PROJECT_FAIL,
+  GET_EMPLOYEES,
+  GET_EMPLOYEES_SUCCESS,
+  GET_EMPLOYEES_FAIL,
 } from './constants';
 
 export const initialState = fromJS({
@@ -30,38 +33,10 @@ export const initialState = fromJS({
       value: [],
       rules: ['isRequired'],
       fieldName: 'Employees',
-      placeholder: 'Select employee name',
+      placeholder: 'Select employee',
     }
   },
-  employees: [
-    {
-      key: 1,
-      id: 165464,
-      name: 'employee 1',
-      detail: 'cell 1',
-      department: 'first',
-      isActive: true,
-      status: 'permanent',
-    },
-    {
-      key: 2,
-      id: 265465,
-      name: 'employee 2',
-      detail: 'cell 2',
-      department: 'first',
-      isActive: false,
-      status: 'freelancer',
-    },
-    {
-      key: 3,
-      id: 356423,
-      name: 'employee 3',
-      detail: 'cell 3',
-      department: 'first',
-      isActive: false,
-      status: 'permanent',
-    },
-  ],
+  employees: [],
   getProjectStatus: {
     loading: false,
     loaded: false,
@@ -72,6 +47,11 @@ export const initialState = fromJS({
     loaded: false,
     error: false,
   },
+  getEmployeesStatus: {
+    loading: false,
+    loaded: false,
+    error: false,
+  }
 });
 
 function editProjectReducer(state = initialState, action) {
@@ -111,6 +91,22 @@ function editProjectReducer(state = initialState, action) {
         .setIn(['editProjectStatus', 'loading'], false)
         .setIn(['editProjectStatus', 'loaded'], false)
         .setIn(['editProjectStatus', 'error'], action.error);
+    case GET_EMPLOYEES:
+      return state
+        .setIn(['getEmployeesStatus', 'loading'], true)
+        .setIn(['getEmployeesStatus', 'loaded'], false)
+        .setIn(['getEmployeesStatus', 'error'], false);
+    case GET_EMPLOYEES_SUCCESS:
+      return state
+        .setIn(['getEmployeesStatus', 'loading'], false)
+        .setIn(['getEmployeesStatus', 'loaded'], true)
+        .setIn(['getEmployeesStatus', 'error'], false)
+        .set('employees', fromJS(action.employees));
+    case GET_EMPLOYEES_FAIL:
+      return state
+        .setIn(['getEmployeesStatus', 'loading'], false)
+        .setIn(['getEmployeesStatus', 'loaded'], false)
+        .setIn(['getEmployeesStatus', 'error'], action.error);
     default:
       return state;
   }

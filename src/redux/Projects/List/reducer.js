@@ -14,11 +14,15 @@ export const initialState = fromJS({
   headings: [
     {
       label: 'ID',
-      name: 'id',
+      name: '_id',
     },
     {
       label: 'Name',
       name: 'name',
+    },
+    {
+      label: 'Employees',
+      name: 'employees',
     },
     {
       label: 'Edit',

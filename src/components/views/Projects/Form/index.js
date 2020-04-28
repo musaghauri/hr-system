@@ -36,7 +36,8 @@ class ProjectForm extends Component {
       submitLabel,
       successMessage,
       submitColor,
-      employees
+      employees,
+      getEmployeesStatus
     } = this.props;
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
@@ -78,6 +79,7 @@ class ProjectForm extends Component {
                   selection
                   fluid
                   multiple
+                  loading={getEmployeesStatus.get('loading')}
                   name={formDetails.getIn(['employees', 'name'])}
                   value={formDetails.getIn(['employees', 'value']).toJS()}
                   onChange={this.handleChange}

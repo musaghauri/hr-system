@@ -25,9 +25,15 @@ const selectEmployees = () =>
   editProjectState.get('employees')
   );
 
+const selectGetEmployeesStatus = () =>
+  createSelector(selectEditProjectDomain(), editProjectState =>
+  editProjectState.get('getEmployeesStatus')
+  );
+
 export {
   selectGetProjectStatus,
   selectEditProjectStatus,
   selectFormDetails,
-  selectEmployees
+  selectEmployees,
+  selectGetEmployeesStatus
 };

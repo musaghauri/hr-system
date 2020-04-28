@@ -4,17 +4,17 @@ const { Schema } = mongoose;
 
 const projectSchema = new Schema(
     {
-        name: {
-            type: String,
-            unique: true,
-            required: true,
+      name: {
+          type: String,
+          unique: true,
+          required: true,
+        },
+        employees: [
+          {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
           },
-          employees: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'User',
-              },
-          ],
+        ],
     },
     { timestamps: true }
 );

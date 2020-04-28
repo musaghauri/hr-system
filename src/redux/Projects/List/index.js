@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ProjectsList from '@components/views/Projects/List';
 import Router from 'next/router';
-import { Icon, Header } from 'semantic-ui-react';
+import { Icon, Header, Label } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -57,6 +57,19 @@ class ProjectsListContainer extends Component {
             isFunctional: true,
             handleChange: () =>
               this.deleteProject(project.get('_id'), eIndex),
+          };
+        }
+        if (heading.get('name') === 'employees') {
+          return {
+            value: project
+              .get(heading.get('name'))
+              .toArray()
+              .map(employee => (
+                <Label color="green" horizontal>
+                  {employee.get('name')}
+                </Label>
+              )),
+            isFunctional: false,
           };
         }
         return {

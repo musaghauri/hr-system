@@ -49,7 +49,7 @@ const routes = [
     name: 'projects',
     label: 'Projects',
     route: '/projects',
-    icon: 'files',
+    icon: 'file',
   },
   {
     name: 'wishlist',

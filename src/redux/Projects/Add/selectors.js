@@ -20,4 +20,14 @@ const selectEmployees = () =>
     addDepartmetState.get('employees')
   );
 
-export { selectAddProjectStatus, selectFormDetails, selectEmployees };
+const selectGetEmployeesStatus = () =>
+  createSelector(selectAddDepartmetDomain(), addDepartmetState =>
+    addDepartmetState.get('getEmployeesStatus')
+  );
+  
+export { 
+  selectAddProjectStatus, 
+  selectFormDetails, 
+  selectEmployees, 
+  selectGetEmployeesStatus
+};
