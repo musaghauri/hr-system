@@ -94,7 +94,7 @@ const userSchema = new Schema(
       }
     ],
     salarySettings: {
-      modeOfPayment: {
+      paymentMode: {
         type: String,
         enum: ['Bank Transfer', 'Cash']
       },

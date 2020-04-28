@@ -1,15 +1,16 @@
-import React, { Component } from "react";
-import { Header, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
-import Link from "next/link";
-import { withRouter } from "next/router";
-import routes from "../routes.json";
+/* eslint-disable no-unused-expressions */
+import React, { Component } from 'react';
+import { Icon, Menu, Segment, Sidebar } from 'semantic-ui-react';
+import Link from 'next/link';
+import { withRouter } from 'next/router';
+import routes from '../routes';
 
 class SidebarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animation: "push",
-      direction: "left",
+      animation: 'push',
+      direction: 'left',
     };
   }
 
@@ -20,13 +21,13 @@ class SidebarComponent extends Component {
       <div>
         <Sidebar.Pushable
           style={{
-            position: "fixed",
+            position: 'fixed',
             bottom: 0,
             left: 0,
-            top: 70,
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
+            // top: 70,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
             flex: 1,
           }}
           as={Segment}
@@ -41,22 +42,31 @@ class SidebarComponent extends Component {
             visible
             width="thin"
           >
-            {routes.map((route, rI) => (
-              <Link key={`route_${rI}`} href={route.route}>
-                <Menu.Item
-                  active={router.asPath === route.route}
-                  as={route.name}
-                >
+            {routes.map((route, rI) =>
+              route.type === 'eventHandler' ? (
+                <Menu.Item key={`route_${rI}`} onClick={route.handleClick}>
                   <Icon name={route.icon} />
                   {route.label}
                 </Menu.Item>
-              </Link>
-            ))}
+              ) : (
+                <Link key={`route_${rI}`} href={route.route}>
+                  <a>
+                    <Menu.Item
+                      active={router.asPath === route.route}
+                      as={route.name}
+                    >
+                      <Icon name={route.icon} />
+                      {route.label}
+                    </Menu.Item>
+                  </a>
+                </Link>
+              )
+            )}
           </Sidebar>
+          <Sidebar.Pusher>
+            <Segment basic>{children}</Segment>
+          </Sidebar.Pusher>
         </Sidebar.Pushable>
-        <Sidebar.Pusher>
-          <Segment basic>{children}</Segment>
-        </Sidebar.Pusher>
       </div>
     );
   }

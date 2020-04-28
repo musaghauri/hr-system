@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import withRedux from '@store';
 import Dashboard from '@components/layouts/dashboard';
 import 'semantic-ui-css/semantic.min.css';
+import cookie from '@utils/cookie';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -20,9 +21,14 @@ class MyApp extends App {
     const { Component, pageProps, store } = this.props;
     return (
       <Provider store={store}>
-        <Dashboard>
+        {cookie.load('hrms') ? (
+          <Dashboard>
+            {' '}
+            <Component {...pageProps} />{' '}
+          </Dashboard>
+        ) : (
           <Component {...pageProps} />
-        </Dashboard>
+        )}
       </Provider>
     );
   }

@@ -1,19 +1,11 @@
-import React, { Component } from "react";
-import { Menu, Button, Dropdown, Image, Input } from "semantic-ui-react";
-import styled from "styled-components";
-
-const StyledMenu = styled(Menu)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-`;
+import React, { Component } from 'react';
+import { Menu, Button, Dropdown, Image, Input } from 'semantic-ui-react';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: "features",
+      activeItem: 'features',
     };
   }
 
@@ -22,14 +14,24 @@ class Header extends Component {
   render() {
     const { activeItem } = this.state;
     return (
-      <StyledMenu size="massive" stackable>
+      <Menu
+        size="massive"
+        stackable
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: '9',
+          width: '100%',
+        }}
+      >
         <Menu.Item header>
           <Image src="/images/logo.png" size="mini" avatar /> <span>HRMS</span>
         </Menu.Item>
 
         <Menu.Item
           name="features"
-          active={activeItem === "features"}
+          active={activeItem === 'features'}
           onClick={this.handleItemClick}
         >
           Features
@@ -37,7 +39,7 @@ class Header extends Component {
 
         <Menu.Item
           name="testimonials"
-          active={activeItem === "testimonials"}
+          active={activeItem === 'testimonials'}
           onClick={this.handleItemClick}
         >
           Testimonials
@@ -45,7 +47,7 @@ class Header extends Component {
 
         <Menu.Item
           name="sign-in"
-          active={activeItem === "sign-in"}
+          active={activeItem === 'sign-in'}
           onClick={this.handleItemClick}
         >
           Sign-in
@@ -65,7 +67,7 @@ class Header extends Component {
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Menu>
-      </StyledMenu>
+      </Menu>
     );
   }
 }

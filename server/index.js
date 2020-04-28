@@ -13,12 +13,16 @@ const handle = app.getRequestHandler();
 // // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
 // MongoDB Connection
-mongoose.connect(MONGO_URL, error => {
-  if (error) {
-    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
-    throw error;
+mongoose.connect(
+  MONGO_URL,
+  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true },
+  error => {
+    if (error) {
+      console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
+      throw error;
+    }
   }
-});
+);
 
 app.prepare().then(() => {
   const server = express(); // Express Server
