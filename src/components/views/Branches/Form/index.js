@@ -15,7 +15,9 @@ class BranchForm extends Component {
     const { updateValue, getStates, getCities } = this.props;
     if (name === 'country') getStates(value);
     if (name === 'state') getCities(value);
-    updateValue(['formDetails', name, 'value'], value);
+    name === 'contact' ? 
+      updateValue(['formDetails', name, 'landline', 'value'], value) :
+      updateValue(['formDetails', name, 'value'], value);
   };
 
   handleSubmit = e => {
@@ -47,6 +49,7 @@ class BranchForm extends Component {
       getCitiesStatus,
       getDepartmentsStatus
     } = this.props;
+    console.log(formDetails.toJS())
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
         <Grid.Row verticalAlign="middle">

@@ -37,7 +37,7 @@ export function* getBranch(action) {
   const branch = yield call(request, requestURL, options);
   const FORMDETAILS = yield select(selectFormDetails());
   if (!branch.err) {
-    const formDetails = yield loadFormDetails(
+    let formDetails = yield loadFormDetails(
       FORMDETAILS.toJS(),
       {
         _id: branch.data._id,
@@ -45,10 +45,10 @@ export function* getBranch(action) {
         state: branch.data.city.state._id,
         city: branch.data.city._id,
         address: branch.data.address,
-        contact: branch.data.contact,
         departments: branch.data.departments.map(department=>department._id)
       }
     );
+    formDetails.contact.landline.value = branch.data.contact.landline;
     yield put(GetStates(branch.data.city.state.country._id));
     yield put(GetCities(branch.data.city.state._id));
     yield put(getBranchSuccess(formDetails));

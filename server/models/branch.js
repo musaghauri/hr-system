@@ -14,9 +14,9 @@ const branchSchema = new Schema(
       required: true,
     },
     contact: {
-      // landline: {
+      landline: {
         type: String,
-      // },
+      },
     },
     company: {
       type: Schema.Types.ObjectId,

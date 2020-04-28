@@ -31,7 +31,7 @@ class ViewBranch extends Component {
                 <Header as="h3">
                   Contact
                   <Header.Subheader>
-                    {branch.get('contact')}
+                    {branch.getIn(['contact', 'landline'])}
                   </Header.Subheader>
                 </Header>
               </div>
