@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { 
+import {
   RESET_REDUCER,
   UPDATE_VALUE,
   ADD_ANOTHER_ENTRY,
@@ -27,7 +27,7 @@ import {
   GET_ASSETS,
   GET_ASSETS_SUCCESS,
   GET_ASSETS_FAIL,
- } from './constants';
+} from './constants';
 
 export const initialState = fromJS({
   formDetails: {
@@ -92,7 +92,7 @@ export const initialState = fromJS({
       placeholder: 'is verified',
     },
     personalInformation: {
-      // name: { 
+      // name: {
       //   name: 'name',
       //   label: 'Name',
       //   status: true,
@@ -102,7 +102,7 @@ export const initialState = fromJS({
       //   fieldName: 'Name',
       //   placeholder: 'Enter employee name',
       // },
-      companyEmail: { 
+      companyEmail: {
         name: 'companyEmail',
         label: 'Company Email',
         status: true,
@@ -112,7 +112,7 @@ export const initialState = fromJS({
         fieldName: 'Company Email',
         placeholder: 'Enter company email',
       },
-      fatherName: { 
+      fatherName: {
         name: 'fatherName',
         label: 'Father Name',
         status: true,
@@ -122,7 +122,7 @@ export const initialState = fromJS({
         fieldName: 'father name',
         placeholder: 'Enter father name name',
       },
-      dateOfBirth: { 
+      dateOfBirth: {
         name: 'dateOfBirth',
         label: 'Date Of Birth',
         status: true,
@@ -132,7 +132,7 @@ export const initialState = fromJS({
         fieldName: 'Date Of Birth',
         placeholder: 'Select date of birth',
       },
-      gender: { 
+      gender: {
         name: 'gender',
         label: 'Gender',
         status: true,
@@ -142,7 +142,7 @@ export const initialState = fromJS({
         fieldName: 'Gender',
         placeholder: 'Select gender',
       },
-      nationality: { 
+      nationality: {
         name: 'nationality',
         label: 'Nationality',
         status: true,
@@ -152,7 +152,7 @@ export const initialState = fromJS({
         fieldName: 'Nationality',
         placeholder: 'Select nationality',
       },
-      country: { 
+      country: {
         name: 'country',
         label: 'Country',
         status: true,
@@ -162,7 +162,7 @@ export const initialState = fromJS({
         fieldName: 'Country',
         placeholder: 'Select country',
       },
-      state: { 
+      state: {
         name: 'state',
         label: 'State',
         status: true,
@@ -172,7 +172,7 @@ export const initialState = fromJS({
         fieldName: 'State',
         placeholder: 'Select state',
       },
-      city: { 
+      city: {
         name: 'city',
         label: 'City',
         status: true,
@@ -182,7 +182,7 @@ export const initialState = fromJS({
         fieldName: 'City',
         placeholder: 'Select city',
       },
-      religion: { 
+      religion: {
         name: 'religion',
         label: 'Religion',
         status: true,
@@ -192,7 +192,7 @@ export const initialState = fromJS({
         fieldName: 'Religion',
         placeholder: 'Enter religion',
       },
-      maritalStatus: { 
+      maritalStatus: {
         name: 'maritalStatus',
         label: 'Marital Status',
         status: true,
@@ -202,7 +202,7 @@ export const initialState = fromJS({
         fieldName: 'Marital Status',
         placeholder: 'Select marital status',
       },
-      bloodGroup: { 
+      bloodGroup: {
         name: 'bloodGroup',
         label: 'Blood Group',
         status: true,
@@ -212,7 +212,7 @@ export const initialState = fromJS({
         fieldName: 'Blood Group',
         placeholder: 'Select blood group',
       },
-      disability: { 
+      disability: {
         name: 'disability',
         label: 'Disability',
         status: true,
@@ -222,7 +222,7 @@ export const initialState = fromJS({
         fieldName: 'Disability',
         placeholder: 'Enter disability',
       },
-      cnic: { 
+      cnic: {
         name: 'cnic',
         label: 'CNIC',
         status: true,
@@ -230,9 +230,9 @@ export const initialState = fromJS({
         value: '',
         rules: [],
         fieldName: 'CNIC',
-        placeholder: 'Enter cnic', 
+        placeholder: 'Enter cnic',
       },
-      ntn: { 
+      ntn: {
         name: 'ntn',
         label: 'NTN',
         status: true,
@@ -240,9 +240,9 @@ export const initialState = fromJS({
         value: '',
         rules: [],
         fieldName: 'NTN',
-        placeholder: 'Enter ntn', 
+        placeholder: 'Enter ntn',
       },
-      domicile: { 
+      domicile: {
         name: 'domicile',
         label: 'Domicile',
         status: true,
@@ -250,11 +250,11 @@ export const initialState = fromJS({
         value: '',
         rules: [],
         fieldName: 'NTN',
-        placeholder: 'Select domicile', 
+        placeholder: 'Select domicile',
       },
     },
     officialInformation: {
-      employeeId: { 
+      employeeId: {
         name: 'employeeId',
         label: 'Employee Id',
         status: true,
@@ -264,7 +264,7 @@ export const initialState = fromJS({
         fieldName: 'Employee Id',
         placeholder: 'Enter employee Id',
       },
-      employeeStatus: { 
+      employeeStatus: {
         name: 'employeeStatus',
         label: 'Employee Status',
         status: true,
@@ -274,7 +274,7 @@ export const initialState = fromJS({
         fieldName: 'Employee Status',
         placeholder: 'Select employee status',
       },
-      designation: { 
+      designation: {
         name: 'designation',
         label: 'Designation',
         status: true,
@@ -284,7 +284,7 @@ export const initialState = fromJS({
         fieldName: 'Designation',
         placeholder: 'Enter designation',
       },
-      socialSecurity: { 
+      socialSecurity: {
         name: 'socialSecurity',
         label: 'Social Security',
         status: true,
@@ -294,7 +294,7 @@ export const initialState = fromJS({
         fieldName: 'Social Security',
         placeholder: 'Enter social security',
       },
-      healthBenefits: { 
+      healthBenefits: {
         name: 'healthBenefits',
         label: 'Health Benefits',
         status: true,
@@ -304,7 +304,7 @@ export const initialState = fromJS({
         fieldName: 'Health Benefits',
         placeholder: 'Enter health benefits',
       },
-      providentFund: { 
+      providentFund: {
         name: 'providentFund',
         label: 'Provident Fund',
         status: true,
@@ -314,7 +314,7 @@ export const initialState = fromJS({
         fieldName: 'Provident Fund',
         placeholder: 'Enter provident fund',
       },
-      department: { 
+      department: {
         name: 'department',
         label: 'Department',
         status: true,
@@ -324,7 +324,7 @@ export const initialState = fromJS({
         fieldName: 'Department',
         placeholder: 'Select department',
       },
-      joiningDate: { 
+      joiningDate: {
         name: 'joiningDate',
         label: 'Joining Date',
         status: true,
@@ -334,7 +334,7 @@ export const initialState = fromJS({
         fieldName: 'Joining Date',
         placeholder: 'Select joining date',
       },
-      resignationDate: { 
+      resignationDate: {
         name: 'resignationDate',
         label: 'Resignation Date',
         status: true,
@@ -344,7 +344,7 @@ export const initialState = fromJS({
         fieldName: 'Resignation Date',
         placeholder: 'Select resignation date',
       },
-      exitDate: { 
+      exitDate: {
         name: 'exitDate',
         label: 'Exit Date',
         status: true,
@@ -357,7 +357,7 @@ export const initialState = fromJS({
     },
     contactInformation: [
       {
-        title: { 
+        title: {
           name: 'title',
           label: 'Title',
           status: true,
@@ -366,8 +366,8 @@ export const initialState = fromJS({
           rules: [],
           fieldName: 'Title',
           placeholder: 'Enter title',
-         },
-        type: { 
+        },
+        type: {
           name: 'type',
           label: 'Type',
           status: true,
@@ -377,7 +377,7 @@ export const initialState = fromJS({
           fieldName: 'Type',
           placeholder: 'Select type',
         },
-        detail: { 
+        detail: {
           name: 'detail',
           label: 'Detail',
           status: true,
@@ -390,7 +390,7 @@ export const initialState = fromJS({
       },
     ],
     salarySettings: {
-      paymentMode: { 
+      paymentMode: {
         name: 'paymentMode',
         label: 'Mode of Payment',
         status: true,
@@ -400,7 +400,7 @@ export const initialState = fromJS({
         fieldName: 'Mode of Payment',
         placeholder: 'Select mode of payment',
       },
-      exGratiaOnOvertime: { 
+      exGratiaOnOvertime: {
         name: 'exGratiaOnOvertime',
         label: 'Ex-Gratia on Overtime',
         status: true,
@@ -410,7 +410,7 @@ export const initialState = fromJS({
         fieldName: 'Ex-Gratia on Overtime',
         placeholder: 'Enter ex-gratia',
       },
-      gratuity: { 
+      gratuity: {
         name: 'gratuity',
         label: 'Gratuity',
         status: true,
@@ -420,7 +420,7 @@ export const initialState = fromJS({
         fieldName: 'Gratuity',
         placeholder: 'Enter gratuity',
       },
-      bankDetails: { 
+      bankDetails: {
         name: 'bankDetails',
         label: 'Bank Details',
         status: true,
@@ -433,7 +433,7 @@ export const initialState = fromJS({
     },
     academics: [
       {
-        degreeName: { 
+        degreeName: {
           name: 'degreeName',
           label: 'degreeName',
           status: true,
@@ -443,7 +443,7 @@ export const initialState = fromJS({
           fieldName: 'Degree Name',
           placeholder: 'Enter degree name',
         },
-        board: { 
+        board: {
           name: 'board',
           label: 'Board',
           status: true,
@@ -453,7 +453,7 @@ export const initialState = fromJS({
           fieldName: 'Board',
           placeholder: 'Enter board name',
         },
-        university: { 
+        university: {
           name: 'university',
           label: 'University',
           status: true,
@@ -463,7 +463,7 @@ export const initialState = fromJS({
           fieldName: 'University',
           placeholder: 'Enter university name',
         },
-        marks: { 
+        marks: {
           name: 'marks',
           label: 'Marks',
           status: true,
@@ -473,7 +473,7 @@ export const initialState = fromJS({
           fieldName: 'Marks',
           placeholder: 'Enter marks',
         },
-        grade: { 
+        grade: {
           name: 'grade',
           label: 'Grade',
           status: true,
@@ -487,7 +487,7 @@ export const initialState = fromJS({
     ],
     experience: [
       {
-        organization: { 
+        organization: {
           name: 'organization',
           label: 'Organization',
           status: true,
@@ -497,7 +497,7 @@ export const initialState = fromJS({
           fieldName: 'Organization',
           placeholder: 'Enter organization',
         },
-        designation: { 
+        designation: {
           name: 'designation',
           label: 'Designation',
           status: true,
@@ -507,7 +507,7 @@ export const initialState = fromJS({
           fieldName: 'Designation',
           placeholder: 'Enter designation',
         },
-        duration: { 
+        duration: {
           name: 'duration',
           label: 'Duration',
           status: true,
@@ -517,7 +517,7 @@ export const initialState = fromJS({
           fieldName: 'Duration',
           placeholder: 'Enter duration',
         },
-        leavingReason: { 
+        leavingReason: {
           name: 'leavingReason',
           label: 'Leaving Reason',
           status: true,
@@ -527,7 +527,7 @@ export const initialState = fromJS({
           fieldName: 'Leaving Reason',
           placeholder: 'Enter leaving reason',
         },
-        salary: { 
+        salary: {
           name: 'salary',
           label: 'Salary',
           status: true,
@@ -541,7 +541,7 @@ export const initialState = fromJS({
     ],
     dependents: [
       {
-        name: { 
+        name: {
           name: 'name',
           label: 'Name',
           status: true,
@@ -551,7 +551,7 @@ export const initialState = fromJS({
           fieldName: 'Name',
           placeholder: 'Enter name',
         },
-        gender: { 
+        gender: {
           name: 'gender',
           label: 'Gender',
           status: true,
@@ -561,7 +561,7 @@ export const initialState = fromJS({
           fieldName: 'Gender',
           placeholder: 'Select gender',
         },
-        relation: { 
+        relation: {
           name: 'relation',
           label: 'Relation',
           status: true,
@@ -571,7 +571,7 @@ export const initialState = fromJS({
           fieldName: 'Relation',
           placeholder: 'Select relation ',
         },
-        contact: { 
+        contact: {
           name: 'contact',
           label: 'Contact',
           status: true,
@@ -581,7 +581,7 @@ export const initialState = fromJS({
           fieldName: 'Contact',
           placeholder: 'Enter contact',
         },
-        dateOfBirth: { 
+        dateOfBirth: {
           name: 'dateOfBirth',
           label: 'Date Of Birth',
           status: true,
@@ -595,7 +595,7 @@ export const initialState = fromJS({
     ],
     companyAssets: [
       {
-        id: { 
+        id: {
           name: 'id',
           label: 'ID',
           status: true,
@@ -605,7 +605,7 @@ export const initialState = fromJS({
           fieldName: 'ID',
           placeholder: 'Select asset',
         },
-        detail: { 
+        detail: {
           name: 'detail',
           label: 'Detail',
           status: true,
@@ -615,7 +615,7 @@ export const initialState = fromJS({
           fieldName: 'Detail',
           placeholder: 'Enter detail',
         },
-        returnable: { 
+        returnable: {
           name: 'returnable',
           label: 'Returnable',
           status: true,
@@ -625,7 +625,7 @@ export const initialState = fromJS({
           fieldName: 'Returnable',
           placeholder: 'Returnable',
         },
-        status: { 
+        status: {
           name: 'status',
           label: 'Dtatus',
           status: true,
@@ -635,7 +635,7 @@ export const initialState = fromJS({
           fieldName: 'Status',
           placeholder: 'status',
         },
-        issueDate: { 
+        issueDate: {
           name: 'issueDate',
           label: 'Issue Date',
           status: true,
@@ -647,7 +647,7 @@ export const initialState = fromJS({
         },
       },
     ],
-    leaveBalance: { 
+    leaveBalance: {
       name: 'leaveBalance',
       label: 'Leave Balance',
       status: true,
@@ -659,7 +659,7 @@ export const initialState = fromJS({
     },
     duties: [
       {
-        job: { 
+        job: {
           name: 'job',
           label: 'Job',
           status: true,
@@ -669,7 +669,7 @@ export const initialState = fromJS({
           fieldName: 'Job',
           placeholder: '',
         },
-        frequency: { 
+        frequency: {
           name: 'frequency',
           label: 'Frequency',
           status: true,
@@ -679,7 +679,7 @@ export const initialState = fromJS({
           fieldName: 'Frequency',
           placeholder: 'Select frequency',
         },
-        effectiveFrom: { 
+        effectiveFrom: {
           name: 'effectiveFrom',
           label: 'Effective From',
           status: true,
@@ -689,7 +689,7 @@ export const initialState = fromJS({
           fieldName: 'Effective From',
           placeholder: 'Select a date',
         },
-        enhancedTill: { 
+        enhancedTill: {
           name: 'enhancedTill',
           label: 'Enhanced Till',
           status: true,
@@ -737,7 +737,7 @@ export const initialState = fromJS({
     loading: false,
     loaded: false,
     error: false,
-  }
+  },
 });
 
 function editEmployeeReducer(state = initialState, action) {
