@@ -1,5 +1,5 @@
 import express from 'express';
-import next from 'next';
+// import next from 'next';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import HR_SYSTEM_API from '@server/routes';
@@ -7,8 +7,8 @@ import { MONGO_URL } from '@config';
 
 const port = parseInt(process.env.PORT, 10) || 8000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
-const handle = app.getRequestHandler();
+// const app = next({ dev });
+// const handle = app.getRequestHandler();
 
 // // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
@@ -24,19 +24,19 @@ mongoose.connect(
   }
 );
 
-app.prepare().then(() => {
-  const server = express(); // Express Server
-  // Bodyparser to receive body from API calls
-  server.use(bodyParser.json({ limit: '20mb' }));
-  server.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
-  server.use('/api', HR_SYSTEM_API);
+// app.prepare().then(() => {
+const app = express(); // Express Server
+// Bodyparser to receive body from API calls
+app.use(bodyParser.json({ limit: '20mb' }));
+app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
+app.use('/api', HR_SYSTEM_API);
 
-  server.get('*', (req, res) => handle(req, res));
-  // server
-  server.listen(port, err => {
-    if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
-  });
+// app.get('*', (req, res) => handle(req, res));
+// server
+app.listen(port, err => {
+  if (err) throw err;
+  console.log(`> Ready on http://localhost:${port}`);
 });
+// });
 
 export default app;

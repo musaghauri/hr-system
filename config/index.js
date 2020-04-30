@@ -12,6 +12,7 @@ const ROLE_OPTIONS = [
 ];
 const ROLE_ADMIN = '5e8c81600d989e35800e2167';
 const JWT_SECRET_TOKEN = 'my_secret_key';
+const API_PREFIX = '/api';
 export {
   MONGO_URL,
   NODE_ENV,
@@ -20,4 +21,5 @@ export {
   NEXT_API_URL,
   JWT_SECRET_TOKEN,
   ROLE_ADMIN,
+  API_PREFIX,
 };
