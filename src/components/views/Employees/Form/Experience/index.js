@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Segment, List } from "semantic-ui-react";
+import { ACADEMIC_INITIAL_STATE } from "@config/constants/experience";
 
 class Experience extends Component {
   constructor(props) {
@@ -8,9 +9,10 @@ class Experience extends Component {
       index: 0,
     };
   }
-  handleChange = (name, value) => {
+  handleChange = (e, { name, value }) => {
     let { index } = this.state;
-    this.props.updateValue(
+    const { updateValue } = this.props;
+    updateValue(
       ["formDetails", "experience", index, name, "value"],
       value
     );
@@ -21,16 +23,7 @@ class Experience extends Component {
     let size = formDetails.getIn(["experience"]).size;
     if (size < 3) {
       let entries = formDetails.getIn(["experience"]).toJS();
-      let value = [
-        ...entries,
-        {
-          organization: { value: "" },
-          designation: { value: "" },
-          duration: { value: "" },
-          leavingReason: { value: "" },
-          salary: { value: "" },
-        },
-      ];
+      let value = [ ...entries, ACADEMIC_INITIAL_STATE ];
       this.props.addAnotherEntry(["formDetails", "experience"], value);
       this.setState((prevState) => {
         index: prevState.index++;
@@ -53,6 +46,7 @@ class Experience extends Component {
   render() {
     const { formDetails } = this.props;
     let { index } = this.state;
+    // console.log('experience', formDetails.get('experience').toJS())
     return (
       <Segment>
         <Form>
@@ -60,81 +54,101 @@ class Experience extends Component {
           <Form.Group widths="equal">
             <Form.Input
               fluid
-              label="Organization"
               type="text"
-              name="organization"
+              label={formDetails.getIn(['experience', index, 'organization', 'label'])}
+              name={formDetails.getIn(['experience', index, 'organization', 'name'])}
               value={formDetails.getIn([
                 "experience",
                 index,
                 "organization",
                 "value",
               ])}
-              placeholder="Organization"
-              error={{ content: "Please select a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              placeholder={formDetails.getIn(['experience', index, 'organization', 'placeholder'])}
+              error={
+                !formDetails.getIn(['experience', index, 'organization', 'status'])
+                  ? formDetails.getIn(['experience', index, 'organization', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
             <Form.Input
-              label="Designation"
               type="text"
-              name="designation"
+              label={formDetails.getIn(['experience', index, 'designation', 'label'])}
+              name={formDetails.getIn(['experience', index, 'designation', 'name'])}
               value={formDetails.getIn([
                 "experience",
                 index,
                 "designation",
                 "value",
               ])}
-              placeholder="Designation"
-              error={{ content: "Please enter a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              placeholder={formDetails.getIn(['experience', index, 'designation', 'placeholder'])}
+              error={
+                !formDetails.getIn(['experience', index, 'designation', 'status'])
+                  ? formDetails.getIn(['experience', index, 'designation', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
           </Form.Group>
           <Form.Group widths="equal">
             <Form.Input
-              label="Duration"
               type="text"
-              name="duration"
+              label={formDetails.getIn(['experience', index, 'duration', 'label'])}
+              name={formDetails.getIn(['experience', index, 'duration', 'name'])}
               value={formDetails.getIn([
                 "experience",
                 index,
                 "duration",
                 "value",
               ])}
-              placeholder="Duration"
-              error={{ content: "Please enter a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              placeholder={formDetails.getIn(['experience', index, 'duration', 'placeholder'])}
+              error={
+                !formDetails.getIn(['experience', index, 'duration', 'status'])
+                  ? formDetails.getIn(['experience', index, 'duration', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
             <Form.Input
-              label="Leaving Reason"
               type="text"
-              name="leavingReason"
+              label={formDetails.getIn(['experience', index, 'leavingReason', 'label'])}
+              name={formDetails.getIn(['experience', index, 'leavingReason', 'name'])}
               value={formDetails.getIn([
                 "experience",
                 index,
                 "leavingReason",
                 "value",
               ])}
-              placeholder="Leaving Reason"
-              error={{ content: "Please enter a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              placeholder={formDetails.getIn(['experience', index, 'leavingReason', 'placeholder'])}
+              error={
+                !formDetails.getIn(['experience', index, 'leavingReason', 'status'])
+                  ? formDetails.getIn(['experience', index, 'leavingReason', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
           </Form.Group>
           <Form.Group widths="equal">
             <Form.Input
-              label="Salary (Optional)"
               type="text"
-              name="salary"
+              label={formDetails.getIn(['experience', index, 'salary', 'label'])}
+              name={formDetails.getIn(['experience', index, 'salary', 'name'])}
               value={formDetails.getIn([
                 "experience",
                 index,
                 "salary",
                 "value",
               ])}
-              placeholder="Salary"
-              error={{ content: "Please enter a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              placeholder={formDetails.getIn(['experience', index, 'salary', 'placeholder'])}
+              error={
+                !formDetails.getIn(['experience', index, 'salary', 'status'])
+                  ? formDetails.getIn(['experience', index, 'salary', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
           </Form.Group>
-          <Button onClick={this.addAnotherEntry}>Add Entry</Button>
+          <Button onClick={this.addAnotherEntry}>Add More</Button>
           <h3>List of Experience</h3>
           <List celled animated ordered>
             {formDetails.getIn(["experience"]).map((entry, index) => {

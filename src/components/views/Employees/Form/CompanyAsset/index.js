@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Form, Button, Segment, List } from "semantic-ui-react";
-import { COMPANY_ASSETS_OPTIONS } from "@config/constants/companyAsset";
+// import { COMPANY_ASSETS_OPTIONS } from "@config/constants/companyAsset";
 import { DateInput } from "semantic-ui-calendar-react";
+import { ASSET_INITIAL_STATE } from "@config/constants/asset";
 
 class CompanyAsset extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class CompanyAsset extends Component {
   }
   handleChange = (name, value) => {
     let { index } = this.state;
-    this.props.updateValue(
+    const { updateValue } = this.props;
+    updateValue(
       ["formDetails", "companyAssets", index, name, "value"],
       value
     );
@@ -24,16 +26,7 @@ class CompanyAsset extends Component {
     if (size < 2) {
       let contacts = formDetails.getIn(["companyAssets"]).toJS();
       console.log(contacts);
-      let value = [
-        ...contacts,
-        {
-          id: { value: "" },
-          detail: { value: "" },
-          returnable: { value: true },
-          status: { value: false },
-          issueData: { value: "" },
-        },
-      ];
+      let value = [ ...contacts, ASSET_INITIAL_STATE ];
       this.props.addAnotherEntry(["formDetails", "companyAssets"], value);
       this.setState((prevState) => {
         index: prevState.index++;
@@ -54,7 +47,7 @@ class CompanyAsset extends Component {
   };
 
   render() {
-    const { formDetails } = this.props;
+    const { formDetails, assets, getAssetsStatus } = this.props;
     let { index } = this.state;
     let returnable = formDetails.getIn([
       "companyAssets",
@@ -63,33 +56,48 @@ class CompanyAsset extends Component {
       "value",
     ]);
     let status = formDetails.getIn(["companyAssets", index, "status", "value"]);
+    console.log('companyAssets', formDetails.get('companyAssets').toJS())
     return (
       <Segment>
         <Form>
           <h1 className="ui centered">Enter Company Asset Details</h1>
           <Form.Group widths="equal">
             <Form.Select
-              label="ID"
-              options={COMPANY_ASSETS_OPTIONS}
               type="text"
-              name="id"
-              value={formDetails.getIn(["companyAssets", index, "id", "value"])}
-              placeholder="Select company asset"
-              error={{ content: "Please select a value" }}
+              options={assets.toJS()}
+              loading={getAssetsStatus.get('loading')}
+              label={formDetails.getIn(['companyAssets', index, 'id', 'label'])}
+              name={formDetails.getIn(['companyAssets', index, 'id', 'name'])}
+              value={formDetails.getIn([
+                "companyAssets",
+                index,
+                "id",
+                "value",
+              ])}
+              placeholder={formDetails.getIn(['companyAssets', index, 'id', 'placeholder'])}
+              error={
+                !formDetails.getIn(['companyAssets', index, 'id', 'status'])
+                  ? formDetails.getIn(['companyAssets', index, 'id', 'errorText'])
+                  : false
+              }
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
             <Form.Input
-              label="Detail"
               type="text"
-              name="detail"
+              label={formDetails.getIn(['companyAssets', index, 'detail', 'label'])}
+              name={formDetails.getIn(['companyAssets', index, 'detail', 'name'])}
               value={formDetails.getIn([
                 "companyAssets",
                 index,
                 "detail",
                 "value",
               ])}
-              placeholder="Detail"
-              error={{ content: "Please enter a value" }}
+              placeholder={formDetails.getIn(['companyAssets', index, 'detail', 'placeholder'])}
+              error={
+                !formDetails.getIn(['companyAssets', index, 'detail', 'status'])
+                  ? formDetails.getIn(['companyAssets', index, 'detail', 'errorText'])
+                  : false
+              }
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
           </Form.Group>
@@ -110,17 +118,21 @@ class CompanyAsset extends Component {
             />
             <DateInput
               fluid
-              label="Issue Date"
-              name="issueDate"
+              iconPosition="left"
+              label={formDetails.getIn(['companyAssets', index, 'issueDate', 'label'])}
+              name={formDetails.getIn(['companyAssets', index, 'issueDate', 'name'])}
               value={formDetails.getIn([
                 "companyAssets",
                 index,
                 "issueDate",
                 "value",
               ])}
-              placeholder="Issue Date"
-              iconPosition="left"
-              error={{ content: "Please select a date" }}
+              placeholder={formDetails.getIn(['companyAssets', index, 'issueDate', 'placeholder'])}
+              error={
+                !formDetails.getIn(['companyAssets', index, 'issueDate', 'status'])
+                  ? formDetails.getIn(['companyAssets', index, 'issueDate', 'errorText'])
+                  : false
+              }
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
           </Form.Group>

@@ -4,6 +4,8 @@ import Register from "@components/Register";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { bindActionCreators } from "redux";
+import { submitFormData } from '@utils/helperFuncs';
+import { validateFormData } from '@utils/validations';
 import { resetReducer, updateValue, addAnotherEntry } from "./actions";
 import { selectFormDetails } from "./selectors";
 
