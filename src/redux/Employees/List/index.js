@@ -30,7 +30,7 @@ class EmployeesListContainer extends Component {
             handleChange: () =>
               Router.replace(
                 '/employee/[employeeId]/edit',
-                `/employee/${employee.get('id')}/edit`
+                `/employee/${employee.get('_id')}/edit`
               ),
           };
         }
@@ -62,17 +62,19 @@ class EmployeesListContainer extends Component {
             isFunctional: false,
           };
         }
-        return {
-          value: employee.get(heading.get('name')),
-          isFunctional: false,
-        };
+        else{
+          return {
+            value: employee.get(heading.get('name')),
+            isFunctional: false,
+          };
+        }
       })
     );
   };
 
   render() {
     const { headings, employees } = this.props;
-    const rows = this.makeRows(employees);
+    const rows = employees && this.makeRows(employees.get('items'));
     return <EmployeesList headings={headings} employees={rows} />;
   }
 }

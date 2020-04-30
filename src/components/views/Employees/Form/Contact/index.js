@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Segment, List } from "semantic-ui-react";
 import { TYPE_OPTIONS } from "@config/constants/type";
+import { CONTACT_INITIAL_STATE } from "@config/constants/contact";
 
 class Contact extends Component {
   constructor(props) {
@@ -9,9 +10,10 @@ class Contact extends Component {
       index: 0,
     };
   }
-  handleChange = (name, value) => {
+  handleChange = (e, { name, value }) => {
     let { index } = this.state;
-    this.props.updateValue(
+    const { updateValue } = this.props;
+    updateValue(
       ["formDetails", "contactInformation", index, name, "value"],
       value
     );
@@ -27,20 +29,14 @@ class Contact extends Component {
     e.preventDefault();
     this.props.prevStep();
   };
+  
   addAnotherEntry = (e) => {
     e.preventDefault();
     const { formDetails } = this.props;
     let size = formDetails.getIn(["contactInformation"]).size;
     if (size < 3) {
       let entries = formDetails.getIn(["contactInformation"]).toJS();
-      let value = [
-        ...entries,
-        {
-          title: { value: "" },
-          type: { value: "" },
-          detail: { value: "" },
-        },
-      ];
+      let value = [...entries, CONTACT_INITIAL_STATE];
       this.props.addAnotherEntry(["formDetails", "contactInformation"], value);
       this.setState((prevState) => {
         index: prevState.index++;
@@ -51,56 +47,69 @@ class Contact extends Component {
   render() {
     const { formDetails } = this.props;
     let { index } = this.state;
+    // console.log('contactInformation', formDetails.get('contactInformation').toJS())
     return (
       <Segment>
         <Form>
           <h1 className="ui centered">Enter Contact Details</h1>
           <Form.Group widths="equal">
             <Form.Input
-              label="Title"
               type="text"
-              name="title"
+              label={formDetails.getIn(['contactInformation', index, 'title', 'label'])}
+              name={formDetails.getIn(['contactInformation', index, 'title', 'name'])}
               value={formDetails.getIn([
                 "contactInformation",
                 index,
                 "title",
                 "value",
               ])}
-              placeholder="Title"
-              error={{ content: "Please enter a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              placeholder={formDetails.getIn(['contactInformation', index, 'title', 'placeholder'])}
+              error={
+                !formDetails.getIn(['contactInformation', index, 'title', 'status'])
+                  ? formDetails.getIn(['contactInformation', index, 'title', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
             <Form.Select
-              label="Type"
-              options={TYPE_OPTIONS}
               type="text"
-              name="type"
+              options={TYPE_OPTIONS}
+              label={formDetails.getIn(['contactInformation', index, 'type', 'label'])}
+              name={formDetails.getIn(['contactInformation', index, 'type', 'name'])}
               value={formDetails.getIn([
                 "contactInformation",
                 index,
                 "type",
                 "value",
               ])}
-              placeholder="Select a type"
-              error={{ content: "Please select a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              placeholder={formDetails.getIn(['contactInformation', index, 'type', 'placeholder'])}
+              error={
+                !formDetails.getIn(['contactInformation', index, 'type', 'status'])
+                  ? formDetails.getIn(['contactInformation', index, 'type', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
             <Form.Input
-              label="Detail"
               type="text"
-              name="detail"
+              label={formDetails.getIn(['contactInformation', index, 'detail', 'label'])}
+              name={formDetails.getIn(['contactInformation', index, 'detail', 'name'])}
               value={formDetails.getIn([
                 "contactInformation",
                 index,
                 "detail",
                 "value",
               ])}
-              placeholder="Detail"
-              error={{ content: "Please enter a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              placeholder={formDetails.getIn(['contactInformation', index, 'detail', 'placeholder'])}
+              error={
+                !formDetails.getIn(['contactInformation', index, 'detail', 'status'])
+                  ? formDetails.getIn(['contactInformation', index, 'detail', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
           </Form.Group>
-          <Button onClick={this.addAnotherEntry}>Add Entry</Button>
+          <Button onClick={this.addAnotherEntry}>Add More</Button>
           <h3>List of Contacts</h3>
           <List celled animated ordered>
             {formDetails.getIn(["contactInformation"]).map((entry, index) => {

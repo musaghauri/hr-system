@@ -1,0 +1,32 @@
+export const CONTACT_INITIAL_STATE = {
+    title: { 
+      name: 'title',
+      label: 'Title',
+      status: true,
+      errorText: '',
+      value: '',
+      rules: [],
+      fieldName: 'Title',
+      placeholder: 'Enter title',
+     },
+    type: { 
+      name: 'type',
+      label: 'Type',
+      status: true,
+      errorText: '',
+      value: '',
+      rules: [],
+      fieldName: 'Type',
+      placeholder: 'Select type',
+    },
+    detail: { 
+      name: 'detail',
+      label: 'Detail',
+      status: true,
+      errorText: '',
+      value: '',
+      rules: [],
+      fieldName: 'Detail',
+      placeholder: 'Enter detail',
+    },
+  }

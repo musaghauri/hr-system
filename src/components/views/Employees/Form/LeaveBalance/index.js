@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
 
 class LeaveBalance extends Component {
-  handleChange = (name, value) => {
-    this.props.updateValue(["formDetails", name, "value"], value);
+  handleChange = (e, { name, value }) => {
+    const { updateValue } = this.props;
+    updateValue(["formDetails", name, "value"], value);
   };
   saveAndContinue = e => {
     e.preventDefault();
@@ -17,6 +18,7 @@ class LeaveBalance extends Component {
 
   render() {
     const { formDetails } = this.props;
+    // console.log('leaveBalance', formDetails.get('leaveBalance').toJS())
     return (
       <Segment>
         <Form>
@@ -24,13 +26,20 @@ class LeaveBalance extends Component {
           <Form.Group widths="equal">
             <Form.Input
               fluid
-              label="Leave Balance"
               type="text"
-              name="leaveBalance"
-              value={formDetails.getIn(["leaveBalance", "value"])}
-              placeholder="Leave Balance"
-              error={{ content: "Please enter a value" }}
-              onChange={(e, { name, value }) => this.handleChange(name, value)}
+              label={formDetails.getIn(['leaveBalance', 'label'])}
+              name={formDetails.getIn(['leaveBalance', 'name'])}
+              value={formDetails.getIn([
+                "leaveBalance",
+                "value",
+              ])}
+              placeholder={formDetails.getIn(['leaveBalance', 'placeholder'])}
+              error={
+                !formDetails.getIn(['leaveBalance', 'status'])
+                  ? formDetails.getIn(['leaveBalance', 'errorText'])
+                  : false
+              }
+              onChange={this.handleChange}
             />
           </Form.Group>
           <Button onClick={this.back}>Back</Button>
