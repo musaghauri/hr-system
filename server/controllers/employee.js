@@ -10,7 +10,24 @@ import EmployeeHelper from '../helpers/Employee.js';
  */
 function get(req, res) {
   const { employeeId } = req.params;
-  const populateQuery = [];
+  const { populate = true } = req.query;
+  let populateQuery = [];
+  if (populate === true)
+    populateQuery = [
+      {
+        path: 'personalInformation.city',
+        model: 'City',
+        populate: {
+          path: 'state',
+          model: 'State',
+          populate: {
+            path: 'country',
+            model: 'Country',
+          },
+        },
+      },
+    ];
+  console.log({ populateQuery });
   EmployeeHelper.GetById(employeeId, populateQuery)
     .then(employee => {
       res.json(employee);
@@ -37,6 +54,20 @@ function create(req, res) {
 }
 
 function list(req, res) {
+  const populateQuery = [
+    {
+      path: 'personalInformation.city',
+      model: 'City',
+      populate: {
+        path: 'state',
+        model: 'State',
+        populate: {
+          path: 'country',
+          model: 'Country',
+        },
+      },
+    },
+  ];
   const params = {
     limit: _get(req.query, 'limit', 0),
     skip: _get(req.query, 'skip', 0),
@@ -44,7 +75,7 @@ function list(req, res) {
     sort: _get(req.query, 'sort', 'title'),
     query: _omit(req.query, ['limit', 'skip', 'order', 'sort']),
   };
-  EmployeeHelper.Get(params)
+  EmployeeHelper.Get(params, populateQuery)
     .then(employees => {
       const { items, total_count } = employees;
       res.json({

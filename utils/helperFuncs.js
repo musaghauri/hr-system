@@ -1,4 +1,5 @@
-import { assign, forOwn, lowerCase, cloneDeep } from 'lodash';
+import { assign, forOwn, lowerCase } from 'lodash';
+import _cloneDeep from 'lodash/cloneDeep';
 import moment from 'moment/moment';
 
 export const parseErrorsAndConvertToString = (errors = {}) => {
@@ -97,12 +98,45 @@ export const loadFormDetails = (formDetails, user, uploadImageStatus) => {
               error: false,
             };
           });
-        } else {
+        } else if (typeof itemValue === 'object') {
+          const itemFormData = _cloneDeep(tempFormDetails[item][0]);
+          if (Array.isArray(itemValue)) {
+            // Array Object
+            itemValue.map((arrayItem, itemI) => {
+              tempFormDetails[item][itemI] = itemFormData;
+              Object.keys(arrayItem).forEach(itemKey => {
+                const arrayItemValue = arrayItem[itemKey] || null;
+                if (arrayItemValue) {
+                  if (tempFormDetails[item][itemI][itemKey]) {
+                    tempFormDetails[item][itemI][itemKey].value =
+                      arrayItem[itemKey];
+                  }
+                }
+              });
+            });
+          } else {
+            // JSON Object
+            Object.keys(itemValue).forEach(nestedItem => {
+              const nestedItemValue = user[item][nestedItem] || null;
+              if (nestedItemValue) {
+                if (nestedItem === 'city') {
+                  tempFormDetails[item][nestedItem].value = nestedItemValue._id;
+                  tempFormDetails[item].state.value = nestedItemValue.state._id;
+                  tempFormDetails[item].country.value =
+                    nestedItemValue.state.country._id;
+                } else
+                  tempFormDetails[item][nestedItem].value = nestedItemValue;
+              }
+            });
+          }
+        } else if (typeof itemValue === 'string') {
+          // String
           tempFormDetails[item].value = itemValue;
         }
       }
     });
   }
+  console.log({ tempFormDetails });
   return tempFormDetails;
 };
 
