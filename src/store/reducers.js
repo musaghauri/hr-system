@@ -66,6 +66,11 @@ import addProjectReducer from '@redux/Projects/Add/reducer';
 import editProjectReducer from '@redux/Projects/Edit/reducer';
 import viewProjectReducer from '@redux/Projects/View/reducer';
 
+import branchesListReducer from '@redux/Branches/List/reducer';
+import addBranchReducer from '@redux/Branches/Add/reducer';
+import editBranchReducer from '@redux/Branches/Edit/reducer';
+import viewBranchReducer from '@redux/Branches/View/reducer';
+
 export default combineReducers({
   landingPage: landingPageReducer,
   login: loginReducer,
@@ -119,4 +124,8 @@ export default combineReducers({
   addProject: addProjectReducer,
   editProject: editProjectReducer,
   viewProject: viewProjectReducer,
+  branchesList: branchesListReducer,
+  addBranch: addBranchReducer,
+  editBranch: editBranchReducer, 
+  viewBranch: viewBranchReducer,
 });
