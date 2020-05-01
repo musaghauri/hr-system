@@ -10,6 +10,7 @@ import priorityRoutes from './priority';
 import announcementRoutes from './announcement';
 import wishlistRoutes from './wishlist';
 import departmentRoutes from './department';
+import branchRoutes from './branch';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -27,5 +28,6 @@ router.use('/priorities', priorityRoutes);
 router.use('/announcements', announcementRoutes);
 router.use('/wishlist', wishlistRoutes);
 router.use('/departments', departmentRoutes);
+router.use('/branches', branchRoutes);
 
 export default router;

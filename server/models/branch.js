@@ -21,7 +21,7 @@ const branchSchema = new Schema(
     company: {
       type: Schema.Types.ObjectId,
       ref: 'Company',
-      required: true,
+      // required: true,
     },
     departments: [
       {

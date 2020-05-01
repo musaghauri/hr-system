@@ -70,6 +70,12 @@ const routes = [
     icon: 'map marker alternate',
   },
   {
+    name: 'branches',
+    label: 'Branches',
+    route: '/branches',
+    icon: 'code branch',
+  },
+  {
     name: 'departments',
     label: 'Departments',
     route: '/departments',

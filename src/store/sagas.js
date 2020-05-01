@@ -51,6 +51,11 @@ import viewDepartmentSagas from '@redux/Departments/View/sagas';
 import addDepartmentSagas from '@redux/Departments/Add/sagas';
 import editDepartmentSagas from '@redux/Departments/Edit/sagas';
 
+import branchesListSagas from '@redux/Branches/List/sagas';
+import viewBranchSagas from '@redux/Branches/View/sagas';
+import addBranchSagas from '@redux/Branches/Add/sagas';
+import editBranchSagas from '@redux/Branches/Edit/sagas';
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -95,5 +100,9 @@ export default function* mainSagas() {
     fork(viewDepartmentSagas),
     fork(addDepartmentSagas),
     fork(editDepartmentSagas),
+    fork(branchesListSagas),
+    fork(viewBranchSagas),
+    fork(addBranchSagas),
+    fork(editBranchSagas)
   ]);
 }
