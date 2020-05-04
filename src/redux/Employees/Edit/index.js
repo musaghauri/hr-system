@@ -39,7 +39,7 @@ class EditEmployeeContainer extends Component {
   validateForm = formData => validateFormData(formData);
 
   submitForm = formDetails => {
-    const { onEditEmployee } = this.props;
+    const { onEditEmployee, query } = this.props;
     const { employeeId } = query;
     const employeeData = submitFormData(formDetails);
     console.log('final',employeeData);

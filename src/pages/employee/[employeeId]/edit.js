@@ -18,7 +18,7 @@ class EditEmployee extends Component {
     store.dispatch(getCountries());
     store.dispatch(getDepartments());
     store.dispatch(getAssets());
-    return { isServer };
+    return { isServer, query };
   }
   render() {
     return <EditEmployeeContainer {...this.props} />;

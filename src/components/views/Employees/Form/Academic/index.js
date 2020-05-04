@@ -9,6 +9,7 @@ class Academic extends Component {
       index: this.props.formDetails.getIn(["academics"]).size - 1,
     };
   }
+  
   handleChange = (e, { name, value })  => {
     const { updateValue } = this.props;
     let { index } = this.state;
@@ -31,9 +32,20 @@ class Academic extends Component {
       });
     }
   };
+
+  deleteEntry = (path) => {
+    const { formDetails, deleteEntry } = this.props;
+    const size = formDetails.getIn(["academics"]).size;
+    if(size > 1){
+      deleteEntry(path);
+      this.setState({index: 0});
+    }
+  }
+
   handleEdit = (index) => {
     this.setState({ index });
   };
+
   saveAndContinue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -47,7 +59,6 @@ class Academic extends Component {
   render() {
     const { formDetails } = this.props;
     let { index } = this.state;
-    // console.log('academics', formDetails.get('academics').toJS())
     return (
       <Segment>
         <Form>
@@ -167,6 +178,7 @@ class Academic extends Component {
                   ])}
                     `}
                   <Button onClick={() => this.handleEdit(index)}>Edit</Button>
+                  <Button onClick={() => this.deleteEntry(["formDetails", "academics", index])}>Remove</Button>
                 </List.Item>
               );
             })}

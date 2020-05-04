@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import { GENDER_OPTIONS } from "@config/constants/gender";
-// import { CITY_OPTIONS } from "@config/constants/city";
-// import { COUNTRY_OPTIONS } from "@config/constants/countries";
 import { MARITAL_STATUS_OPTIONS } from "@config/constants/maritalStatus";
 import { BLOOD_GROUP_OPTIONS } from "@config/constants/bloodGroup";
 
@@ -42,24 +40,6 @@ class Personal extends Component {
         <Form>
           <h1 className="ui centered">Enter Personal Details</h1>
           <Form.Group widths="equal">
-            {/* <Form.Input
-              fluid
-              type="text"
-              label={formDetails.getIn(['personalInformation', 'name', 'label'])}
-              name={formDetails.getIn(['personalInformation', 'name', 'name'])}
-              value={formDetails.getIn([
-                "personalInformation",
-                "name",
-                "value",
-              ])}
-              placeholder={formDetails.getIn(['personalInformation', 'name', 'placeholder'])}
-              error={
-                !formDetails.getIn(['personalInformation', 'name', 'status'])
-                  ? formDetails.getIn(['personalInformation', 'name', 'errorText'])
-                  : false
-              }
-              onChange={this.handleChange}
-            /> */}
             <Form.Input
               fluid
               type="email"
@@ -100,6 +80,7 @@ class Personal extends Component {
           <Form.Group widths="equal">
             <DateInput
               fluid
+              dateFormat='MM-DD-YYYY'
               label={formDetails.getIn(['personalInformation', 'dateOfBirth', 'label'])}
               name={formDetails.getIn(['personalInformation', 'dateOfBirth', 'name'])}
               placeholder={formDetails.getIn(['personalInformation', 'dateOfBirth', 'placeholder'])}
@@ -163,6 +144,7 @@ class Personal extends Component {
               search
               type="text"
               options={countries.toJS()}
+              loading={getCountriesStatus.get('loading')}
               name={formDetails.getIn(['personalInformation', 'country', 'name'])}
               label={formDetails.getIn(['personalInformation', 'country', 'label'])}
               value={formDetails.getIn([
@@ -187,7 +169,8 @@ class Personal extends Component {
               search
               type="text"
               options={states.toJS()}
-              disabled={!getStatesStatus.get('loaded')}
+              // disabled={!getStatesStatus.get('loaded')}
+              loading={getStatesStatus.get('loading')}
               name={formDetails.getIn(['personalInformation', 'state', 'name'])}
               label={formDetails.getIn(['personalInformation', 'state', 'label'])}
               value={formDetails.getIn([
@@ -213,7 +196,7 @@ class Personal extends Component {
               type="text"
               options={cities.toJS()}
               loading={getCitiesStatus.get('loading')}
-              disabled={!getCitiesStatus.get('loaded')}
+              // disabled={!getCitiesStatus.get('loaded')}
               name={formDetails.getIn(['personalInformation', 'city', 'name'])}
               label={formDetails.getIn(['personalInformation', 'city', 'label'])}
               value={formDetails.getIn([
@@ -270,6 +253,7 @@ class Personal extends Component {
             />
             <Form.Select
               fluid
+              search
               type="text"
               options={BLOOD_GROUP_OPTIONS}
               name={formDetails.getIn(['personalInformation', 'bloodGroup', 'name'])}

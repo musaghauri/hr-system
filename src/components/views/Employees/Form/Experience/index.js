@@ -9,6 +9,7 @@ class Experience extends Component {
       index: 0,
     };
   }
+
   handleChange = (e, { name, value }) => {
     let { index } = this.state;
     const { updateValue } = this.props;
@@ -17,6 +18,7 @@ class Experience extends Component {
       value
     );
   };
+
   addAnotherEntry = (e) => {
     e.preventDefault();
     const { formDetails } = this.props;
@@ -30,9 +32,20 @@ class Experience extends Component {
       });
     }
   };
+
+  deleteEntry = (path) => {
+    const { formDetails, deleteEntry } = this.props;
+    const size = formDetails.getIn(["experience"]).size;
+    if(size > 1){
+      deleteEntry(path);
+      this.setState({index: 0});
+    }
+  }
+
   handleEdit = (index) => {
     this.setState({ index });
   };
+
   saveAndContinue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -46,7 +59,6 @@ class Experience extends Component {
   render() {
     const { formDetails } = this.props;
     let { index } = this.state;
-    // console.log('experience', formDetails.get('experience').toJS())
     return (
       <Segment>
         <Form>
@@ -163,6 +175,7 @@ class Experience extends Component {
                   ])}    ${entry.getIn(["salary", "value"])}    
                     `}
                   <Button onClick={() => this.handleEdit(index)}>Edit</Button>
+                  <Button onClick={() => this.deleteEntry(["formDetails", "experience", index])}>Remove</Button>
                 </List.Item>
               );
             })}

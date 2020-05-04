@@ -11,22 +11,42 @@ import EmployeeHelper from '../helpers/Employee.js';
 function get(req, res) {
   const { employeeId } = req.params;
   const { populate = true } = req.query;
-  let populateQuery = [];
-  if (populate === true)
-    populateQuery = [
-      {
-        path: 'personalInformation.city',
-        model: 'City',
+  let populateQuery = [
+    {
+      path: 'personalInformation.city',
+      model: 'City',
+      populate: {
+        path: 'state',
+        model: 'State',
         populate: {
-          path: 'state',
-          model: 'State',
-          populate: {
-            path: 'country',
-            model: 'Country',
-          },
+          path: 'country',
+          model: 'Country',
         },
       },
-    ];
+    },
+  ];
+  if (populate === true)
+    populateQuery.push(
+      {
+        path: 'role',
+        model: 'Role',
+      },
+      {
+        path: 'personalInformation.domicile',
+        model: 'City',
+      },
+      {
+        path: 'personalInformation.nationality',
+        model: 'Country'
+      },
+      {
+        path: 'officialInformation.department',
+        model: 'Department',
+      },
+      {
+        path: 'companyAssets.id',
+        model: 'Asset'
+      });
   console.log({ populateQuery });
   EmployeeHelper.GetById(employeeId, populateQuery)
     .then(employee => {
@@ -66,6 +86,10 @@ function list(req, res) {
           model: 'Country',
         },
       },
+    },
+    {
+      path: 'officialInformation.department',
+      model: 'Department',
     },
   ];
   const params = {

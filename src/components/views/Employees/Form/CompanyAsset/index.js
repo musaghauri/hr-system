@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Form, Button, Segment, List } from "semantic-ui-react";
-// import { COMPANY_ASSETS_OPTIONS } from "@config/constants/companyAsset";
 import { DateInput } from "semantic-ui-calendar-react";
 import { ASSET_INITIAL_STATE } from "@config/constants/asset";
 
@@ -11,6 +10,7 @@ class CompanyAsset extends Component {
       index: 0,
     };
   }
+
   handleChange = (name, value) => {
     let { index } = this.state;
     const { updateValue } = this.props;
@@ -19,6 +19,7 @@ class CompanyAsset extends Component {
       value
     );
   };
+
   addAnotherEntry = (e) => {
     e.preventDefault();
     const { formDetails } = this.props;
@@ -33,9 +34,20 @@ class CompanyAsset extends Component {
       });
     }
   };
+
+  deleteEntry = (path) => {
+    const { formDetails, deleteEntry } = this.props;
+    const size = formDetails.getIn(["companyAssets"]).size;
+    if(size > 1){
+      deleteEntry(path);
+      this.setState({index: 0});
+    }
+  }
+
   handleEdit = (index) => {
     this.setState({ index });
   };
+
   saveAndContinue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -56,7 +68,6 @@ class CompanyAsset extends Component {
       "value",
     ]);
     let status = formDetails.getIn(["companyAssets", index, "status", "value"]);
-    console.log('companyAssets', formDetails.get('companyAssets').toJS())
     return (
       <Segment>
         <Form>
@@ -118,6 +129,7 @@ class CompanyAsset extends Component {
             />
             <DateInput
               fluid
+              dateFormat='MM-DD-YYYY'
               iconPosition="left"
               label={formDetails.getIn(['companyAssets', index, 'issueDate', 'label'])}
               name={formDetails.getIn(['companyAssets', index, 'issueDate', 'name'])}
@@ -136,7 +148,7 @@ class CompanyAsset extends Component {
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
           </Form.Group>
-          <Button onClick={this.addAnotherEntry}>Add Entry</Button>
+          <Button onClick={this.addAnotherEntry}>Add More</Button>
           <h3>List of Company Assets</h3>
           <List celled animated ordered>
             {formDetails.getIn(["companyAssets"]).map((entry, index) => {
@@ -154,6 +166,7 @@ class CompanyAsset extends Component {
                   ])}    
                     `}
                   <Button onClick={() => this.handleEdit(index)}>Edit</Button>
+                  <Button onClick={() => this.deleteEntry(["formDetails", "companyAssets", index])}>Remove</Button>
                 </List.Item>
               );
             })}

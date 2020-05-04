@@ -31,3 +31,7 @@ export const GET_ASSETS_FAIL = 'HRMS/Employees/Add/GET_ASSETS_FAIL';
 export const ADD_EMPLOYEE = 'HRMS/Employees/Add/ADD_EMPLOYEE';
 export const ADD_EMPLOYEE_SUCCESS = 'HRMS/Employees/Add/ADD_EMPLOYEE_SUCCESS';
 export const ADD_EMPLOYEE_FAIL = 'HRMS/Employees/Add/ADD_EMPLOYEE_FAIL';
+
+export const DELETE_ENTRY = 'HRMS/Employees/Add/DELETE_ENTRY';
+export const DELETE_ENTRY_SUCCESS = 'HRMS/Employees/Add/DELETE_ENTRY_SUCCESS';
+export const DELETE_ENTRY_FAIL = 'HRMS/Employees/Add/DELETE_ENTRY_FAIL';

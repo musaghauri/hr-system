@@ -94,6 +94,18 @@ export const validateField = formField => {
             updatedFormField.errorText = updatedFormField.defaultErrorText;
           else updatedFormField.errorText = 'Enter valid year i.e. 2019';
           break;
+        case 'isPositive':
+          updatedFormField.status = isPositive(fieldValue);
+          if (
+            !!updatedFormField.customMessages &&
+            !!updatedFormField.customMessages.isPositive
+          )
+            updatedFormField.errorText =
+              updatedFormField.customMessages.isPositive;
+          else if (updatedFormField.defaultErrorText)
+            updatedFormField.errorText = updatedFormField.defaultErrorText;
+          else updatedFormField.errorText = 'Enter valid number i.e. 123';
+          break;
         default:
       }
       if (!updatedFormField.status) {

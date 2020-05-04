@@ -12,6 +12,7 @@ class Dependent extends Component {
       index: 0,
     };
   }
+
   handleChange = (e, { name, value }) => {
     let { index } = this.state;
     const { updateValue } = this.props;
@@ -20,6 +21,7 @@ class Dependent extends Component {
       value
     );
   };
+
   addAnotherEntry = (e) => {
     e.preventDefault();
     const { formDetails } = this.props;
@@ -33,10 +35,21 @@ class Dependent extends Component {
       });
     }
   };
+
+  deleteEntry = (path) => {
+    const { formDetails, deleteEntry } = this.props;
+    const size = formDetails.getIn(["dependents"]).size;
+    if(size > 1){
+      deleteEntry(path);
+      this.setState({index: 0});
+    }
+  }
+
   saveAndContinue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
+
   handleEdit = (index) => {
     this.setState({ index });
   };
@@ -49,7 +62,6 @@ class Dependent extends Component {
   render() {
     const { formDetails } = this.props;
     let { index } = this.state;
-    // console.log('dependents', formDetails.get('dependents').toJS())
     return (
       <Segment>
         <Form>
@@ -135,6 +147,7 @@ class Dependent extends Component {
           <Form.Group widths="equal">
             <DateInput
               fluid
+              dateFormat='MM-DD-YYYY'
               iconPosition="left"
               label={formDetails.getIn(['dependents', index, 'dateOfBirth', 'label'])}
               name={formDetails.getIn(['dependents', index, 'dateOfBirth', 'name'])}
@@ -168,6 +181,7 @@ class Dependent extends Component {
                   ])}    ${entry.getIn(["dateOfBirth", "value"])}
                     `}
                   <Button onClick={() => this.handleEdit(index)}>Edit</Button>
+                  <Button onClick={() => this.deleteEntry(["formDetails", "dependents", index])}>Remove</Button>
                 </List.Item>
               );
             })}

@@ -73,7 +73,7 @@ const userSchema = new Schema(
       },
       designation: String,
       socialSecurity: Number,
-      healthBenefits: [String],
+      healthBenefits: String,
       providentFund: Number,
       department: {
         type: Schema.Types.ObjectId,
@@ -144,7 +144,7 @@ const userSchema = new Schema(
         detail: String,
         returnable: Boolean,
         status: String,
-        issueData: Date
+        issueDate: Date
       },
     ],
     leaveBalance: Number,
@@ -153,7 +153,7 @@ const userSchema = new Schema(
         job: String,
         frequency: String,
         effectiveFrom: Date,
-        enchancedTill: Date
+        enhancedTill: Date
       },
     ],
   },

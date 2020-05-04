@@ -12,6 +12,7 @@ class Duty extends Component {
       index: 0,
     };
   }
+
   handleChange = (e, { name, value })=> {
     let { index } = this.state;
     const { updateValue } = this.props;
@@ -20,6 +21,7 @@ class Duty extends Component {
       value
     );
   };
+
   addAnotherEntry = (e) => {
     e.preventDefault();
     const { formDetails } = this.props;
@@ -33,15 +35,24 @@ class Duty extends Component {
       });
     }
   };
+
+  deleteEntry = (path) => {
+    const { formDetails, deleteEntry } = this.props;
+    const size = formDetails.getIn(["duties"]).size;
+    if(size > 1){
+      deleteEntry(path);
+      this.setState({index: 0});
+    }
+  }
+
   handleEdit = (index) => {
     this.setState({ index });
   };
+
   saveAndContinue = (e) => {
     e.preventDefault();
-    const { validateForm, updateValue, handleSubmit } = this.props;
-    const { formDetails } = this.props;
+    const { validateForm, updateValue, handleSubmit, formDetails } = this.props;
     const modifiedUser = formDetails.toJS();
-    console.log('modifiedUser', modifiedUser);
     const result = validateForm(modifiedUser);
     const newFormDetails = _assign(modifiedUser, result.updatedFormData);
     console.log(result);
@@ -59,7 +70,6 @@ class Duty extends Component {
   render() {
     const { formDetails, submitColor, submitStatus, successMessage } = this.props;
     let { index } = this.state;
-    // console.log('duties', formDetails.get('duties').toJS())
     return (
       <Segment>
         <Form>
@@ -70,7 +80,14 @@ class Duty extends Component {
             </Message>
           )}
           {submitStatus.get('loaded') && (
-            <Message success>{successMessage}</Message>
+            <Message 
+              style={{
+                'backgroundColor': '#fcfff5',
+                'color': '#2c662d',
+              }}
+            >
+              {successMessage}
+            </Message>
           )}
           <Form.Group widths="equal">
             <Form.Input
@@ -115,6 +132,8 @@ class Duty extends Component {
           <Form.Group widths="equal">
             <DateInput
               fluid
+              dateFormat='MM-DD-YYYY'
+              dateFormat='MM-DD-YYYY'
               iconPosition="left"
               label={formDetails.getIn(['duties', index, 'effectiveFrom', 'label'])}
               name={formDetails.getIn(['duties', index, 'effectiveFrom', 'name'])}
@@ -134,6 +153,7 @@ class Duty extends Component {
             />
             <DateInput
               fluid
+              dateFormat='MM-DD-YYYY'
               iconPosition="left"
               label={formDetails.getIn(['duties', index, 'enhancedTill', 'label'])}
               name={formDetails.getIn(['duties', index, 'enhancedTill', 'name'])}
@@ -167,6 +187,7 @@ class Duty extends Component {
                   ])}   ${entry.getIn(["enhancedTill", "value"])}  
                     `}
                   <Button onClick={() => this.handleEdit(index)}>Edit</Button>
+                  <Button onClick={() => this.deleteEntry(["formDetails", "duties", index])}>Remove</Button>
                 </List.Item>
               );
             })}
@@ -178,7 +199,7 @@ class Duty extends Component {
             type="submit"
             onClick={this.saveAndContinue}
           >
-          Save
+          Edit Employee
           </Button>
         </Form>
       </Segment>

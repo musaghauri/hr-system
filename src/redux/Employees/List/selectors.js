@@ -13,4 +13,10 @@ const selectEmployees = () =>
   createSelector(selectEmployeesListDomain(), employeesListState =>
     employeesListState.get('employees')
   );
-export { selectHeadings, selectEmployees };
+
+const selectDeleteEmployeeStatus = () =>
+  createSelector(selectEmployeesListDomain(), employeesListState =>
+    employeesListState.get('deleteEmployeeStatus')
+  );
+  
+export { selectHeadings, selectEmployees, selectDeleteEmployeeStatus };

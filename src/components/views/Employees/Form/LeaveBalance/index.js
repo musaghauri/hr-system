@@ -18,7 +18,6 @@ class LeaveBalance extends Component {
 
   render() {
     const { formDetails } = this.props;
-    // console.log('leaveBalance', formDetails.get('leaveBalance').toJS())
     return (
       <Segment>
         <Form>

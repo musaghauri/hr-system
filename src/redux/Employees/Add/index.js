@@ -12,7 +12,8 @@ import {
   addAnotherEntry,
   getStates, 
   getCities,
-  addEmployee
+  addEmployee,
+  deleteEntry
  } from './actions';
 import { 
   selectRoles,
@@ -65,7 +66,8 @@ class AddEmployeeContainer extends Component {
       getStatesStatus,
       getDepartmentsStatus,
       getAssetsStatus,
-      addEmployeeStatus
+      addEmployeeStatus,
+      onDeleteEntry
      } = this.props;
     return (
       <AddForm 
@@ -75,6 +77,7 @@ class AddEmployeeContainer extends Component {
         addAnotherEntry={onAddAnotherEntry}
         getStates={onGetStates}
         getCities={onGetCities}
+        deleteEntry={onDeleteEntry}
         roles={roles}
         countries={countries}
         states={states}
@@ -120,6 +123,7 @@ function mapDispatchToProps(dispatch) {
     onGetStates: bindActionCreators(getStates, dispatch),
     onGetCities: bindActionCreators(getCities, dispatch),
     onAddEmployee: bindActionCreators(addEmployee, dispatch),
+    onDeleteEntry: bindActionCreators(deleteEntry, dispatch),
   };
 }
 

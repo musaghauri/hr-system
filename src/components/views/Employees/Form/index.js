@@ -11,17 +11,37 @@ import CompanyAsset from "./CompanyAsset";
 import Academic from "./Academic";
 import Intro from "./Intro";
 
+import _assign from 'lodash/assign';
+import _pick from 'lodash/pick';
+
+const ATTRIBUTES = [
+  ['name', 'email', 'role', 'password', 'isActive', 'isVerified'],
+  ['personalInformation'],
+  ['officialInformation'],
+  ['contactInformation'],
+  ['salarySettings'],
+  ['academics'],
+  ['experience'],
+  ['dependents'],
+  ['companyAssets'],
+  ['leaveBalance'],
+  ['duties'],
+];
+
 class EmployeeForm extends Component {
   state = {
     step: 0,
   };
-
+  
   nextStep = () => {
     const { step } = this.state;
-    if (step < 10) {
-      this.setState({
-        step: step + 1,
-      });
+    const { validateForm, updateValue, formDetails } = this.props;
+    const modifiedData = _pick(formDetails.toJS(), ATTRIBUTES[step]);
+    const result = validateForm(modifiedData);
+    const newFormDetails = _assign(formDetails.toJS(), result.updatedFormData);
+    updateValue(['formDetails'], newFormDetails);
+    if (result.validateFlag && step < 10) {
+        this.setState({step: step + 1});
     }
   };
 
@@ -58,13 +78,15 @@ class EmployeeForm extends Component {
       getAssetsStatus,
       submitStatus,
       successMessage,
-      getRolesStatus 
+      getRolesStatus,
+      deleteEntry
     } = this.props;
     switch (step) {
       case 0:
         return (
           <Intro
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
             roles={roles}
             getRolesStatus={getRolesStatus}
@@ -76,6 +98,7 @@ class EmployeeForm extends Component {
         return (
           <Personal
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
             getStates={getStates}
             getCities={getCities}
@@ -93,6 +116,7 @@ class EmployeeForm extends Component {
         return (
           <Official
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
             departments={departments}
             getDepartmentsStatus={getDepartmentsStatus}
@@ -104,7 +128,9 @@ class EmployeeForm extends Component {
         return (
           <Contact
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
+            deleteEntry={deleteEntry}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -114,6 +140,7 @@ class EmployeeForm extends Component {
         return (
           <Salary
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
@@ -123,7 +150,9 @@ class EmployeeForm extends Component {
         return (
           <Academic
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
+            deleteEntry={deleteEntry}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -133,7 +162,9 @@ class EmployeeForm extends Component {
         return (
           <Experience
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
+            deleteEntry={deleteEntry}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -143,7 +174,9 @@ class EmployeeForm extends Component {
         return (
           <Dependent
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
+            deleteEntry={deleteEntry}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -153,7 +186,9 @@ class EmployeeForm extends Component {
         return (
           <CompanyAsset
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
+            deleteEntry={deleteEntry}
             assets={assets}
             getAssetsStatus={getAssetsStatus}
             nextStep={this.nextStep}
@@ -165,6 +200,7 @@ class EmployeeForm extends Component {
         return (
           <LeaveBalance
             formDetails={formDetails}
+            validateForm={validateForm}
             updateValue={updateValue}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
@@ -176,6 +212,7 @@ class EmployeeForm extends Component {
             formDetails={formDetails}
             updateValue={updateValue}
             handleSubmit={handleSubmit}
+            deleteEntry={deleteEntry}
             submitColor={submitColor}
             submitStatus={submitStatus}
             validateForm={validateForm}

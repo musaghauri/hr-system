@@ -105,11 +105,11 @@ export const loadFormDetails = (formDetails, user, uploadImageStatus) => {
             itemValue.map((arrayItem, itemI) => {
               tempFormDetails[item][itemI] = itemFormData;
               Object.keys(arrayItem).forEach(itemKey => {
-                const arrayItemValue = arrayItem[itemKey] || null;
+                const arrayItemValue = arrayItem[itemKey] || null;      
                 if (arrayItemValue) {
                   if (tempFormDetails[item][itemI][itemKey]) {
-                    tempFormDetails[item][itemI][itemKey].value =
-                      arrayItem[itemKey];
+                    tempFormDetails[item][itemI][itemKey].value = 
+                    arrayItem[itemKey];
                   }
                 }
               });
@@ -119,6 +119,10 @@ export const loadFormDetails = (formDetails, user, uploadImageStatus) => {
             Object.keys(itemValue).forEach(nestedItem => {
               const nestedItemValue = user[item][nestedItem] || null;
               if (nestedItemValue) {
+                if (nestedItem === 'state') {
+                  tempFormDetails[item][nestedItem].value = nestedItemValue._id;
+                  tempFormDetails[item].country.value = nestedItemValue.country._id;
+                }
                 if (nestedItem === 'city') {
                   tempFormDetails[item][nestedItem].value = nestedItemValue._id;
                   tempFormDetails[item].state.value = nestedItemValue.state._id;
@@ -129,7 +133,7 @@ export const loadFormDetails = (formDetails, user, uploadImageStatus) => {
               }
             });
           }
-        } else if (typeof itemValue === 'string') {
+        } else if (typeof itemValue === 'string' || typeof itemValue === 'number') {
           // String
           tempFormDetails[item].value = itemValue;
         }

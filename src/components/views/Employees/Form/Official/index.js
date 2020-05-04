@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form, Button, Segment } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import { EMPLOYEE_STATUS_OPTIONS} from "@config/constants/employee";
-// import { DEPARTMENT_OPTIONS } from "@config/constants/department";
 import styled from 'styled-components';
 
 const CenterHeading = styled.h1`
@@ -169,6 +168,7 @@ class Official extends Component {
             />
             <DateInput
               fluid
+              dateFormat='MM-DD-YYYY'
               iconPosition="left"
               name={formDetails.getIn(['officialInformation', 'joiningDate', 'name'])}
               label={formDetails.getIn(['officialInformation', 'joiningDate', 'label'])}
@@ -189,6 +189,7 @@ class Official extends Component {
           <Form.Group widths="equal">
             <DateInput
               fluid
+              dateFormat='MM-DD-YYYY'
               iconPosition="left"
               name={formDetails.getIn(['officialInformation', 'resignationDate', 'name'])}
               label={formDetails.getIn(['officialInformation', 'resignationDate', 'label'])}
@@ -207,6 +208,7 @@ class Official extends Component {
             />
             <DateInput
               fluid
+              dateFormat='MM-DD-YYYY'
               iconPosition="left"
               name={formDetails.getIn(['officialInformation', 'exitDate', 'name'])}
               label={formDetails.getIn(['officialInformation', 'exitDate', 'label'])}

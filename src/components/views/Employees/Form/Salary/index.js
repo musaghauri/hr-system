@@ -22,7 +22,6 @@ class Salary extends Component {
 
   render() {
     const { formDetails } = this.props;
-    // console.log('salarySettings', formDetails.get('salarySettings').toJS())
     return (
       <Segment>
         <Form>
@@ -31,17 +30,17 @@ class Salary extends Component {
             <Form.Select
               type="text"
               options={MODE_OF_PAYMENT_OPTIONS}
-              label={formDetails.getIn(['salarySettings', 'modeOfPayment', 'label'])}
-              name={formDetails.getIn(['salarySettings', 'modeOfPayment', 'name'])}
+              label={formDetails.getIn(['salarySettings', 'paymentMode', 'label'])}
+              name={formDetails.getIn(['salarySettings', 'paymentMode', 'name'])}
               value={formDetails.getIn([
                 "salarySettings",
-                "modeOfPayment",
+                "paymentMode",
                 "value",
               ])}
-              placeholder={formDetails.getIn(['salarySettings', 'modeOfPayment', 'placeholder'])}
+              placeholder={formDetails.getIn(['salarySettings', 'paymentMode', 'placeholder'])}
               error={
-                !formDetails.getIn(['salarySettings', 'modeOfPayment', 'status'])
-                  ? formDetails.getIn(['salarySettings', 'modeOfPayment', 'errorText'])
+                !formDetails.getIn(['salarySettings', 'paymentMode', 'status'])
+                  ? formDetails.getIn(['salarySettings', 'paymentMode', 'errorText'])
                   : false
               }
               onChange={this.handleChange}

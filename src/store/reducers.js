@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux-immutable';
 
 import landingPageReducer from '@redux/LandingPage/reducer';
-import registerReducer from '@redux/Register/reducer';
 
 import loginReducer from '@redux/Auth/Login/reducer';
 import forgotPasswordReducer from '@redux/Auth/ForgotPassword/reducer';
@@ -64,7 +63,6 @@ import viewDepartmentReducer from '@redux/Departments/View/reducer';
 
 export default combineReducers({
   landingPage: landingPageReducer,
-  register: registerReducer,
   login: loginReducer,
   forgotPassword: forgotPasswordReducer,
   resetPassword: resetPasswordReducer,

@@ -10,6 +10,7 @@ class Contact extends Component {
       index: 0,
     };
   }
+  
   handleChange = (e, { name, value }) => {
     let { index } = this.state;
     const { updateValue } = this.props;
@@ -18,13 +19,16 @@ class Contact extends Component {
       value
     );
   };
+
   handleEdit = (index) => {
     this.setState({ index });
   };
+
   saveAndContinue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
+
   back = (e) => {
     e.preventDefault();
     this.props.prevStep();
@@ -44,10 +48,18 @@ class Contact extends Component {
     }
   };
 
+  deleteEntry = (path) => {
+    const { formDetails, deleteEntry } = this.props;
+    const size = formDetails.getIn(["contactInformation"]).size;
+    if(size > 1){
+      deleteEntry(path);
+      this.setState({index: 0});
+    }
+  }
+
   render() {
     const { formDetails } = this.props;
     let { index } = this.state;
-    // console.log('contactInformation', formDetails.get('contactInformation').toJS())
     return (
       <Segment>
         <Form>
@@ -120,6 +132,7 @@ class Contact extends Component {
                     "value",
                   ])}   ${entry.getIn(["detail", "value"])}`}
                   <Button onClick={() => this.handleEdit(index)}>Edit</Button>
+                  <Button onClick={() => this.deleteEntry(["formDetails", "contactInformation", index])}>Remove</Button>
                 </List.Item>
               );
             })}

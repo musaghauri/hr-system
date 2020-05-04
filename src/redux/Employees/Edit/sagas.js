@@ -22,8 +22,10 @@ import {
   getRolesFail,
   getCountriesSuccess,
   getCountriesFail,
+  getStates as GetStates,
   getStatesSuccess,
   getStatesFail,
+  getCities as GetCities,
   getCitiesSuccess,
   getCitiesFail,
   getDepartmentsSuccess,
@@ -162,35 +164,22 @@ export function* getAssets() {
     yield put(getAssetsFail(assets.err.reason));
   }
 }
-const iterate = obj => {
-  Object.keys(obj).forEach(key => {
-    // console.log(`key: ${key}, value: ${obj[key]}`)
-    if (
-      obj.hasOwnProperty(key) &&
-      typeof obj[key] === 'object' &&
-      obj[key] !== null
-    ) {
-      iterate(obj[key]);
-    } else {
-      obj[key] = { value: obj[key] };
-    }
-  });
-};
 
 export function* getEmployee(action) {
   const token = cookie.loadAuthCookie('token');
   const requestHeader = { authorization: `Bearer ${token}` };
-  const requestURL = `${NEXT_API_URL}/employees/${action.id}`;
+  const requestURL = `${NEXT_API_URL}/employees/${action.id}?populate=false`;
   const options = createRequestOptions('GET', null, requestHeader);
   const employee = yield call(request, requestURL, options);
   const FORMDETAILS = yield select(selectFormDetails());
   if (!employee.err) {
-    // iterate(employee.data);
     const formDetails = yield loadFormDetails(
       FORMDETAILS.toJS(),
       employee.data
     );
-    // const formDetails = _merge(FORMDETAILS.toJS(), employee.data)
+    console.log('transformed', formDetails);
+    yield put(GetStates(formDetails.personalInformation.country.value));
+    yield put(GetCities(formDetails.personalInformation.state.value));
     yield put(getEmployeeSuccess(formDetails));
   } else {
     yield put(getEmployeeFail(employee.err.reason));
