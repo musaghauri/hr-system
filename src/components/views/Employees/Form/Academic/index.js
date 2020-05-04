@@ -1,64 +1,61 @@
-import React, { Component } from "react";
-import { Form, Button, Segment, List } from "semantic-ui-react";
-import { ACADEMIC_INITIAL_STATE } from "@config/constants/academic";
+import React, { Component } from 'react';
+import { Form, Button, Segment, List } from 'semantic-ui-react';
+import { ACADEMIC_INITIAL_STATE } from '@config/constants/academic';
 
 class Academic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: this.props.formDetails.getIn(["academics"]).size - 1,
+      index: 0,
     };
   }
-  
-  handleChange = (e, { name, value })  => {
+
+  handleChange = (e, { name, value }) => {
     const { updateValue } = this.props;
-    let { index } = this.state;
-    updateValue(
-      ["formDetails", "academics", index, name, "value"],
-      value
-    );
+    const { index } = this.state;
+    updateValue(['formDetails', 'academics', index, name, 'value'], value);
   };
 
-  addAnotherEntry = (e) => {
+  addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails } = this.props;
-    let size = formDetails.getIn(["academics"]).size;
+    const { formDetails, addAnotherEntry } = this.props;
+    const { size } = formDetails.getIn(['academics']);
     if (size < 3) {
-      let entries = formDetails.getIn(["academics"]).toJS();
-      let value = [ ...entries, ACADEMIC_INITIAL_STATE ];
-      this.props.addAnotherEntry(["formDetails", "academics"], value);
-      this.setState((prevState) => {
-        index: prevState.index++;
-      });
+      const entries = formDetails.getIn(['academics']).toJS();
+      const value = [...entries, ACADEMIC_INITIAL_STATE];
+      addAnotherEntry(['formDetails', 'academics'], value);
+      this.setState({ index: size });
     }
   };
 
-  deleteEntry = (path) => {
+  deleteEntry = path => {
     const { formDetails, deleteEntry } = this.props;
-    const size = formDetails.getIn(["academics"]).size;
-    if(size > 1){
+    const { size } = formDetails.getIn(['academics']);
+    if (size > 1) {
       deleteEntry(path);
-      this.setState({index: 0});
+      this.setState({ index: 0 });
     }
-  }
+  };
 
-  handleEdit = (index) => {
+  handleEdit = index => {
     this.setState({ index });
   };
 
-  saveAndContinue = (e) => {
+  saveAndContinue = e => {
     e.preventDefault();
-    this.props.nextStep();
+    const { nextStep } = this.props;
+    nextStep();
   };
 
-  back = (e) => {
+  back = e => {
     e.preventDefault();
-    this.props.prevStep();
+    const { prevStep } = this.props;
+    prevStep();
   };
 
   render() {
     const { formDetails } = this.props;
-    let { index } = this.state;
+    const { index } = this.state;
     return (
       <Segment>
         <Form>
@@ -67,18 +64,38 @@ class Academic extends Component {
             <Form.Input
               fluid
               type="text"
-              label={formDetails.getIn(['academics', index, 'degreeName', 'label'])}
-              name={formDetails.getIn(['academics', index, 'degreeName', 'name'])}
-              value={formDetails.getIn([
-                "academics",
+              label={formDetails.getIn([
+                'academics',
                 index,
-                "degreeName",
-                "value",
+                'degreeName',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['academics', index, 'degreeName', 'placeholder'])}
+              name={formDetails.getIn([
+                'academics',
+                index,
+                'degreeName',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'academics',
+                index,
+                'degreeName',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'academics',
+                index,
+                'degreeName',
+                'placeholder',
+              ])}
               error={
                 !formDetails.getIn(['academics', index, 'degreeName', 'status'])
-                  ? formDetails.getIn(['academics', index, 'degreeName', 'errorText'])
+                  ? formDetails.getIn([
+                      'academics',
+                      index,
+                      'degreeName',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
@@ -87,16 +104,21 @@ class Academic extends Component {
               type="text"
               label={formDetails.getIn(['academics', index, 'board', 'label'])}
               name={formDetails.getIn(['academics', index, 'board', 'name'])}
-              value={formDetails.getIn([
-                "academics",
+              value={formDetails.getIn(['academics', index, 'board', 'value'])}
+              placeholder={formDetails.getIn([
+                'academics',
                 index,
-                "board",
-                "value",
+                'board',
+                'placeholder',
               ])}
-              placeholder={formDetails.getIn(['academics', index, 'board', 'placeholder'])}
               error={
                 !formDetails.getIn(['academics', index, 'board', 'status'])
-                  ? formDetails.getIn(['academics', index, 'board', 'errorText'])
+                  ? formDetails.getIn([
+                      'academics',
+                      index,
+                      'board',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
@@ -105,18 +127,38 @@ class Academic extends Component {
           <Form.Group widths="equal">
             <Form.Input
               type="text"
-              label={formDetails.getIn(['academics', index, 'university', 'label'])}
-              name={formDetails.getIn(['academics', index, 'university', 'name'])}
-              value={formDetails.getIn([
-                "academics",
+              label={formDetails.getIn([
+                'academics',
                 index,
-                "university",
-                "value",
+                'university',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['academics', index, 'university', 'placeholder'])}
+              name={formDetails.getIn([
+                'academics',
+                index,
+                'university',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'academics',
+                index,
+                'university',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'academics',
+                index,
+                'university',
+                'placeholder',
+              ])}
               error={
                 !formDetails.getIn(['academics', index, 'university', 'status'])
-                  ? formDetails.getIn(['academics', index, 'university', 'errorText'])
+                  ? formDetails.getIn([
+                      'academics',
+                      index,
+                      'university',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
@@ -125,16 +167,21 @@ class Academic extends Component {
               type="text"
               label={formDetails.getIn(['academics', index, 'marks', 'label'])}
               name={formDetails.getIn(['academics', index, 'marks', 'name'])}
-              value={formDetails.getIn([
-                "academics",
+              value={formDetails.getIn(['academics', index, 'marks', 'value'])}
+              placeholder={formDetails.getIn([
+                'academics',
                 index,
-                "marks",
-                "value",
+                'marks',
+                'placeholder',
               ])}
-              placeholder={formDetails.getIn(['academics', index, 'marks', 'placeholder'])}
               error={
                 !formDetails.getIn(['academics', index, 'marks', 'status'])
-                  ? formDetails.getIn(['academics', index, 'marks', 'errorText'])
+                  ? formDetails.getIn([
+                      'academics',
+                      index,
+                      'marks',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
@@ -145,16 +192,21 @@ class Academic extends Component {
               type="text"
               label={formDetails.getIn(['academics', index, 'grade', 'label'])}
               name={formDetails.getIn(['academics', index, 'grade', 'name'])}
-              value={formDetails.getIn([
-                "academics",
+              value={formDetails.getIn(['academics', index, 'grade', 'value'])}
+              placeholder={formDetails.getIn([
+                'academics',
                 index,
-                "grade",
-                "value",
+                'grade',
+                'placeholder',
               ])}
-              placeholder={formDetails.getIn(['academics', index, 'grade', 'placeholder'])}
               error={
                 !formDetails.getIn(['academics', index, 'grade', 'status'])
-                  ? formDetails.getIn(['academics', index, 'grade', 'errorText'])
+                  ? formDetails.getIn([
+                      'academics',
+                      index,
+                      'grade',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
@@ -163,25 +215,28 @@ class Academic extends Component {
           <Button onClick={this.addAnotherEntry}>Add More</Button>
           <h3>List of Academic</h3>
           <List celled animated ordered>
-            {formDetails.getIn(["academics"]).map((entry, index) => {
-              return (
-                <List.Item key={`academic_item_${index}`}>
-                  {`${entry.getIn(["degreeName", "value"])}   ${entry.getIn([
-                    "board",
-                    "value",
-                  ])}   ${entry.getIn([
-                    "university",
-                    "value",
-                  ])}   ${entry.getIn(["marks", "value"])}   ${entry.getIn([
-                    "grade",
-                    "value",
-                  ])}
+            {formDetails.getIn(['academics']).map((entry, academicsI) => (
+              <List.Item key={`academic_item_${academicsI}`}>
+                {`${entry.getIn(['degreeName', 'value'])}   ${entry.getIn([
+                  'board',
+                  'value',
+                ])}   ${entry.getIn(['university', 'value'])}   ${entry.getIn([
+                  'marks',
+                  'value',
+                ])}   ${entry.getIn(['grade', 'value'])}
                     `}
-                  <Button onClick={() => this.handleEdit(index)}>Edit</Button>
-                  <Button onClick={() => this.deleteEntry(["formDetails", "academics", index])}>Remove</Button>
-                </List.Item>
-              );
-            })}
+                <Button onClick={() => this.handleEdit(academicsI)}>
+                  Edit
+                </Button>
+                <Button
+                  onClick={() =>
+                    this.deleteEntry(['formDetails', 'academics', academicsI])
+                  }
+                >
+                  Remove
+                </Button>
+              </List.Item>
+            ))}
           </List>
           <Button onClick={this.back}>Back</Button>
           <Button onClick={this.saveAndContinue}>Save And Continue</Button>

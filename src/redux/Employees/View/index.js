@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { resetReducer } from './actions';
-import { selectEmployee, selectGetEmployeeStatus} from './selectors';
+import { selectEmployee, selectGetEmployeeStatus } from './selectors';
 
 class ViewEmployeeContainer extends Component {
   componentWillUnmount() {
@@ -15,7 +15,7 @@ class ViewEmployeeContainer extends Component {
 
   render() {
     const { employee } = this.props;
-    return <ViewEmployee  employee={employee}/>;
+    return <ViewEmployee employee={employee} />;
   }
 }
 const mapStateToProps = createStructuredSelector({

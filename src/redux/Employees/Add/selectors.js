@@ -7,7 +7,7 @@ const selectAddEmployeeDomain = () => state => state.get('addEmployee');
 
 const selectFormDetails = () =>
   createSelector(selectAddEmployeeDomain(), addEmployeeState =>
-    addEmployeeState.get("formDetails")
+    addEmployeeState.get('formDetails')
   );
 
 const selectRoles = () =>
@@ -20,7 +20,6 @@ const selectGetRolesStatus = () =>
     addEmployeeState.get('getRolesStatus')
   );
 
-
 const selectCountries = () =>
   createSelector(selectAddEmployeeDomain(), addEmployeeState =>
     addEmployeeState.get('countries')
@@ -30,7 +29,7 @@ const selectGetCountriesStatus = () =>
   createSelector(selectAddEmployeeDomain(), addEmployeeState =>
     addEmployeeState.get('getCountriesStatus')
   );
-  
+
 const selectStates = () =>
   createSelector(selectAddEmployeeDomain(), addEmployeeState =>
     addEmployeeState.get('states')
@@ -61,14 +60,14 @@ const selectGetDepartmentsStatus = () =>
     addEmployeeState.get('getDepartmentsStatus')
   );
 
-  const selectAssets = () =>
+const selectAssets = () =>
   createSelector(selectAddEmployeeDomain(), addEmployeeState =>
     addEmployeeState.get('assets')
   );
 
 const selectGetAssetsStatus = () =>
   createSelector(selectAddEmployeeDomain(), addEmployeeState =>
-   addEmployeeState.get('getAssetsStatus')
+    addEmployeeState.get('getAssetsStatus')
   );
 
 const selectAddEmployeeStatus = () =>
@@ -76,8 +75,7 @@ const selectAddEmployeeStatus = () =>
     addEmployeeState.get('addEmployeeStatus')
   );
 
-
-export { 
+export {
   selectRoles,
   selectGetRolesStatus,
   selectFormDetails,
@@ -91,5 +89,5 @@ export {
   selectGetDepartmentsStatus,
   selectAssets,
   selectGetAssetsStatus,
-  selectAddEmployeeStatus
- };
+  selectAddEmployeeStatus,
+};

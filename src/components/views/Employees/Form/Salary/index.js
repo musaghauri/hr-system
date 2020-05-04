@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import { Form, Button, Segment } from "semantic-ui-react";
-import { MODE_OF_PAYMENT_OPTIONS } from "@config/constants/payment";
+import React, { Component } from 'react';
+import { Form, Button, Segment } from 'semantic-ui-react';
+import { MODE_OF_PAYMENT_OPTIONS } from '@config/constants/payment';
 
 class Salary extends Component {
   handleChange = (e, { name, value }) => {
     const { updateValue } = this.props;
-    updateValue(
-      ["formDetails", "salarySettings", name, "value"],
-      value
-    );
-  };
-  saveAndContinue = (e) => {
-    e.preventDefault();
-    this.props.nextStep();
+    updateValue(['formDetails', 'salarySettings', name, 'value'], value);
   };
 
-  back = (e) => {
+  saveAndContinue = e => {
     e.preventDefault();
-    this.props.prevStep();
+    const { nextStep } = this.props;
+    nextStep();
+  };
+
+  back = e => {
+    e.preventDefault();
+    const { prevStep } = this.props;
+    prevStep();
   };
 
   render() {
@@ -30,34 +30,70 @@ class Salary extends Component {
             <Form.Select
               type="text"
               options={MODE_OF_PAYMENT_OPTIONS}
-              label={formDetails.getIn(['salarySettings', 'paymentMode', 'label'])}
-              name={formDetails.getIn(['salarySettings', 'paymentMode', 'name'])}
-              value={formDetails.getIn([
-                "salarySettings",
-                "paymentMode",
-                "value",
+              label={formDetails.getIn([
+                'salarySettings',
+                'paymentMode',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['salarySettings', 'paymentMode', 'placeholder'])}
+              name={formDetails.getIn([
+                'salarySettings',
+                'paymentMode',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'salarySettings',
+                'paymentMode',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'salarySettings',
+                'paymentMode',
+                'placeholder',
+              ])}
               error={
                 !formDetails.getIn(['salarySettings', 'paymentMode', 'status'])
-                  ? formDetails.getIn(['salarySettings', 'paymentMode', 'errorText'])
+                  ? formDetails.getIn([
+                      'salarySettings',
+                      'paymentMode',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
             />
             <Form.Input
               type="text"
-              label={formDetails.getIn(['salarySettings', 'exGratiaOnOvertime', 'label'])}
-              name={formDetails.getIn(['salarySettings', 'exGratiaOnOvertime', 'name'])}
-              value={formDetails.getIn([
-                "salarySettings",
-                "exGratiaOnOvertime",
-                "value",
+              label={formDetails.getIn([
+                'salarySettings',
+                'exGratiaOnOvertime',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['salarySettings', 'exGratiaOnOvertime', 'placeholder'])}
+              name={formDetails.getIn([
+                'salarySettings',
+                'exGratiaOnOvertime',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'salarySettings',
+                'exGratiaOnOvertime',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'salarySettings',
+                'exGratiaOnOvertime',
+                'placeholder',
+              ])}
               error={
-                !formDetails.getIn(['salarySettings', 'exGratiaOnOvertime', 'status'])
-                  ? formDetails.getIn(['salarySettings', 'exGratiaOnOvertime', 'errorText'])
+                !formDetails.getIn([
+                  'salarySettings',
+                  'exGratiaOnOvertime',
+                  'status',
+                ])
+                  ? formDetails.getIn([
+                      'salarySettings',
+                      'exGratiaOnOvertime',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
@@ -66,32 +102,52 @@ class Salary extends Component {
               type="text"
               label={formDetails.getIn(['salarySettings', 'gratuity', 'label'])}
               name={formDetails.getIn(['salarySettings', 'gratuity', 'name'])}
-              value={formDetails.getIn([
-                "salarySettings",
-                "gratuity",
-                "value",
+              value={formDetails.getIn(['salarySettings', 'gratuity', 'value'])}
+              placeholder={formDetails.getIn([
+                'salarySettings',
+                'gratuity',
+                'placeholder',
               ])}
-              placeholder={formDetails.getIn(['salarySettings', 'gratuity', 'placeholder'])}
               error={
                 !formDetails.getIn(['salarySettings', 'gratuity', 'status'])
-                  ? formDetails.getIn(['salarySettings', 'gratuity', 'errorText'])
+                  ? formDetails.getIn([
+                      'salarySettings',
+                      'gratuity',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
             />
             <Form.Input
               type="text"
-              label={formDetails.getIn(['salarySettings', 'bankDetails', 'label'])}
-              name={formDetails.getIn(['salarySettings', 'bankDetails', 'name'])}
-              value={formDetails.getIn([
-                "salarySettings",
-                "bankDetails",
-                "value",
+              label={formDetails.getIn([
+                'salarySettings',
+                'bankDetails',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['salarySettings', 'bankDetails', 'placeholder'])}
+              name={formDetails.getIn([
+                'salarySettings',
+                'bankDetails',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'salarySettings',
+                'bankDetails',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'salarySettings',
+                'bankDetails',
+                'placeholder',
+              ])}
               error={
                 !formDetails.getIn(['salarySettings', 'bankDetails', 'status'])
-                  ? formDetails.getIn(['salarySettings', 'bankDetails', 'errorText'])
+                  ? formDetails.getIn([
+                      'salarySettings',
+                      'bankDetails',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}

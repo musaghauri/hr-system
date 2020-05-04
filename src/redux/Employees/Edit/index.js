@@ -6,15 +6,16 @@ import { createStructuredSelector } from 'reselect';
 import { submitFormData } from '@utils/helperFuncs';
 import { validateFormData } from '@utils/validations';
 import { bindActionCreators } from 'redux';
-import { 
-  resetReducer, 
-  updateValue, 
+import {
+  resetReducer,
+  updateValue,
   addAnotherEntry,
-  getStates, 
+  getStates,
   getCities,
-  editEmployee
- } from './actions';
-import { 
+  editEmployee,
+  deleteEntry,
+} from './actions';
+import {
   selectRoles,
   selectGetRolesStatus,
   selectFormDetails,
@@ -28,7 +29,7 @@ import {
   selectGetDepartmentsStatus,
   selectAssets,
   selectGetAssetsStatus,
-  selectEditEmployeeStatus
+  selectEditEmployeeStatus,
 } from './selectors';
 
 class EditEmployeeContainer extends Component {
@@ -36,20 +37,21 @@ class EditEmployeeContainer extends Component {
     const { onResetReducer } = this.props;
     onResetReducer();
   }
+
   validateForm = formData => validateFormData(formData);
 
   submitForm = formDetails => {
     const { onEditEmployee, query } = this.props;
     const { employeeId } = query;
     const employeeData = submitFormData(formDetails);
-    console.log('final',employeeData);
+    console.log('final', employeeData);
     onEditEmployee(employeeData, employeeId);
   };
 
   render() {
-    const { 
-      formDetails, 
-      onUpdateValue, 
+    const {
+      formDetails,
+      onUpdateValue,
       onAddAnotherEntry,
       onGetStates,
       onGetCities,
@@ -65,10 +67,11 @@ class EditEmployeeContainer extends Component {
       getStatesStatus,
       getDepartmentsStatus,
       getAssetsStatus,
-      editEmployeeStatus
-     } = this.props;
+      editEmployeeStatus,
+      onDeleteEntry,
+    } = this.props;
     return (
-      <EditForm 
+      <EditForm
         submitLabel="Edit Employee"
         successMessage="Employee edited successfully!"
         formDetails={formDetails}
@@ -76,6 +79,7 @@ class EditEmployeeContainer extends Component {
         addAnotherEntry={onAddAnotherEntry}
         getStates={onGetStates}
         getCities={onGetCities}
+        deleteEntry={onDeleteEntry}
         roles={roles}
         countries={countries}
         states={states}
@@ -121,6 +125,7 @@ function mapDispatchToProps(dispatch) {
     onGetStates: bindActionCreators(getStates, dispatch),
     onGetCities: bindActionCreators(getCities, dispatch),
     onEditEmployee: bindActionCreators(editEmployee, dispatch),
+    onDeleteEntry: bindActionCreators(deleteEntry, dispatch),
   };
 }
 

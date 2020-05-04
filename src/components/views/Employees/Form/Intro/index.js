@@ -1,25 +1,28 @@
-import React, { Component } from "react";
-import { Form, Button, Segment } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Form, Button, Segment } from 'semantic-ui-react';
 
 class Intro extends Component {
   handleChange = (e, { name, value }) => {
     const { updateValue } = this.props;
-    updateValue(["formDetails", name, "value"], value);
+    updateValue(['formDetails', name, 'value'], value);
   };
+
   saveAndContinue = e => {
     e.preventDefault();
-    this.props.nextStep();
+    const { nextStep } = this.props;
+    nextStep();
   };
 
   back = e => {
     e.preventDefault();
-    this.props.prevStep();
+    const { prevStep } = this.props;
+    prevStep();
   };
 
   render() {
     const { formDetails, roles, getRolesStatus } = this.props;
-    let isActive = formDetails.getIn(["isActive", "value"]);
-    let isVerified = formDetails.getIn(["isVerified", "value"]);
+    const isActive = formDetails.getIn(['isActive', 'value']);
+    const isVerified = formDetails.getIn(['isVerified', 'value']);
     return (
       <Segment>
         <Form>
@@ -30,10 +33,7 @@ class Intro extends Component {
               type="text"
               label={formDetails.getIn(['name', 'label'])}
               name={formDetails.getIn(['name', 'name'])}
-              value={formDetails.getIn([
-                "name",
-                "value",
-              ])}
+              value={formDetails.getIn(['name', 'value'])}
               placeholder={formDetails.getIn(['name', 'placeholder'])}
               error={
                 !formDetails.getIn(['name', 'status'])
@@ -47,10 +47,7 @@ class Intro extends Component {
               type="email"
               label={formDetails.getIn(['email', 'label'])}
               name={formDetails.getIn(['email', 'name'])}
-              value={formDetails.getIn([
-                "email",
-                "value",
-              ])}
+              value={formDetails.getIn(['email', 'value'])}
               placeholder={formDetails.getIn(['email', 'placeholder'])}
               error={
                 !formDetails.getIn(['email', 'status'])
@@ -66,10 +63,7 @@ class Intro extends Component {
               loading={getRolesStatus.get('loading')}
               label={formDetails.getIn(['role', 'label'])}
               name={formDetails.getIn(['role', 'name'])}
-              value={formDetails.getIn([
-                "role",
-                "value",
-              ])}
+              value={formDetails.getIn(['role', 'value'])}
               placeholder={formDetails.getIn(['role', 'placeholder'])}
               error={
                 !formDetails.getIn(['role', 'status'])
@@ -83,10 +77,7 @@ class Intro extends Component {
               type="password"
               label={formDetails.getIn(['password', 'label'])}
               name={formDetails.getIn(['password', 'name'])}
-              value={formDetails.getIn([
-                "password",
-                "value",
-              ])}
+              value={formDetails.getIn(['password', 'value'])}
               placeholder={formDetails.getIn(['password', 'placeholder'])}
               error={
                 !formDetails.getIn(['password', 'status'])
@@ -95,21 +86,25 @@ class Intro extends Component {
               }
               onChange={this.handleChange}
             />
-            </Form.Group>
+          </Form.Group>
           <Form.Group>
             <Button
-            toggle
-            name={formDetails.getIn(['isActive', 'name'])}
-            active={isActive}
-            content="isActive"
-            onClick={(e, {name})=>this.handleChange(e, {name, value: !isActive})}
+              toggle
+              name={formDetails.getIn(['isActive', 'name'])}
+              active={isActive}
+              content="isActive"
+              onClick={(e, { name }) =>
+                this.handleChange(e, { name, value: !isActive })
+              }
             />
             <Button
-            toggle
-            name={formDetails.getIn(['isVerified', 'name'])}
-            active={isVerified}
-            content="isVerified"
-            onClick={(e, {name})=>this.handleChange(e, {name, value: !isVerified})}
+              toggle
+              name={formDetails.getIn(['isVerified', 'name'])}
+              active={isVerified}
+              content="isVerified"
+              onClick={(e, { name }) =>
+                this.handleChange(e, { name, value: !isVerified })
+              }
             />
           </Form.Group>
           <Button onClick={this.back}>Back</Button>

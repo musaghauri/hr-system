@@ -6,16 +6,16 @@ import { createStructuredSelector } from 'reselect';
 import { submitFormData } from '@utils/helperFuncs';
 import { validateFormData } from '@utils/validations';
 import { bindActionCreators } from 'redux';
-import { 
-  resetReducer, 
-  updateValue, 
+import {
+  resetReducer,
+  updateValue,
   addAnotherEntry,
-  getStates, 
+  getStates,
   getCities,
   addEmployee,
-  deleteEntry
- } from './actions';
-import { 
+  deleteEntry,
+} from './actions';
+import {
   selectRoles,
   selectGetRolesStatus,
   selectFormDetails,
@@ -29,7 +29,7 @@ import {
   selectGetDepartmentsStatus,
   selectAssets,
   selectGetAssetsStatus,
-  selectAddEmployeeStatus
+  selectAddEmployeeStatus,
 } from './selectors';
 
 class AddEmployeeContainer extends Component {
@@ -43,14 +43,14 @@ class AddEmployeeContainer extends Component {
   submitForm = formDetails => {
     const { onAddEmployee } = this.props;
     const employeeData = submitFormData(formDetails);
-    console.log('final',employeeData);
+    console.log('final', employeeData);
     onAddEmployee(employeeData);
   };
 
   render() {
-    const { 
-      formDetails, 
-      onUpdateValue, 
+    const {
+      formDetails,
+      onUpdateValue,
       onAddAnotherEntry,
       onGetStates,
       onGetCities,
@@ -67,10 +67,10 @@ class AddEmployeeContainer extends Component {
       getDepartmentsStatus,
       getAssetsStatus,
       addEmployeeStatus,
-      onDeleteEntry
-     } = this.props;
+      onDeleteEntry,
+    } = this.props;
     return (
-      <AddForm 
+      <AddForm
         successMessage="Employee added successfully!"
         formDetails={formDetails}
         updateValue={onUpdateValue}

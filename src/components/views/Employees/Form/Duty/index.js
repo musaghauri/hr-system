@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Form, Button, Segment, List, Message } from "semantic-ui-react";
-import { FREQUENCY_OPTIONS } from "@config/constants/frequency";
-import { DUTY_INITIAL_STATE } from "@config/constants/duty";
-import { DateInput } from "semantic-ui-calendar-react";
+import React, { Component } from 'react';
+import { Form, Button, Segment, List, Message } from 'semantic-ui-react';
+import { FREQUENCY_OPTIONS } from '@config/constants/frequency';
+import { DUTY_INITIAL_STATE } from '@config/constants/duty';
+import { DateInput } from 'semantic-ui-calendar-react';
 import _assign from 'lodash/assign';
 
 class Duty extends Component {
@@ -13,43 +13,38 @@ class Duty extends Component {
     };
   }
 
-  handleChange = (e, { name, value })=> {
-    let { index } = this.state;
+  handleChange = (e, { name, value }) => {
+    const { index } = this.state;
     const { updateValue } = this.props;
-    updateValue(
-      ["formDetails", "duties", index, name, "value"],
-      value
-    );
+    updateValue(['formDetails', 'duties', index, name, 'value'], value);
   };
 
-  addAnotherEntry = (e) => {
+  addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails } = this.props;
-    let size = formDetails.getIn(["duties"]).size;
+    const { formDetails, addAnotherEntry } = this.props;
+    const { size } = formDetails.getIn(['duties']);
     if (size < 2) {
-      let entries = formDetails.getIn(["duties"]).toJS();
-      let value = [ ...entries, DUTY_INITIAL_STATE ];
-      this.props.addAnotherEntry(["formDetails", "duties"], value);
-      this.setState((prevState) => {
-        index: prevState.index++;
-      });
+      const entries = formDetails.getIn(['duties']).toJS();
+      const value = [...entries, DUTY_INITIAL_STATE];
+      addAnotherEntry(['formDetails', 'duties'], value);
+      this.setState({ index: size });
     }
   };
 
-  deleteEntry = (path) => {
+  deleteEntry = path => {
     const { formDetails, deleteEntry } = this.props;
-    const size = formDetails.getIn(["duties"]).size;
-    if(size > 1){
+    const { size } = formDetails.getIn(['duties']);
+    if (size > 1) {
       deleteEntry(path);
-      this.setState({index: 0});
+      this.setState({ index: 0 });
     }
-  }
+  };
 
-  handleEdit = (index) => {
+  handleEdit = index => {
     this.setState({ index });
   };
 
-  saveAndContinue = (e) => {
+  saveAndContinue = e => {
     e.preventDefault();
     const { validateForm, updateValue, handleSubmit, formDetails } = this.props;
     const modifiedUser = formDetails.toJS();
@@ -62,14 +57,20 @@ class Duty extends Component {
     }
   };
 
-  back = (e) => {
+  back = e => {
     e.preventDefault();
-    this.props.prevStep();
+    const { prevStep } = this.props;
+    prevStep();
   };
 
   render() {
-    const { formDetails, submitColor, submitStatus, successMessage } = this.props;
-    let { index } = this.state;
+    const {
+      formDetails,
+      submitColor,
+      submitStatus,
+      successMessage,
+    } = this.props;
+    const { index } = this.state;
     return (
       <Segment>
         <Form>
@@ -80,10 +81,10 @@ class Duty extends Component {
             </Message>
           )}
           {submitStatus.get('loaded') && (
-            <Message 
+            <Message
               style={{
-                'backgroundColor': '#fcfff5',
-                'color': '#2c662d',
+                backgroundColor: '#fcfff5',
+                color: '#2c662d',
               }}
             >
               {successMessage}
@@ -95,13 +96,13 @@ class Duty extends Component {
               type="text"
               label={formDetails.getIn(['duties', index, 'job', 'label'])}
               name={formDetails.getIn(['duties', index, 'job', 'name'])}
-              value={formDetails.getIn([
-                "duties",
+              value={formDetails.getIn(['duties', index, 'job', 'value'])}
+              placeholder={formDetails.getIn([
+                'duties',
                 index,
-                "job",
-                "value",
+                'job',
+                'placeholder',
               ])}
-              placeholder={formDetails.getIn(['duties', index, 'job', 'placeholder'])}
               error={
                 !formDetails.getIn(['duties', index, 'job', 'status'])
                   ? formDetails.getIn(['duties', index, 'job', 'errorText'])
@@ -114,16 +115,21 @@ class Duty extends Component {
               options={FREQUENCY_OPTIONS}
               label={formDetails.getIn(['duties', index, 'frequency', 'label'])}
               name={formDetails.getIn(['duties', index, 'frequency', 'name'])}
-              value={formDetails.getIn([
-                "duties",
+              value={formDetails.getIn(['duties', index, 'frequency', 'value'])}
+              placeholder={formDetails.getIn([
+                'duties',
                 index,
-                "frequency",
-                "value",
+                'frequency',
+                'placeholder',
               ])}
-              placeholder={formDetails.getIn(['duties', index, 'frequency', 'placeholder'])}
               error={
                 !formDetails.getIn(['duties', index, 'frequency', 'status'])
-                  ? formDetails.getIn(['duties', index, 'frequency', 'errorText'])
+                  ? formDetails.getIn([
+                      'duties',
+                      index,
+                      'frequency',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
@@ -132,41 +138,80 @@ class Duty extends Component {
           <Form.Group widths="equal">
             <DateInput
               fluid
-              dateFormat='MM-DD-YYYY'
-              dateFormat='MM-DD-YYYY'
+              dateFormat="MM-DD-YYYY"
               iconPosition="left"
-              label={formDetails.getIn(['duties', index, 'effectiveFrom', 'label'])}
-              name={formDetails.getIn(['duties', index, 'effectiveFrom', 'name'])}
-              value={formDetails.getIn([
-                "duties",
+              label={formDetails.getIn([
+                'duties',
                 index,
-                "effectiveFrom",
-                "value",
+                'effectiveFrom',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['duties', index, 'effectiveFrom', 'placeholder'])}
+              name={formDetails.getIn([
+                'duties',
+                index,
+                'effectiveFrom',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'duties',
+                index,
+                'effectiveFrom',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'duties',
+                index,
+                'effectiveFrom',
+                'placeholder',
+              ])}
               error={
                 !formDetails.getIn(['duties', index, 'effectiveFrom', 'status'])
-                  ? formDetails.getIn(['duties', index, 'effectiveFrom', 'errorText'])
+                  ? formDetails.getIn([
+                      'duties',
+                      index,
+                      'effectiveFrom',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
             />
             <DateInput
               fluid
-              dateFormat='MM-DD-YYYY'
+              dateFormat="MM-DD-YYYY"
               iconPosition="left"
-              label={formDetails.getIn(['duties', index, 'enhancedTill', 'label'])}
-              name={formDetails.getIn(['duties', index, 'enhancedTill', 'name'])}
-              value={formDetails.getIn([
-                "duties",
+              label={formDetails.getIn([
+                'duties',
                 index,
-                "enhancedTill",
-                "value",
+                'enhancedTill',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['duties', index, 'enhancedTill', 'placeholder'])}
+              name={formDetails.getIn([
+                'duties',
+                index,
+                'enhancedTill',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'duties',
+                index,
+                'enhancedTill',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'duties',
+                index,
+                'enhancedTill',
+                'placeholder',
+              ])}
               error={
                 !formDetails.getIn(['duties', index, 'enhancedTill', 'status'])
-                  ? formDetails.getIn(['duties', index, 'enhancedTill', 'errorText'])
+                  ? formDetails.getIn([
+                      'duties',
+                      index,
+                      'enhancedTill',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={this.handleChange}
@@ -175,31 +220,35 @@ class Duty extends Component {
           <Button onClick={this.addAnotherEntry}>Add More</Button>
           <h3>List of Duties</h3>
           <List celled animated ordered>
-            {formDetails.getIn(["duties"]).map((entry, index) => {
-              return (
-                <List.Item key={`duties_item_${index}`}>
-                  {`${entry.getIn(["job", "value"])}      ${entry.getIn([
-                    "frequency",
-                    "value",
-                  ])}    ${entry.getIn([
-                    "effectiveFrom",
-                    "value",
-                  ])}   ${entry.getIn(["enhancedTill", "value"])}  
+            {formDetails.getIn(['duties']).map((entry, dutiesI) => (
+              <List.Item key={`duties_item_${dutiesI}`}>
+                {`${entry.getIn(['job', 'value'])}      ${entry.getIn([
+                  'frequency',
+                  'value',
+                ])}    ${entry.getIn([
+                  'effectiveFrom',
+                  'value',
+                ])}   ${entry.getIn(['enhancedTill', 'value'])}  
                     `}
-                  <Button onClick={() => this.handleEdit(index)}>Edit</Button>
-                  <Button onClick={() => this.deleteEntry(["formDetails", "duties", index])}>Remove</Button>
-                </List.Item>
-              );
-            })}
+                <Button onClick={() => this.handleEdit(dutiesI)}>Edit</Button>
+                <Button
+                  onClick={() =>
+                    this.deleteEntry(['formDetails', 'duties', dutiesI])
+                  }
+                >
+                  Remove
+                </Button>
+              </List.Item>
+            ))}
           </List>
           <Button onClick={this.back}>Back</Button>
-          <Button 
+          <Button
             loading={submitStatus.get('loading')}
             color={submitColor}
             type="submit"
             onClick={this.saveAndContinue}
           >
-          Edit Employee
+            Edit Employee
           </Button>
         </Form>
       </Segment>

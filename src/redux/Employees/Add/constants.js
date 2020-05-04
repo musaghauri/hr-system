@@ -1,5 +1,5 @@
-export const UPDATE_VALUE = "HRMS/Employees/Add/UPDATE_VALUE";
-export const ADD_ANOTHER_ENTRY = "HRMS/Employees/Add/ADD_ANOTHER_ENTRY";
+export const UPDATE_VALUE = 'HRMS/Employees/Add/UPDATE_VALUE';
+export const ADD_ANOTHER_ENTRY = 'HRMS/Employees/Add/ADD_ANOTHER_ENTRY';
 export const RESET_REDUCER = 'HRMS/Employees/Add/RESET_REDUCER';
 
 export const GET_ROLES = 'HRMS/Employees/Add/GET_ROLES';
@@ -20,9 +20,8 @@ export const GET_CITIES_FAIL = 'HRMS/Employees/Add/GET_CITIES_FAIL';
 
 export const GET_DEPARTMENTS = 'HRMS/Employees/Add/GET_DEPARTMENTS';
 export const GET_DEPARTMENTS_SUCCESS =
-'HRMS/Employees/Add/GET_DEPARTMENTS_SUCCESS';
-export const GET_DEPARTMENTS_FAIL =
-  'HRMS/Employees/Add/GET_DEPARTMENTS_FAIL';
+  'HRMS/Employees/Add/GET_DEPARTMENTS_SUCCESS';
+export const GET_DEPARTMENTS_FAIL = 'HRMS/Employees/Add/GET_DEPARTMENTS_FAIL';
 
 export const GET_ASSETS = 'HRMS/Employees/Add/GET_ASSETS';
 export const GET_ASSETS_SUCCESS = 'HRMS/Employees/Add/GET_ASSETS_SUCCESS';

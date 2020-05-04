@@ -7,7 +7,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { resetReducer, deleteEmployee } from './actions';
-import { selectHeadings, selectEmployees, selectDeleteEmployeeStatus } from './selectors';
+import {
+  selectHeadings,
+  selectEmployees,
+  selectDeleteEmployeeStatus,
+} from './selectors';
 
 class EmployeesListContainer extends Component {
   componentWillUnmount() {
@@ -64,7 +68,11 @@ class EmployeesListContainer extends Component {
           };
         }
         if (heading.get('name') === 'department') {
-          let department = employee.getIn(['officialInformation','department', 'name']);
+          const department = employee.getIn([
+            'officialInformation',
+            'department',
+            'name',
+          ]);
           return {
             value: department && (
               <Label color="green" horizontal>
@@ -74,12 +82,11 @@ class EmployeesListContainer extends Component {
             isFunctional: false,
           };
         }
-        else{
-          return {
-            value: employee.get(heading.get('name')),
-            isFunctional: false,
-          };
-        }
+
+        return {
+          value: employee.get(heading.get('name')),
+          isFunctional: false,
+        };
       })
     );
   };

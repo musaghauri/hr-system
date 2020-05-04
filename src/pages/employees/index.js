@@ -9,6 +9,7 @@ class EmployeesList extends Component {
     store.dispatch(getEmployees());
     return { isServer };
   }
+
   render() {
     return <EmployeesListContainer {...this.props} />;
   }

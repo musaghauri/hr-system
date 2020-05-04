@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { 
+import {
   RESET_REDUCER,
   GET_EMPLOYEES,
   GET_EMPLOYEES_SUCCESS,
@@ -102,4 +102,3 @@ function employeesListReducer(state = initialState, action) {
 }
 
 export default employeesListReducer;
-

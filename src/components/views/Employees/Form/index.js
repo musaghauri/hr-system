@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import Personal from "./Personal";
-import Official from "./Official";
-import Salary from "./Salary";
-import LeaveBalance from "./LeaveBalance";
-import Experience from "./Experience";
-import Duty from "./Duty";
-import Dependent from "./Dependent";
-import Contact from "./Contact";
-import CompanyAsset from "./CompanyAsset";
-import Academic from "./Academic";
-import Intro from "./Intro";
-
+import React, { Component } from 'react';
 import _assign from 'lodash/assign';
 import _pick from 'lodash/pick';
+
+import Personal from './Personal';
+import Official from './Official';
+import Salary from './Salary';
+import LeaveBalance from './LeaveBalance';
+import Experience from './Experience';
+import Duty from './Duty';
+import Dependent from './Dependent';
+import Contact from './Contact';
+import CompanyAsset from './CompanyAsset';
+import Academic from './Academic';
+import Intro from './Intro';
 
 const ATTRIBUTES = [
   ['name', 'email', 'role', 'password', 'isActive', 'isVerified'],
@@ -29,10 +29,13 @@ const ATTRIBUTES = [
 ];
 
 class EmployeeForm extends Component {
-  state = {
-    step: 0,
-  };
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 3,
+    };
+  }
+
   nextStep = () => {
     const { step } = this.state;
     const { validateForm, updateValue, formDetails } = this.props;
@@ -41,7 +44,7 @@ class EmployeeForm extends Component {
     const newFormDetails = _assign(formDetails.toJS(), result.updatedFormData);
     updateValue(['formDetails'], newFormDetails);
     if (result.validateFlag && step < 10) {
-        this.setState({step: step + 1});
+      this.setState({ step: step + 1 });
     }
   };
 
@@ -79,7 +82,7 @@ class EmployeeForm extends Component {
       submitStatus,
       successMessage,
       getRolesStatus,
-      deleteEntry
+      deleteEntry,
     } = this.props;
     switch (step) {
       case 0:
@@ -222,6 +225,8 @@ class EmployeeForm extends Component {
             addAnotherEntry={addAnotherEntry}
           />
         );
+      default:
+        return <h3>Loading...</h3>;
     }
   }
 }

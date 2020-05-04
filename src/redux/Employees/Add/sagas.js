@@ -3,20 +3,20 @@ import request from '@utils/request';
 import { createRequestOptions } from '@utils/helperFuncs';
 import { NEXT_API_URL } from '@config';
 import cookie from '@utils/cookie';
-import { 
+import {
   GET_ROLES,
-  GET_COUNTRIES, 
-  GET_STATES, 
+  GET_COUNTRIES,
+  GET_STATES,
   GET_CITIES,
   GET_DEPARTMENTS,
   GET_ASSETS,
-  ADD_EMPLOYEE
- } from './constants';
-import { 
+  ADD_EMPLOYEE,
+} from './constants';
+import {
   getRolesSuccess,
   getRolesFail,
-  getCountriesSuccess, 
-  getCountriesFail, 
+  getCountriesSuccess,
+  getCountriesFail,
   getStatesSuccess,
   getStatesFail,
   getCitiesSuccess,
@@ -26,8 +26,8 @@ import {
   getAssetsSuccess,
   getAssetsFail,
   addEmployeeSuccess,
-  addEmployeeFail
- } from './actions';
+  addEmployeeFail,
+} from './actions';
 
 export function* getRoles() {
   const token = cookie.loadAuthCookie('token');
@@ -36,13 +36,15 @@ export function* getRoles() {
   const options = createRequestOptions('GET', null, requestHeader);
   const roles = yield call(request, requestURL, options);
   if (!roles.err) {
-    yield put(getRolesSuccess(
-      roles.data.items.map(role => ({
-        key: `role_${role._id}`,
-        value: role._id,
-        text: role.name,
-      }))
-    ));
+    yield put(
+      getRolesSuccess(
+        roles.data.items.map(role => ({
+          key: `role_${role._id}`,
+          value: role._id,
+          text: role.name,
+        }))
+      )
+    );
   } else {
     yield put(getRolesFail(roles.err.reason));
   }
@@ -97,13 +99,15 @@ export function* getCities(action) {
   const options = createRequestOptions('GET', null, requestHeader);
   const cities = yield call(request, requestURL, options);
   if (!cities.err) {
-    yield put(getCitiesSuccess(
-      cities.data.items.map(city => ({
-        key: `country_${city._id}`,
-        value: city._id,
-        text: city.name,
-      }))
-    ));
+    yield put(
+      getCitiesSuccess(
+        cities.data.items.map(city => ({
+          key: `country_${city._id}`,
+          value: city._id,
+          text: city.name,
+        }))
+      )
+    );
   } else {
     yield put(getCitiesFail(cities.err.reason));
   }
@@ -116,13 +120,15 @@ export function* getDepartments() {
   const options = createRequestOptions('GET', null, requestHeader);
   const departments = yield call(request, requestURL, options);
   if (!departments.err) {
-    yield put(getDepartmentsSuccess(
-      departments.data.items.map(department => ({
-        key: `country_${department._id}`,
-        value: department._id,
-        text: department.name,
-      }))
-    ));
+    yield put(
+      getDepartmentsSuccess(
+        departments.data.items.map(department => ({
+          key: `country_${department._id}`,
+          value: department._id,
+          text: department.name,
+        }))
+      )
+    );
   } else {
     yield put(getDepartmentsFail(departments.err.reason));
   }
@@ -135,13 +141,15 @@ export function* getAssets() {
   const options = createRequestOptions('GET', null, requestHeader);
   const assets = yield call(request, requestURL, options);
   if (!assets.err) {
-    yield put(getAssetsSuccess(
-      assets.data.items.map(asset => ({
-        key: `country_${asset._id}`,
-        value: asset._id,
-        text: asset.name,
-      }))
-    ));
+    yield put(
+      getAssetsSuccess(
+        assets.data.items.map(asset => ({
+          key: `country_${asset._id}`,
+          value: asset._id,
+          text: asset.name,
+        }))
+      )
+    );
   } else {
     yield put(getAssetsFail(assets.err.reason));
   }

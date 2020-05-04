@@ -1,19 +1,22 @@
-import React, { Component } from "react";
-import { Form, Button, Segment } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Form, Button, Segment } from 'semantic-ui-react';
 
 class LeaveBalance extends Component {
   handleChange = (e, { name, value }) => {
     const { updateValue } = this.props;
-    updateValue(["formDetails", name, "value"], value);
+    updateValue(['formDetails', name, 'value'], value);
   };
+
   saveAndContinue = e => {
     e.preventDefault();
-    this.props.nextStep();
+    const { nextStep } = this.props;
+    nextStep();
   };
 
   back = e => {
     e.preventDefault();
-    this.props.prevStep();
+    const { prevStep } = this.props;
+    prevStep();
   };
 
   render() {
@@ -28,10 +31,7 @@ class LeaveBalance extends Component {
               type="text"
               label={formDetails.getIn(['leaveBalance', 'label'])}
               name={formDetails.getIn(['leaveBalance', 'name'])}
-              value={formDetails.getIn([
-                "leaveBalance",
-                "value",
-              ])}
+              value={formDetails.getIn(['leaveBalance', 'value'])}
               placeholder={formDetails.getIn(['leaveBalance', 'placeholder'])}
               error={
                 !formDetails.getIn(['leaveBalance', 'status'])

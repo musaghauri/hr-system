@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Form, Button, Segment, List } from "semantic-ui-react";
-import { DateInput } from "semantic-ui-calendar-react";
-import { ASSET_INITIAL_STATE } from "@config/constants/asset";
+import React, { Component } from 'react';
+import { Form, Button, Segment, List } from 'semantic-ui-react';
+import { DateInput } from 'semantic-ui-calendar-react';
+import { ASSET_INITIAL_STATE } from '@config/constants/asset';
 
 class CompanyAsset extends Component {
   constructor(props) {
@@ -12,62 +12,64 @@ class CompanyAsset extends Component {
   }
 
   handleChange = (name, value) => {
-    let { index } = this.state;
+    const { index } = this.state;
     const { updateValue } = this.props;
-    updateValue(
-      ["formDetails", "companyAssets", index, name, "value"],
-      value
-    );
+    updateValue(['formDetails', 'companyAssets', index, name, 'value'], value);
   };
 
-  addAnotherEntry = (e) => {
+  addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails } = this.props;
-    let size = formDetails.getIn(["companyAssets"]).size;
+    const { formDetails, addAnotherEntry } = this.props;
+    const { size } = formDetails.getIn(['companyAssets']);
     if (size < 2) {
-      let contacts = formDetails.getIn(["companyAssets"]).toJS();
+      const contacts = formDetails.getIn(['companyAssets']).toJS();
       console.log(contacts);
-      let value = [ ...contacts, ASSET_INITIAL_STATE ];
-      this.props.addAnotherEntry(["formDetails", "companyAssets"], value);
-      this.setState((prevState) => {
-        index: prevState.index++;
-      });
+      const value = [...contacts, ASSET_INITIAL_STATE];
+      addAnotherEntry(['formDetails', 'companyAssets'], value);
+      this.setState({ index: size });
     }
   };
 
-  deleteEntry = (path) => {
+  deleteEntry = path => {
     const { formDetails, deleteEntry } = this.props;
-    const size = formDetails.getIn(["companyAssets"]).size;
-    if(size > 1){
+    const { size } = formDetails.getIn(['companyAssets']);
+    if (size > 1) {
       deleteEntry(path);
-      this.setState({index: 0});
+      this.setState({ index: 0 });
     }
-  }
+  };
 
-  handleEdit = (index) => {
+  handleEdit = index => {
     this.setState({ index });
   };
 
-  saveAndContinue = (e) => {
+  saveAndContinue = e => {
     e.preventDefault();
-    this.props.nextStep();
+    const { nextStep } = this.props;
+    nextStep();
   };
 
-  back = (e) => {
+  back = e => {
     e.preventDefault();
-    this.props.prevStep();
+    const { prevStep } = this.props;
+    prevStep();
   };
 
   render() {
     const { formDetails, assets, getAssetsStatus } = this.props;
-    let { index } = this.state;
-    let returnable = formDetails.getIn([
-      "companyAssets",
+    const { index } = this.state;
+    const returnable = formDetails.getIn([
+      'companyAssets',
       index,
-      "returnable",
-      "value",
+      'returnable',
+      'value',
     ]);
-    let status = formDetails.getIn(["companyAssets", index, "status", "value"]);
+    const status = formDetails.getIn([
+      'companyAssets',
+      index,
+      'status',
+      'value',
+    ]);
     return (
       <Segment>
         <Form>
@@ -79,34 +81,59 @@ class CompanyAsset extends Component {
               loading={getAssetsStatus.get('loading')}
               label={formDetails.getIn(['companyAssets', index, 'id', 'label'])}
               name={formDetails.getIn(['companyAssets', index, 'id', 'name'])}
-              value={formDetails.getIn([
-                "companyAssets",
+              value={formDetails.getIn(['companyAssets', index, 'id', 'value'])}
+              placeholder={formDetails.getIn([
+                'companyAssets',
                 index,
-                "id",
-                "value",
+                'id',
+                'placeholder',
               ])}
-              placeholder={formDetails.getIn(['companyAssets', index, 'id', 'placeholder'])}
               error={
                 !formDetails.getIn(['companyAssets', index, 'id', 'status'])
-                  ? formDetails.getIn(['companyAssets', index, 'id', 'errorText'])
+                  ? formDetails.getIn([
+                      'companyAssets',
+                      index,
+                      'id',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={(e, { name, value }) => this.handleChange(name, value)}
             />
             <Form.Input
               type="text"
-              label={formDetails.getIn(['companyAssets', index, 'detail', 'label'])}
-              name={formDetails.getIn(['companyAssets', index, 'detail', 'name'])}
-              value={formDetails.getIn([
-                "companyAssets",
+              label={formDetails.getIn([
+                'companyAssets',
                 index,
-                "detail",
-                "value",
+                'detail',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['companyAssets', index, 'detail', 'placeholder'])}
+              name={formDetails.getIn([
+                'companyAssets',
+                index,
+                'detail',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'companyAssets',
+                index,
+                'detail',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'companyAssets',
+                index,
+                'detail',
+                'placeholder',
+              ])}
               error={
                 !formDetails.getIn(['companyAssets', index, 'detail', 'status'])
-                  ? formDetails.getIn(['companyAssets', index, 'detail', 'errorText'])
+                  ? formDetails.getIn([
+                      'companyAssets',
+                      index,
+                      'detail',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={(e, { name, value }) => this.handleChange(name, value)}
@@ -129,20 +156,45 @@ class CompanyAsset extends Component {
             />
             <DateInput
               fluid
-              dateFormat='MM-DD-YYYY'
+              dateFormat="MM-DD-YYYY"
               iconPosition="left"
-              label={formDetails.getIn(['companyAssets', index, 'issueDate', 'label'])}
-              name={formDetails.getIn(['companyAssets', index, 'issueDate', 'name'])}
-              value={formDetails.getIn([
-                "companyAssets",
+              label={formDetails.getIn([
+                'companyAssets',
                 index,
-                "issueDate",
-                "value",
+                'issueDate',
+                'label',
               ])}
-              placeholder={formDetails.getIn(['companyAssets', index, 'issueDate', 'placeholder'])}
+              name={formDetails.getIn([
+                'companyAssets',
+                index,
+                'issueDate',
+                'name',
+              ])}
+              value={formDetails.getIn([
+                'companyAssets',
+                index,
+                'issueDate',
+                'value',
+              ])}
+              placeholder={formDetails.getIn([
+                'companyAssets',
+                index,
+                'issueDate',
+                'placeholder',
+              ])}
               error={
-                !formDetails.getIn(['companyAssets', index, 'issueDate', 'status'])
-                  ? formDetails.getIn(['companyAssets', index, 'issueDate', 'errorText'])
+                !formDetails.getIn([
+                  'companyAssets',
+                  index,
+                  'issueDate',
+                  'status',
+                ])
+                  ? formDetails.getIn([
+                      'companyAssets',
+                      index,
+                      'issueDate',
+                      'errorText',
+                    ])
                   : false
               }
               onChange={(e, { name, value }) => this.handleChange(name, value)}
@@ -151,25 +203,37 @@ class CompanyAsset extends Component {
           <Button onClick={this.addAnotherEntry}>Add More</Button>
           <h3>List of Company Assets</h3>
           <List celled animated ordered>
-            {formDetails.getIn(["companyAssets"]).map((entry, index) => {
-              return (
-                <List.Item key={`companyAssets_item_${index}`}>
-                  {`${entry.getIn(["id", "value"])}      ${entry.getIn([
-                    "detail",
-                    "value",
+            {formDetails
+              .getIn(['companyAssets'])
+              .map((entry, companyAssetsI) => (
+                <List.Item key={`companyAssets_item_${companyAssetsI}`}>
+                  {`${entry.getIn(['id', 'value'])}      ${entry.getIn([
+                    'detail',
+                    'value',
                   ])}    ${entry.getIn([
-                    "returnable",
-                    "value",
-                  ])}   ${entry.getIn(["status", "value"])}   ${entry.getIn([
-                    "issueDate",
-                    "value",
+                    'returnable',
+                    'value',
+                  ])}   ${entry.getIn(['status', 'value'])}   ${entry.getIn([
+                    'issueDate',
+                    'value',
                   ])}    
                     `}
-                  <Button onClick={() => this.handleEdit(index)}>Edit</Button>
-                  <Button onClick={() => this.deleteEntry(["formDetails", "companyAssets", index])}>Remove</Button>
+                  <Button onClick={() => this.handleEdit(companyAssetsI)}>
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={() =>
+                      this.deleteEntry([
+                        'formDetails',
+                        'companyAssets',
+                        companyAssetsI,
+                      ])
+                    }
+                  >
+                    Remove
+                  </Button>
                 </List.Item>
-              );
-            })}
+              ))}
           </List>
           <Button onClick={this.back}>Back</Button>
           <Button onClick={this.saveAndContinue}>Save And Continue</Button>
