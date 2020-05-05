@@ -143,7 +143,7 @@ const userSchema = new Schema(
         },
         detail: String,
         returnable: Boolean,
-        status: String,
+        status: Boolean,
         issueDate: Date
       },
     ],

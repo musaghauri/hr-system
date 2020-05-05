@@ -32,7 +32,7 @@ class EmployeeForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 3,
+      step: 0,
     };
   }
 
