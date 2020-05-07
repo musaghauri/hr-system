@@ -81,54 +81,53 @@ export const loadFormDetails = (formDetails, user, uploadImageStatus) => {
   if (tempFormDetails) {
     Object.keys(tempFormDetails).forEach(item => {
       const itemValue = user[item];
-        if (['logo', 'coverPhoto', 'profilePicture'].includes(item)) {
-          tempFormDetails[item].value = itemValue;
-          uploadImageStatus[item] = {
+      if (['logo', 'coverPhoto', 'profilePicture'].includes(item)) {
+        tempFormDetails[item].value = itemValue;
+        uploadImageStatus[item] = {
+          loading: false,
+          loaded: true,
+          error: false,
+        };
+      } else if (item === 'images') {
+        itemValue.map((image, i) => {
+          tempFormDetails[item].value[`image${i}`] = image;
+          uploadImageStatus[`image${i}`] = {
             loading: false,
             loaded: true,
             error: false,
           };
-        } else if (item === 'images') {
-          itemValue.map((image, i) => {
-            tempFormDetails[item].value[`image${i}`] = image;
-            uploadImageStatus[`image${i}`] = {
-              loading: false,
-              loaded: true,
-              error: false,
-            };
+        });
+      } else if (typeof itemValue === 'object') {
+        if (Array.isArray(itemValue)) {
+          // Array Object
+          itemValue.map((arrayItem, itemI) => {
+            tempFormDetails[item][itemI] = _cloneDeep(tempFormDetails[item][0]);
+            Object.keys(arrayItem).forEach(itemKey => {
+              if (tempFormDetails[item][itemI][itemKey]) {
+                tempFormDetails[item][itemI][itemKey].value =
+                  arrayItem[itemKey];
+              }
+            });
           });
-        } else if (typeof itemValue === 'object') {
-          if (Array.isArray(itemValue)) {
-            // Array Object
-            itemValue.map((arrayItem, itemI) => {
-              tempFormDetails[item][itemI] = _cloneDeep(tempFormDetails[item][0]);
-              Object.keys(arrayItem).forEach(itemKey => {
-                  if (tempFormDetails[item][itemI][itemKey]) {
-                    tempFormDetails[item][itemI][itemKey].value = arrayItem[itemKey];
-                  }
-              });
-            });
-          } else {
-            // JSON Object
-            Object.keys(itemValue).forEach(nestedItem => {
-              const nestedItemValue = user[item][nestedItem];
-                if (nestedItem === 'state') {
-                  tempFormDetails[item][nestedItem].value = nestedItemValue._id;
-                  tempFormDetails[item].country.value =
-                    nestedItemValue.country._id;
-                }
-                if (nestedItem === 'city') {
-                  tempFormDetails[item][nestedItem].value = nestedItemValue._id;
-                  tempFormDetails[item].state.value = nestedItemValue.state._id;
-                  tempFormDetails[item].country.value =
-                    nestedItemValue.state.country._id;
-                } else
-                  tempFormDetails[item][nestedItem].value = nestedItemValue;
-            });
-          }
         } else {
-          tempFormDetails[item].value = itemValue;
+          // JSON Object
+          Object.keys(itemValue).forEach(nestedItem => {
+            const nestedItemValue = user[item][nestedItem];
+            if (nestedItem === 'state') {
+              tempFormDetails[item][nestedItem].value = nestedItemValue._id;
+              tempFormDetails[item].country.value = nestedItemValue.country._id;
+            }
+            if (nestedItem === 'city') {
+              tempFormDetails[item][nestedItem].value = nestedItemValue._id;
+              tempFormDetails[item].state.value = nestedItemValue.state._id;
+              tempFormDetails[item].country.value =
+                nestedItemValue.state.country._id;
+            } else tempFormDetails[item][nestedItem].value = nestedItemValue;
+          });
         }
+      } else {
+        tempFormDetails[item].value = itemValue;
+      }
     });
   }
   console.log({ tempFormDetails });

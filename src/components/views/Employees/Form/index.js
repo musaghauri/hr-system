@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import _assign from 'lodash/assign';
 import _pick from 'lodash/pick';
+import _times from 'lodash/times';
+import { Button, Grid, Segment, Icon } from 'semantic-ui-react';
 
 import Personal from './Personal';
 import Official from './Official';
 import Salary from './Salary';
-import LeaveBalance from './LeaveBalance';
+// import LeaveBalance from './LeaveBalance';
 import Experience from './Experience';
 import Duty from './Duty';
 import Dependent from './Dependent';
@@ -32,14 +34,15 @@ class EmployeeForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 0,
+      step: 1,
+      totalSteps: 10,
     };
   }
 
   nextStep = () => {
     const { step } = this.state;
     const { validateForm, updateValue, formDetails } = this.props;
-    const modifiedData = _pick(formDetails.toJS(), ATTRIBUTES[step]);
+    const modifiedData = _pick(formDetails.toJS(), ATTRIBUTES[step - 1]);
     const result = validateForm(modifiedData);
     const newFormDetails = _assign(formDetails.toJS(), result.updatedFormData);
     updateValue(['formDetails'], newFormDetails);
@@ -57,8 +60,7 @@ class EmployeeForm extends Component {
     }
   };
 
-  render() {
-    const { step } = this.state;
+  renderStepForm = step => {
     const {
       formDetails,
       updateValue,
@@ -71,6 +73,7 @@ class EmployeeForm extends Component {
       cities,
       departments,
       assets,
+      submitLabel,
       submitColor,
       getStates,
       getCities,
@@ -85,7 +88,7 @@ class EmployeeForm extends Component {
       deleteEntry,
     } = this.props;
     switch (step) {
-      case 0:
+      case 1:
         return (
           <Intro
             formDetails={formDetails}
@@ -94,10 +97,9 @@ class EmployeeForm extends Component {
             roles={roles}
             getRolesStatus={getRolesStatus}
             nextStep={this.nextStep}
-            prevStep={this.prevStep}
           />
         );
-      case 1:
+      case 2:
         return (
           <Personal
             formDetails={formDetails}
@@ -115,7 +117,7 @@ class EmployeeForm extends Component {
             prevStep={this.prevStep}
           />
         );
-      case 2:
+      case 3:
         return (
           <Official
             formDetails={formDetails}
@@ -127,19 +129,20 @@ class EmployeeForm extends Component {
             prevStep={this.prevStep}
           />
         );
-      case 3:
+      case 4:
         return (
           <Contact
             formDetails={formDetails}
             validateForm={validateForm}
             updateValue={updateValue}
             deleteEntry={deleteEntry}
+            makeRows={this.makeRows}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
           />
         );
-      case 4:
+      case 5:
         return (
           <Salary
             formDetails={formDetails}
@@ -149,25 +152,14 @@ class EmployeeForm extends Component {
             prevStep={this.prevStep}
           />
         );
-      case 5:
+      case 6:
         return (
           <Academic
             formDetails={formDetails}
             validateForm={validateForm}
             updateValue={updateValue}
             deleteEntry={deleteEntry}
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            addAnotherEntry={addAnotherEntry}
-          />
-        );
-      case 6:
-        return (
-          <Experience
-            formDetails={formDetails}
-            validateForm={validateForm}
-            updateValue={updateValue}
-            deleteEntry={deleteEntry}
+            makeRows={this.makeRows}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -175,17 +167,31 @@ class EmployeeForm extends Component {
         );
       case 7:
         return (
-          <Dependent
+          <Experience
             formDetails={formDetails}
             validateForm={validateForm}
             updateValue={updateValue}
             deleteEntry={deleteEntry}
+            makeRows={this.makeRows}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
           />
         );
       case 8:
+        return (
+          <Dependent
+            formDetails={formDetails}
+            validateForm={validateForm}
+            updateValue={updateValue}
+            deleteEntry={deleteEntry}
+            makeRows={this.makeRows}
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            addAnotherEntry={addAnotherEntry}
+          />
+        );
+      case 9:
         return (
           <CompanyAsset
             formDetails={formDetails}
@@ -194,21 +200,22 @@ class EmployeeForm extends Component {
             deleteEntry={deleteEntry}
             assets={assets}
             getAssetsStatus={getAssetsStatus}
+            makeRows={this.makeRows}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
           />
         );
-      case 9:
-        return (
-          <LeaveBalance
-            formDetails={formDetails}
-            validateForm={validateForm}
-            updateValue={updateValue}
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-          />
-        );
+      // case 9:
+      //   return (
+      //     <LeaveBalance
+      //       formDetails={formDetails}
+      //       validateForm={validateForm}
+      //       updateValue={updateValue}
+      //       nextStep={this.nextStep}
+      //       prevStep={this.prevStep}
+      //     />
+      //   );
       case 10:
         return (
           <Duty
@@ -216,10 +223,12 @@ class EmployeeForm extends Component {
             updateValue={updateValue}
             handleSubmit={handleSubmit}
             deleteEntry={deleteEntry}
+            submitLabel={submitLabel}
             submitColor={submitColor}
             submitStatus={submitStatus}
             validateForm={validateForm}
             successMessage={successMessage}
+            makeRows={this.makeRows}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -228,6 +237,75 @@ class EmployeeForm extends Component {
       default:
         return <h3>Loading...</h3>;
     }
+  };
+
+  goToStep = step => this.setState({ step });
+
+  makeRows = (headings, items, handleEdit, deleteEntry) =>
+    items.toArray().map((item, itemI) =>
+      headings.toArray().map(heading => {
+        if (heading.get('name') === 'edit') {
+          return {
+            value: <Icon name="edit" color="yellow" />,
+            isFunctional: true,
+            handleChange: () => handleEdit(itemI),
+          };
+        }
+        if (heading.get('name') === 'remove') {
+          return {
+            value: <Icon name="trash alternate" color="red" />,
+            isFunctional: true,
+            handleChange: () =>
+              deleteEntry(['formDetails', 'academics', itemI]),
+          };
+        }
+        if (heading.get('name') === 'status') {
+          console.log(item.getIn(['status', 'value']).toString());
+        }
+        return {
+          value: item.getIn([heading.get('name'), 'value']).toString(),
+          isFunctional: false,
+        };
+      })
+    );
+
+  render() {
+    const { step, totalSteps } = this.state;
+    return (
+      <>
+        <Grid columns={2} centered>
+          <Grid.Row verticalAlign="middle">
+            <Grid.Column width={10}>
+              <Segment>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    marginBottom: '10px',
+                  }}
+                >
+                  {_times(totalSteps, i => (
+                    <Button
+                      key={`button_${i + 1}`}
+                      icon
+                      color="blue"
+                      circular
+                      active={step === i + 1}
+                      // onClick={() => this.goToStep(i + 1)}
+                    >
+                      {i + 1}
+                    </Button>
+                  ))}
+                </div>
+                {this.renderStepForm(step)}
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </>
+    );
   }
 }
 

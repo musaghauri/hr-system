@@ -1,68 +1,97 @@
 import React, { Component } from 'react';
-import { Header, Grid, Segment, Tab } from 'semantic-ui-react';
-import Link from 'next/link';
+import { Tab } from 'semantic-ui-react';
+import Personal from './Personal';
+import Official from './Official';
+import Contact from './Contact';
+import Salary from './Salary';
+import Academic from './Academic';
+import Experience from './Experience';
+import Dependent from './Dependent';
+import Asset from './Asset';
+import Duty from './Duty';
 
 class ViewEmployee extends Component {
   render() {
-    const panes = [
-      // { menuItem: 'Tab 1', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
-      // { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-      // { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
-    ];
     const { employee } = this.props;
-    // employee.toArray().map(tabHeading =>{
-    //   // console.log({tabHeading})
-    // })
-    // let panes = [];
-    Object.keys(employee.toJS()).map(key => {
-      panes.push({
-        menuItem: key,
+    const panes = [
+      {
+        menuItem: 'Personal Information',
         render: () => (
           <Tab.Pane>
-            {Object.keys(employee[key]).map(subHeading => (
-              <h1>{subHeading}</h1>
-            ))}
+            <Personal employee={employee} />
           </Tab.Pane>
         ),
-      });
-    });
-    console.log(panes);
+      },
+      {
+        menuItem: 'Official Information',
+        render: () => (
+          <Tab.Pane>
+            <Official info={employee.get('officialInformation')} />
+          </Tab.Pane>
+        ),
+      },
+      {
+        menuItem: 'Contact Information',
+        render: () => (
+          <Tab.Pane>
+            <Contact info={employee.get('contactInformation')} />
+          </Tab.Pane>
+        ),
+      },
+      {
+        menuItem: 'Salary Settings',
+        render: () => (
+          <Tab.Pane>
+            <Salary info={employee.get('salarySettings')} />
+          </Tab.Pane>
+        ),
+      },
+      {
+        menuItem: 'Academics',
+        render: () => (
+          <Tab.Pane>
+            <Academic info={employee.get('academics')} />
+          </Tab.Pane>
+        ),
+      },
+      {
+        menuItem: 'Experience',
+        render: () => (
+          <Tab.Pane>
+            <Experience info={employee.get('experience')} />
+          </Tab.Pane>
+        ),
+      },
+      {
+        menuItem: 'Dependents',
+        render: () => (
+          <Tab.Pane>
+            <Dependent info={employee.get('dependents')} />
+          </Tab.Pane>
+        ),
+      },
+      {
+        menuItem: 'Assets',
+        render: () => (
+          <Tab.Pane>
+            <Asset info={employee.get('companyAssets')} />
+          </Tab.Pane>
+        ),
+      },
+      {
+        menuItem: 'Duties',
+        render: () => (
+          <Tab.Pane>
+            <Duty info={employee.get('duties')} />
+          </Tab.Pane>
+        ),
+      },
+    ];
     return (
-      <Grid columns={4} centered style={{ marginTop: '200px' }}>
-        <Grid.Row verticalAlign="middle">
-          <Grid.Column>
-            <Segment>
-              <div>
-                <Header as="h1">Employee</Header>
-              </div>
-              <div>
-                <Header as="h3">
-                  Name
-                  <Header.Subheader>{employee.get('name')}</Header.Subheader>
-                </Header>
-              </div>
-              <div>
-                <Header as="h3">
-                  Email
-                  <Header.Subheader>{employee.get('email')}</Header.Subheader>
-                </Header>
-              </div>
-              <div>
-                <Header as="h3">
-                  Role
-                  <Header.Subheader>
-                    {employee.getIn(['role', 'name'])}
-                  </Header.Subheader>
-                </Header>
-              </div>
-              <Link href="/employees">
-                <a>Back to Employees</a>
-              </Link>
-            </Segment>
-            {/* <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} /> */}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <Tab
+        menu={{ fluid: true, vertical: true, tabular: true }}
+        panes={panes}
+      />
     );
   }
 }

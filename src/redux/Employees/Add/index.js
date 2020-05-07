@@ -71,6 +71,7 @@ class AddEmployeeContainer extends Component {
     } = this.props;
     return (
       <AddForm
+        submitLabel="Create Employee"
         successMessage="Employee added successfully!"
         formDetails={formDetails}
         updateValue={onUpdateValue}

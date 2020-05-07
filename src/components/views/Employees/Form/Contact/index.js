@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
-import { Form, Button, Segment, List } from 'semantic-ui-react';
+import { Form, Button, Header } from 'semantic-ui-react';
 import { TYPE_OPTIONS } from '@config/constants/type';
 import { CONTACT_INITIAL_STATE } from '@config/constants/contact';
+import { fromJS } from 'immutable';
+import TableGenerator from '@components/widgets/TableGenerator';
 
 class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
       index: 0,
+      headings: fromJS([
+        {
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          label: 'Type',
+          name: 'type',
+        },
+        {
+          label: 'Detail',
+          name: 'detail',
+        },
+        {
+          label: 'Edit',
+          name: 'edit',
+        },
+        {
+          label: 'Remove',
+          name: 'remove',
+        },
+      ]),
     };
   }
 
@@ -30,7 +54,7 @@ class Contact extends Component {
     nextStep();
   };
 
-  back = e => {
+  Previous = e => {
     e.preventDefault();
     const { prevStep } = this.props;
     prevStep();
@@ -58,176 +82,163 @@ class Contact extends Component {
   };
 
   render() {
-    const { formDetails } = this.props;
-    const { index } = this.state;
+    const { formDetails, makeRows } = this.props;
+    const { index, headings } = this.state;
+    const contacts = makeRows(
+      headings,
+      formDetails.getIn(['contactInformation']),
+      this.handleEdit,
+      this.deleteEntry
+    );
     return (
-      <Segment>
-        <Form>
-          <h1 className="ui centered">Enter Contact Details</h1>
-          <Form.Group widths="equal">
-            <Form.Input
-              type="text"
-              label={formDetails.getIn([
+      <Form>
+        <Header textAlign="center" as="h3">
+          Contact Information
+        </Header>
+        <Form.Group widths="equal">
+          <Form.Input
+            type="text"
+            label={formDetails.getIn([
+              'contactInformation',
+              index,
+              'title',
+              'label',
+            ])}
+            name={formDetails.getIn([
+              'contactInformation',
+              index,
+              'title',
+              'name',
+            ])}
+            value={formDetails.getIn([
+              'contactInformation',
+              index,
+              'title',
+              'value',
+            ])}
+            placeholder={formDetails.getIn([
+              'contactInformation',
+              index,
+              'title',
+              'placeholder',
+            ])}
+            error={
+              !formDetails.getIn([
                 'contactInformation',
                 index,
                 'title',
-                'label',
-              ])}
-              name={formDetails.getIn([
-                'contactInformation',
-                index,
-                'title',
-                'name',
-              ])}
-              value={formDetails.getIn([
-                'contactInformation',
-                index,
-                'title',
-                'value',
-              ])}
-              placeholder={formDetails.getIn([
-                'contactInformation',
-                index,
-                'title',
-                'placeholder',
-              ])}
-              error={
-                !formDetails.getIn([
-                  'contactInformation',
-                  index,
-                  'title',
-                  'status',
-                ])
-                  ? formDetails.getIn([
-                      'contactInformation',
-                      index,
-                      'title',
-                      'errorText',
-                    ])
-                  : false
-              }
-              onChange={this.handleChange}
-            />
-            <Form.Select
-              type="text"
-              options={TYPE_OPTIONS}
-              label={formDetails.getIn([
-                'contactInformation',
-                index,
-                'type',
-                'label',
-              ])}
-              name={formDetails.getIn([
+                'status',
+              ])
+                ? formDetails.getIn([
+                    'contactInformation',
+                    index,
+                    'title',
+                    'errorText',
+                  ])
+                : false
+            }
+            onChange={this.handleChange}
+          />
+          <Form.Select
+            type="text"
+            options={TYPE_OPTIONS}
+            label={formDetails.getIn([
+              'contactInformation',
+              index,
+              'type',
+              'label',
+            ])}
+            name={formDetails.getIn([
+              'contactInformation',
+              index,
+              'type',
+              'name',
+            ])}
+            value={formDetails.getIn([
+              'contactInformation',
+              index,
+              'type',
+              'value',
+            ])}
+            placeholder={formDetails.getIn([
+              'contactInformation',
+              index,
+              'type',
+              'placeholder',
+            ])}
+            error={
+              !formDetails.getIn([
                 'contactInformation',
                 index,
                 'type',
-                'name',
-              ])}
-              value={formDetails.getIn([
-                'contactInformation',
-                index,
-                'type',
-                'value',
-              ])}
-              placeholder={formDetails.getIn([
-                'contactInformation',
-                index,
-                'type',
-                'placeholder',
-              ])}
-              error={
-                !formDetails.getIn([
-                  'contactInformation',
-                  index,
-                  'type',
-                  'status',
-                ])
-                  ? formDetails.getIn([
-                      'contactInformation',
-                      index,
-                      'type',
-                      'errorText',
-                    ])
-                  : false
-              }
-              onChange={this.handleChange}
-            />
-            <Form.Input
-              type="text"
-              label={formDetails.getIn([
-                'contactInformation',
-                index,
-                'detail',
-                'label',
-              ])}
-              name={formDetails.getIn([
-                'contactInformation',
-                index,
-                'detail',
-                'name',
-              ])}
-              value={formDetails.getIn([
-                'contactInformation',
-                index,
-                'detail',
-                'value',
-              ])}
-              placeholder={formDetails.getIn([
-                'contactInformation',
-                index,
-                'detail',
-                'placeholder',
-              ])}
-              error={
-                !formDetails.getIn([
-                  'contactInformation',
-                  index,
-                  'detail',
-                  'status',
-                ])
-                  ? formDetails.getIn([
-                      'contactInformation',
-                      index,
-                      'detail',
-                      'errorText',
-                    ])
-                  : false
-              }
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Button onClick={this.addAnotherEntry}>Add More</Button>
-          <h3>List of Contacts</h3>
-          <List celled animated ordered>
-            {formDetails
-              .getIn(['contactInformation'])
-              .map((entry, contactI) => (
-                <List.Item key={`contact_item_${contactI}`}>
-                  {`${entry.getIn(['title', 'value'])}  ${entry.getIn([
+                'status',
+              ])
+                ? formDetails.getIn([
+                    'contactInformation',
+                    index,
                     'type',
-                    'value',
-                  ])}   ${entry.getIn(['detail', 'value'])}`}
-                  <Button onClick={() => this.handleEdit(contactI)}>
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={() =>
-                      this.deleteEntry([
-                        'formDetails',
-                        'contactInformation',
-                        contactI,
-                      ])
-                    }
-                  >
-                    Remove
-                  </Button>
-                </List.Item>
-              ))}
-          </List>
-          <Button onClick={this.back}>Back</Button>
-          <Button onClick={this.saveAndContinue}>Save And Continue</Button>
-        </Form>
-      </Segment>
+                    'errorText',
+                  ])
+                : false
+            }
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.Input
+            type="text"
+            label={formDetails.getIn([
+              'contactInformation',
+              index,
+              'detail',
+              'label',
+            ])}
+            name={formDetails.getIn([
+              'contactInformation',
+              index,
+              'detail',
+              'name',
+            ])}
+            value={formDetails.getIn([
+              'contactInformation',
+              index,
+              'detail',
+              'value',
+            ])}
+            placeholder={formDetails.getIn([
+              'contactInformation',
+              index,
+              'detail',
+              'placeholder',
+            ])}
+            error={
+              !formDetails.getIn([
+                'contactInformation',
+                index,
+                'detail',
+                'status',
+              ])
+                ? formDetails.getIn([
+                    'contactInformation',
+                    index,
+                    'detail',
+                    'errorText',
+                  ])
+                : false
+            }
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+        <Button fluid onClick={this.addAnotherEntry} primary>
+          Add Contact
+        </Button>
+        <h3>Contacts</h3>
+        <TableGenerator headings={headings} rows={contacts} name="contacts" />
+        <Form.Group widths="equal">
+          <Form.Button fluid onClick={this.Previous} content="Previous" />
+          <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
+        </Form.Group>
+      </Form>
     );
   }
 }

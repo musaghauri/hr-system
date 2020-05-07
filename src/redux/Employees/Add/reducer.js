@@ -49,7 +49,7 @@ export const initialState = fromJS({
       value: '',
       rules: ['isRequired'],
       fieldName: 'Role',
-      placeholder: 'Enter Role',
+      placeholder: 'Select role',
     },
     email: {
       name: 'email',
@@ -110,7 +110,7 @@ export const initialState = fromJS({
         value: '',
         rules: ['isRequired'],
         fieldName: 'father name',
-        placeholder: 'Enter father name name',
+        placeholder: 'Enter father name',
       },
       dateOfBirth: {
         name: 'dateOfBirth',
@@ -425,7 +425,7 @@ export const initialState = fromJS({
       {
         degreeName: {
           name: 'degreeName',
-          label: 'degreeName',
+          label: 'Degree Name',
           status: true,
           errorText: '',
           value: '',
@@ -573,12 +573,12 @@ export const initialState = fromJS({
         },
         dateOfBirth: {
           name: 'dateOfBirth',
-          label: 'Date Of Birth',
+          label: 'Date of Birth',
           status: true,
           errorText: '',
           value: '',
           rules: ['isRequired'],
-          fieldName: 'Date Of Birth',
+          fieldName: 'Date of Birth',
           placeholder: 'Select date of birth',
         },
       },
@@ -617,10 +617,10 @@ export const initialState = fromJS({
         },
         status: {
           name: 'status',
-          label: 'Dtatus',
+          label: 'Status',
           status: true,
           errorText: '',
-          value: false,
+          value: true,
           rules: ['isRequired'],
           fieldName: 'Status',
           placeholder: 'status',
@@ -637,16 +637,16 @@ export const initialState = fromJS({
         },
       },
     ],
-    leaveBalance: {
-      name: 'leaveBalance',
-      label: 'Leave Balance',
-      status: true,
-      errorText: '',
-      value: '',
-      rules: ['isRequired', 'isPositive'],
-      fieldName: 'Leave Balance',
-      placeholder: 'Enter leave balance',
-    },
+    // leaveBalance: {
+    //   name: 'leaveBalance',
+    //   label: 'Leave Balance',
+    //   status: true,
+    //   errorText: '',
+    //   value: '',
+    //   rules: ['isRequired', 'isPositive'],
+    //   fieldName: 'Leave Balance',
+    //   placeholder: 'Enter leave balance',
+    // },
     duties: [
       {
         job: {
@@ -657,7 +657,7 @@ export const initialState = fromJS({
           value: '',
           rules: ['isRequired'],
           fieldName: 'Job',
-          placeholder: '',
+          placeholder: 'Enter job',
         },
         frequency: {
           name: 'frequency',
