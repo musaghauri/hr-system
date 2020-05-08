@@ -50,9 +50,9 @@ class Academic extends Component {
 
   addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails, addAnotherEntry } = this.props;
+    const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['academics']);
-    if (size < 3) {
+    if (validateStep() && size < 3) {
       const entries = formDetails.getIn(['academics']).toJS();
       const value = [...entries, ACADEMIC_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'academics'], value);
@@ -90,6 +90,7 @@ class Academic extends Component {
     const { index, headings } = this.state;
     const academics = makeRows(
       headings,
+      'academics',
       formDetails.getIn(['academics']),
       this.handleEdit,
       this.deleteEntry

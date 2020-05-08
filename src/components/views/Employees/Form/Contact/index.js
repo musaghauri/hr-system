@@ -62,9 +62,9 @@ class Contact extends Component {
 
   addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails, addAnotherEntry } = this.props;
+    const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['contactInformation']);
-    if (size < 3) {
+    if (validateStep() && size < 3) {
       const entries = formDetails.getIn(['contactInformation']).toJS();
       const value = [...entries, CONTACT_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'contactInformation'], value);
@@ -86,6 +86,7 @@ class Contact extends Component {
     const { index, headings } = this.state;
     const contacts = makeRows(
       headings,
+      'contactInformation',
       formDetails.getIn(['contactInformation']),
       this.handleEdit,
       this.deleteEntry

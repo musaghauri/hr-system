@@ -51,9 +51,9 @@ class CompanyAsset extends Component {
 
   addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails, addAnotherEntry } = this.props;
+    const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['companyAssets']);
-    if (size < 2) {
+    if (validateStep() && size < 2) {
       const contacts = formDetails.getIn(['companyAssets']).toJS();
       console.log(contacts);
       const value = [...contacts, ASSET_INITIAL_STATE];
@@ -93,6 +93,7 @@ class CompanyAsset extends Component {
     console.log(formDetails.getIn(['companyAssets']).toJS());
     const asssetRows = makeRows(
       headings,
+      'companyAssets',
       formDetails.getIn(['companyAssets']),
       this.handleEdit,
       this.deleteEntry

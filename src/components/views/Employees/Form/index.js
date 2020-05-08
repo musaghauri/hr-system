@@ -39,14 +39,19 @@ class EmployeeForm extends Component {
     };
   }
 
-  nextStep = () => {
+  validateStep = () => {
     const { step } = this.state;
     const { validateForm, updateValue, formDetails } = this.props;
     const modifiedData = _pick(formDetails.toJS(), ATTRIBUTES[step - 1]);
     const result = validateForm(modifiedData);
     const newFormDetails = _assign(formDetails.toJS(), result.updatedFormData);
     updateValue(['formDetails'], newFormDetails);
-    if (result.validateFlag && step < 10) {
+    return result.validateFlag;
+  };
+
+  nextStep = () => {
+    const { step } = this.state;
+    if (this.validateStep() && step < 10) {
       this.setState({ step: step + 1 });
     }
   };
@@ -137,6 +142,7 @@ class EmployeeForm extends Component {
             updateValue={updateValue}
             deleteEntry={deleteEntry}
             makeRows={this.makeRows}
+            validateStep={this.validateStep}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -160,6 +166,7 @@ class EmployeeForm extends Component {
             updateValue={updateValue}
             deleteEntry={deleteEntry}
             makeRows={this.makeRows}
+            validateStep={this.validateStep}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -173,6 +180,7 @@ class EmployeeForm extends Component {
             updateValue={updateValue}
             deleteEntry={deleteEntry}
             makeRows={this.makeRows}
+            validateStep={this.validateStep}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -186,6 +194,7 @@ class EmployeeForm extends Component {
             updateValue={updateValue}
             deleteEntry={deleteEntry}
             makeRows={this.makeRows}
+            validateStep={this.validateStep}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -201,6 +210,7 @@ class EmployeeForm extends Component {
             assets={assets}
             getAssetsStatus={getAssetsStatus}
             makeRows={this.makeRows}
+            validateStep={this.validateStep}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -229,6 +239,7 @@ class EmployeeForm extends Component {
             validateForm={validateForm}
             successMessage={successMessage}
             makeRows={this.makeRows}
+            validateStep={this.validateStep}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             addAnotherEntry={addAnotherEntry}
@@ -241,7 +252,7 @@ class EmployeeForm extends Component {
 
   goToStep = step => this.setState({ step });
 
-  makeRows = (headings, items, handleEdit, deleteEntry) =>
+  makeRows = (headings, pathName, items, handleEdit, deleteEntry) =>
     items.toArray().map((item, itemI) =>
       headings.toArray().map(heading => {
         if (heading.get('name') === 'edit') {
@@ -255,8 +266,7 @@ class EmployeeForm extends Component {
           return {
             value: <Icon name="trash alternate" color="red" />,
             isFunctional: true,
-            handleChange: () =>
-              deleteEntry(['formDetails', 'academics', itemI]),
+            handleChange: () => deleteEntry(['formDetails', pathName, itemI]),
           };
         }
         if (heading.get('name') === 'status') {
@@ -264,6 +274,9 @@ class EmployeeForm extends Component {
         }
         return {
           value: item.getIn([heading.get('name'), 'value']).toString(),
+          error: !item.getIn([heading.get('name'), 'status'])
+            ? item.getIn([heading.get('name'), 'errorText'])
+            : false,
           isFunctional: false,
         };
       })

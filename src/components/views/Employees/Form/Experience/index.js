@@ -50,9 +50,10 @@ class Experience extends Component {
 
   addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails, addAnotherEntry } = this.props;
+    const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['experience']);
-    if (size < 3) {
+    const result = validateStep();
+    if (result && size < 3) {
       const entries = formDetails.getIn(['experience']).toJS();
       const value = [...entries, ACADEMIC_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'experience'], value);
@@ -90,6 +91,7 @@ class Experience extends Component {
     const { index, headings } = this.state;
     const experience = makeRows(
       headings,
+      'experience',
       formDetails.getIn(['experience']),
       this.handleEdit,
       this.deleteEntry

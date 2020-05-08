@@ -53,9 +53,9 @@ class Dependent extends Component {
 
   addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails, addAnotherEntry } = this.props;
+    const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['dependents']);
-    if (size < 3) {
+    if (validateStep() && size < 3) {
       const entries = formDetails.getIn(['dependents']).toJS();
       const value = [...entries, DEPENDENT_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'dependents'], value);
@@ -93,6 +93,7 @@ class Dependent extends Component {
     const { index, headings } = this.state;
     const dependents = makeRows(
       headings,
+      'dependents',
       formDetails.getIn(['dependents']),
       this.handleEdit,
       this.deleteEntry

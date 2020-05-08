@@ -27,7 +27,10 @@ class TableGenerator extends Component {
                     {column.value}
                   </Table.Cell>
                 ) : (
-                  <Table.Cell key={`row_${rowIndex}_cell_${i}`}>
+                  <Table.Cell
+                    key={`row_${rowIndex}_cell_${i}`}
+                    error={column.error}
+                  >
                     {column.value}
                   </Table.Cell>
                 )

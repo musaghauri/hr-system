@@ -49,9 +49,9 @@ class Duty extends Component {
 
   addAnotherEntry = e => {
     e.preventDefault();
-    const { formDetails, addAnotherEntry } = this.props;
+    const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['duties']);
-    if (size < 2) {
+    if (validateStep() && size < 2) {
       const entries = formDetails.getIn(['duties']).toJS();
       const value = [...entries, DUTY_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'duties'], value);
@@ -103,6 +103,7 @@ class Duty extends Component {
     const { index, headings } = this.state;
     const duties = makeRows(
       headings,
+      'duties',
       formDetails.getIn(['duties']),
       this.handleEdit,
       this.deleteEntry
