@@ -64,9 +64,10 @@ class Contact extends Component {
     e.preventDefault();
     const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['contactInformation']);
-    if (validateStep() && size < 3) {
-      const entries = formDetails.getIn(['contactInformation']).toJS();
-      const value = [...entries, CONTACT_INITIAL_STATE];
+    const validatedObject = validateStep(true);
+    if (validatedObject.validateFlag && size < 3) {
+      const { contactInformation } = validatedObject.updatedFormData;
+      const value = [...contactInformation, CONTACT_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'contactInformation'], value);
       this.setState({ index: size });
     }

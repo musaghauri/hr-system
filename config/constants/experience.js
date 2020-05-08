@@ -1,5 +1,5 @@
-export const ACADEMIC_INITIAL_STATE = {
-  organization: { 
+export const EXPERIENCE_INITIAL_STATE = {
+  organization: {
     name: 'organization',
     label: 'Organization',
     status: true,
@@ -9,7 +9,7 @@ export const ACADEMIC_INITIAL_STATE = {
     fieldName: 'Organization',
     placeholder: 'Enter organization',
   },
-  designation: { 
+  designation: {
     name: 'designation',
     label: 'Designation',
     status: true,
@@ -19,7 +19,7 @@ export const ACADEMIC_INITIAL_STATE = {
     fieldName: 'Designation',
     placeholder: 'Enter designation',
   },
-  duration: { 
+  duration: {
     name: 'duration',
     label: 'Duration',
     status: true,
@@ -29,7 +29,7 @@ export const ACADEMIC_INITIAL_STATE = {
     fieldName: 'Duration',
     placeholder: 'Enter duration',
   },
-  leavingReason: { 
+  leavingReason: {
     name: 'leavingReason',
     label: 'Leaving Reason',
     status: true,
@@ -39,7 +39,7 @@ export const ACADEMIC_INITIAL_STATE = {
     fieldName: 'Leaving Reason',
     placeholder: 'Enter leaving reason',
   },
-  salary: { 
+  salary: {
     name: 'salary',
     label: 'Salary',
     status: true,
@@ -49,4 +49,4 @@ export const ACADEMIC_INITIAL_STATE = {
     fieldName: 'Salary',
     placeholder: 'Enter salary',
   },
-}
+};

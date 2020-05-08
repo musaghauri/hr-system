@@ -26,7 +26,7 @@ const ATTRIBUTES = [
   ['experience'],
   ['dependents'],
   ['companyAssets'],
-  ['leaveBalance'],
+  // ['leaveBalance'],
   ['duties'],
 ];
 
@@ -39,13 +39,14 @@ class EmployeeForm extends Component {
     };
   }
 
-  validateStep = () => {
+  validateStep = (returnFullObject = false) => {
     const { step } = this.state;
     const { validateForm, updateValue, formDetails } = this.props;
     const modifiedData = _pick(formDetails.toJS(), ATTRIBUTES[step - 1]);
     const result = validateForm(modifiedData);
     const newFormDetails = _assign(formDetails.toJS(), result.updatedFormData);
     updateValue(['formDetails'], newFormDetails);
+    if (returnFullObject) return result;
     return result.validateFlag;
   };
 

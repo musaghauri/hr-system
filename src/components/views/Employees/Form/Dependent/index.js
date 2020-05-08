@@ -55,9 +55,10 @@ class Dependent extends Component {
     e.preventDefault();
     const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['dependents']);
-    if (validateStep() && size < 3) {
-      const entries = formDetails.getIn(['dependents']).toJS();
-      const value = [...entries, DEPENDENT_INITIAL_STATE];
+    const validatedObject = validateStep(true);
+    if (validatedObject.validateFlag && size < 3) {
+      const { dependents } = validatedObject.updatedFormData;
+      const value = [...dependents, DEPENDENT_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'dependents'], value);
       this.setState({ index: size });
     }

@@ -52,9 +52,10 @@ class Academic extends Component {
     e.preventDefault();
     const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['academics']);
-    if (validateStep() && size < 3) {
-      const entries = formDetails.getIn(['academics']).toJS();
-      const value = [...entries, ACADEMIC_INITIAL_STATE];
+    const validatedObject = validateStep(true);
+    if (validatedObject.validateFlag && size < 3) {
+      const { academics } = validatedObject.updatedFormData;
+      const value = [...academics, ACADEMIC_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'academics'], value);
       this.setState({ index: size });
     }

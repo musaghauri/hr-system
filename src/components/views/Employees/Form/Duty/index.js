@@ -51,9 +51,10 @@ class Duty extends Component {
     e.preventDefault();
     const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['duties']);
-    if (validateStep() && size < 2) {
-      const entries = formDetails.getIn(['duties']).toJS();
-      const value = [...entries, DUTY_INITIAL_STATE];
+    const validatedObject = validateStep(true);
+    if (validatedObject.validateFlag && size < 3) {
+      const { duties } = validatedObject.updatedFormData;
+      const value = [...duties, DUTY_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'duties'], value);
       this.setState({ index: size });
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Header } from 'semantic-ui-react';
-import { ACADEMIC_INITIAL_STATE } from '@config/constants/experience';
+import { EXPERIENCE_INITIAL_STATE } from '@config/constants/experience';
 import { fromJS } from 'immutable';
 import TableGenerator from '@components/widgets/TableGenerator';
 
@@ -52,10 +52,10 @@ class Experience extends Component {
     e.preventDefault();
     const { formDetails, addAnotherEntry, validateStep } = this.props;
     const { size } = formDetails.getIn(['experience']);
-    const result = validateStep();
-    if (result && size < 3) {
-      const entries = formDetails.getIn(['experience']).toJS();
-      const value = [...entries, ACADEMIC_INITIAL_STATE];
+    const validatedObject = validateStep(true);
+    if (validatedObject.validateFlag && size < 3) {
+      const { experience } = validatedObject.updatedFormData;
+      const value = [...experience, EXPERIENCE_INITIAL_STATE];
       addAnotherEntry(['formDetails', 'experience'], value);
       this.setState({ index: size });
     }
