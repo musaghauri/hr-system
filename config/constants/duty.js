@@ -1,5 +1,5 @@
 export const DUTY_INITIAL_STATE = {
-  job: { 
+  job: {
     name: 'job',
     label: 'Job',
     status: true,
@@ -9,7 +9,7 @@ export const DUTY_INITIAL_STATE = {
     fieldName: 'Job',
     placeholder: '',
   },
-  frequency: { 
+  frequency: {
     name: 'frequency',
     label: 'Frequency',
     status: true,
@@ -19,7 +19,7 @@ export const DUTY_INITIAL_STATE = {
     fieldName: 'Frequency',
     placeholder: 'Select frequency',
   },
-  effectiveFrom: { 
+  effectiveFrom: {
     name: 'effectiveFrom',
     label: 'Effective From',
     status: true,
@@ -29,7 +29,7 @@ export const DUTY_INITIAL_STATE = {
     fieldName: 'Effective From',
     placeholder: 'Select a date',
   },
-  enhancedTill: { 
+  enhancedTill: {
     name: 'enhancedTill',
     label: 'Enhanced Till',
     status: true,
@@ -39,4 +39,4 @@ export const DUTY_INITIAL_STATE = {
     fieldName: 'Enhanced Till',
     placeholder: 'Select a date',
   },
-  }
+};

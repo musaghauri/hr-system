@@ -1,5 +1,5 @@
 export const DEPENDENT_INITIAL_STATE = {
-  name: { 
+  name: {
     name: 'name',
     label: 'Name',
     status: true,
@@ -9,7 +9,7 @@ export const DEPENDENT_INITIAL_STATE = {
     fieldName: 'Name',
     placeholder: 'Enter name',
   },
-  gender: { 
+  gender: {
     name: 'gender',
     label: 'Gender',
     status: true,
@@ -19,7 +19,7 @@ export const DEPENDENT_INITIAL_STATE = {
     fieldName: 'Gender',
     placeholder: 'Select gender',
   },
-  relation: { 
+  relation: {
     name: 'relation',
     label: 'Relation',
     status: true,
@@ -29,7 +29,7 @@ export const DEPENDENT_INITIAL_STATE = {
     fieldName: 'Relation',
     placeholder: 'Select relation ',
   },
-  contact: { 
+  contact: {
     name: 'contact',
     label: 'Contact',
     status: true,
@@ -39,7 +39,7 @@ export const DEPENDENT_INITIAL_STATE = {
     fieldName: 'Contact',
     placeholder: 'Enter contact',
   },
-  dateOfBirth: { 
+  dateOfBirth: {
     name: 'dateOfBirth',
     label: 'Date Of Birth',
     status: true,
@@ -49,4 +49,4 @@ export const DEPENDENT_INITIAL_STATE = {
     fieldName: 'Date Of Birth',
     placeholder: 'Select date of birth',
   },
-}
+};

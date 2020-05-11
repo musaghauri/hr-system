@@ -1,5 +1,5 @@
-export const CONTACT_INITIAL_STATE =  {
-  title: { 
+export const CONTACT_INITIAL_STATE = {
+  title: {
     name: 'title',
     label: 'Title',
     status: true,
@@ -8,8 +8,8 @@ export const CONTACT_INITIAL_STATE =  {
     rules: ['isRequired'],
     fieldName: 'Title',
     placeholder: 'Enter title',
-   },
-  type: { 
+  },
+  type: {
     name: 'type',
     label: 'Type',
     status: true,
@@ -19,7 +19,7 @@ export const CONTACT_INITIAL_STATE =  {
     fieldName: 'Type',
     placeholder: 'Select type',
   },
-  detail: { 
+  detail: {
     name: 'detail',
     label: 'Detail',
     status: true,
@@ -29,4 +29,4 @@ export const CONTACT_INITIAL_STATE =  {
     fieldName: 'Detail',
     placeholder: 'Enter detail',
   },
-}
+};

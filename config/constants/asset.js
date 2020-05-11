@@ -1,5 +1,5 @@
 export const ASSET_INITIAL_STATE = {
-  id: { 
+  id: {
     name: 'id',
     label: 'ID',
     status: true,
@@ -9,7 +9,7 @@ export const ASSET_INITIAL_STATE = {
     fieldName: 'ID',
     placeholder: 'Select asset',
   },
-  detail: { 
+  detail: {
     name: 'detail',
     label: 'Detail',
     status: true,
@@ -19,7 +19,7 @@ export const ASSET_INITIAL_STATE = {
     fieldName: 'Detail',
     placeholder: 'Enter detail',
   },
-  returnable: { 
+  returnable: {
     name: 'returnable',
     label: 'Returnable',
     status: true,
@@ -29,7 +29,7 @@ export const ASSET_INITIAL_STATE = {
     fieldName: 'Returnable',
     placeholder: 'Returnable',
   },
-  status: { 
+  status: {
     name: 'status',
     label: 'Dtatus',
     status: true,
@@ -39,7 +39,7 @@ export const ASSET_INITIAL_STATE = {
     fieldName: 'Status',
     placeholder: 'status',
   },
-  issueDate: { 
+  issueDate: {
     name: 'issueDate',
     label: 'Issue Date',
     status: true,
@@ -49,4 +49,4 @@ export const ASSET_INITIAL_STATE = {
     fieldName: 'Issue Date',
     placeholder: 'Select issue date',
   },
-}
+};
