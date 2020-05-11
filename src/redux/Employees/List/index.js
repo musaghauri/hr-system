@@ -57,7 +57,10 @@ class EmployeesListContainer extends Component {
             handleChange: () => this.blockEmployee(employee.get('_id'), eIndex),
           };
         }
-        if (heading.get('name') === 'isActive') {
+        if (
+          heading.get('name') === 'isActive' ||
+          heading.get('name') === 'isVerified'
+        ) {
           return {
             value: employee.get(heading.get('name')) ? (
               <Icon name="check" color="green" />

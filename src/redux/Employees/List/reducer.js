@@ -16,8 +16,8 @@ export const initialState = fromJS({
       name: 'name',
     },
     {
-      label: 'Detail',
-      name: 'detail',
+      label: 'Email',
+      name: 'email',
     },
     {
       label: 'Department',
@@ -28,8 +28,8 @@ export const initialState = fromJS({
       name: 'isActive',
     },
     {
-      label: 'Status',
-      name: 'status',
+      label: 'Verified',
+      name: 'isVerified',
     },
     {
       label: 'Edit',
