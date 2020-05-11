@@ -27,8 +27,8 @@ import {
   GET_ASSETS_SUCCESS,
   GET_ASSETS_FAIL,
   DELETE_ENTRY,
-  DELETE_ENTRY_SUCCESS,
-  DELETE_ENTRY_FAIL,
+  // DELETE_ENTRY_SUCCESS,
+  // DELETE_ENTRY_FAIL,
 } from './constants';
 
 export function resetReducer() {

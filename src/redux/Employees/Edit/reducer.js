@@ -28,8 +28,8 @@ import {
   GET_ASSETS_SUCCESS,
   GET_ASSETS_FAIL,
   DELETE_ENTRY,
-  DELETE_ENTRY_SUCCESS,
-  DELETE_ENTRY_FAIL,
+  // DELETE_ENTRY_SUCCESS,
+  // DELETE_ENTRY_FAIL,
 } from './constants';
 
 export const initialState = fromJS({
@@ -82,7 +82,7 @@ export const initialState = fromJS({
       value: true,
       rules: ['isRequired'],
       fieldName: 'Is Active',
-      placeholder: 'is active',
+      placeholder: 'Is the employee active',
     },
     isVerified: {
       name: 'isVerified',
@@ -92,7 +92,7 @@ export const initialState = fromJS({
       value: true,
       rules: ['isRequired'],
       fieldName: 'Is Verified',
-      placeholder: 'is verified',
+      placeholder: 'Is the employee verified',
     },
     personalInformation: {
       companyEmail: {
@@ -223,7 +223,7 @@ export const initialState = fromJS({
         value: '',
         rules: ['isRequired', 'isPositive'],
         fieldName: 'CNIC',
-        placeholder: 'Enter cnic',
+        placeholder: 'Enter CNIC',
       },
       ntn: {
         name: 'ntn',
@@ -233,7 +233,7 @@ export const initialState = fromJS({
         value: '',
         rules: ['isRequired', 'isPositive'],
         fieldName: 'NTN',
-        placeholder: 'Enter ntn',
+        placeholder: 'Enter NTN',
       },
       domicile: {
         name: 'domicile',
@@ -242,7 +242,7 @@ export const initialState = fromJS({
         errorText: '',
         value: '',
         rules: ['isRequired'],
-        fieldName: 'NTN',
+        fieldName: 'Domicile',
         placeholder: 'Select domicile',
       },
     },
@@ -626,7 +626,7 @@ export const initialState = fromJS({
           value: true,
           rules: ['isRequired'],
           fieldName: 'Status',
-          placeholder: 'status',
+          placeholder: 'Status',
         },
         issueDate: {
           name: 'issueDate',

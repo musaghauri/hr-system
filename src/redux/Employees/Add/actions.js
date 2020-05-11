@@ -24,8 +24,8 @@ import {
   ADD_EMPLOYEE_SUCCESS,
   ADD_EMPLOYEE_FAIL,
   DELETE_ENTRY,
-  DELETE_ENTRY_SUCCESS,
-  DELETE_ENTRY_FAIL,
+  // DELETE_ENTRY_SUCCESS,
+  // DELETE_ENTRY_FAIL,
 } from './constants';
 
 export function resetReducer() {

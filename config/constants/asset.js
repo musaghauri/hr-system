@@ -37,7 +37,7 @@ export const ASSET_INITIAL_STATE = {
     value: false,
     rules: ['isRequired'],
     fieldName: 'Status',
-    placeholder: 'status',
+    placeholder: 'Status',
   },
   issueDate: {
     name: 'issueDate',

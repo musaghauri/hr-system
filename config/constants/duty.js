@@ -7,7 +7,7 @@ export const DUTY_INITIAL_STATE = {
     value: '',
     rules: ['isRequired'],
     fieldName: 'Job',
-    placeholder: '',
+    placeholder: 'Enter job',
   },
   frequency: {
     name: 'frequency',

@@ -3,10 +3,6 @@ import request from '@utils/request';
 import { createRequestOptions, loadFormDetails } from '@utils/helperFuncs';
 import { NEXT_API_URL } from '@config';
 import cookie from '@utils/cookie';
-import _assign from 'lodash/assign';
-import _merge from 'lodash/merge';
-import _mapValues from 'lodash/mapValues';
-import _map from 'lodash/map';
 import {
   GET_ROLES,
   GET_COUNTRIES,
@@ -200,7 +196,7 @@ export function* editEmployee(action) {
   }
 }
 
-export default function* addPermissionWatcher() {
+export default function* editPermissionWatcher() {
   yield takeLatest(GET_ROLES, getRoles);
   yield takeLatest(GET_COUNTRIES, getCountries);
   yield takeLatest(GET_STATES, getStates);
