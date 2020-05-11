@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Grid } from 'semantic-ui-react';
 import Link from 'next/link';
+import { formatDate } from '@utils/date';
 
 class Official extends Component {
   render() {
@@ -69,7 +70,7 @@ class Official extends Component {
               <Header as="h3">
                 Joining Date
                 <Header.Subheader>
-                  {info && info.get('joiningDate')}
+                  {info ? formatDate(info.get('joiningDate')) : 'N/A'}
                 </Header.Subheader>
               </Header>
             </div>
@@ -77,7 +78,7 @@ class Official extends Component {
               <Header as="h3">
                 Resignation Date
                 <Header.Subheader>
-                  {info && info.get('resignationDate')}
+                  {info ? formatDate(info.get('resignationDate')) : 'N/A'}
                 </Header.Subheader>
               </Header>
             </div>
@@ -85,7 +86,7 @@ class Official extends Component {
               <Header as="h3">
                 Exit Date
                 <Header.Subheader>
-                  {info && info.get('exitDate')}
+                  {info ? formatDate(info.get('exitDate')) : 'N/A'}
                 </Header.Subheader>
               </Header>
             </div>

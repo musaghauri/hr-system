@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tab } from 'semantic-ui-react';
+import Tabs from '@components/widgets/Tabs';
 import Personal from './Personal';
 import Official from './Official';
 import Contact from './Contact';
@@ -13,84 +13,65 @@ import Duty from './Duty';
 class ViewEmployee extends Component {
   render() {
     const { employee } = this.props;
-    const panes = [
+    const employeeTabs = [
       {
-        menuItem: 'Personal Information',
-        render: () => (
-          <Tab.Pane>
-            <Personal employee={employee} />
-          </Tab.Pane>
-        ),
+        menuItem: {
+          key: 'personal',
+          icon: 'users',
+          content: 'Personal Information',
+        },
+        tab: <Personal employee={employee} />,
       },
       {
-        menuItem: 'Official Information',
-        render: () => (
-          <Tab.Pane>
-            <Official info={employee.get('officialInformation')} />
-          </Tab.Pane>
-        ),
+        menuItem: {
+          key: 'official',
+          icon: 'users',
+          content: 'Official Information',
+        },
+        tab: <Official info={employee.get('officialInformation')} />,
       },
       {
-        menuItem: 'Contact Information',
-        render: () => (
-          <Tab.Pane>
-            <Contact info={employee.get('contactInformation')} />
-          </Tab.Pane>
-        ),
+        menuItem: {
+          key: 'contact',
+          icon: 'users',
+          content: 'Contact Information',
+        },
+        tab: <Contact info={employee.get('contactInformation')} />,
       },
       {
-        menuItem: 'Salary Settings',
-        render: () => (
-          <Tab.Pane>
-            <Salary info={employee.get('salarySettings')} />
-          </Tab.Pane>
-        ),
+        menuItem: {
+          key: 'salary',
+          icon: 'users',
+          content: 'Salary Information',
+        },
+        tab: <Salary info={employee.get('salarySettings')} />,
       },
       {
-        menuItem: 'Academics',
-        render: () => (
-          <Tab.Pane>
-            <Academic info={employee.get('academics')} />
-          </Tab.Pane>
-        ),
+        menuItem: { key: 'academics', icon: 'users', content: 'Academics' },
+        tab: <Academic info={employee.get('academics')} />,
       },
       {
-        menuItem: 'Experience',
-        render: () => (
-          <Tab.Pane>
-            <Experience info={employee.get('experience')} />
-          </Tab.Pane>
-        ),
+        menuItem: { key: 'experience', icon: 'users', content: 'Experience' },
+        tab: <Experience info={employee.get('experience')} />,
       },
       {
-        menuItem: 'Dependents',
-        render: () => (
-          <Tab.Pane>
-            <Dependent info={employee.get('dependents')} />
-          </Tab.Pane>
-        ),
+        menuItem: { key: 'dependent', icon: 'users', content: 'Dependents' },
+        tab: <Dependent info={employee.get('dependents')} />,
       },
       {
-        menuItem: 'Assets',
-        render: () => (
-          <Tab.Pane>
-            <Asset info={employee.get('companyAssets')} />
-          </Tab.Pane>
-        ),
+        menuItem: { key: 'asset', icon: 'users', content: 'Assets' },
+        tab: <Asset info={employee.get('companyAssets')} />,
       },
       {
-        menuItem: 'Duties',
-        render: () => (
-          <Tab.Pane>
-            <Duty info={employee.get('duties')} />
-          </Tab.Pane>
-        ),
+        menuItem: { key: 'duty', icon: 'users', content: 'Duties' },
+        tab: <Duty info={employee.get('duties')} />,
       },
     ];
+
     return (
-      <Tab
+      <Tabs
         menu={{ fluid: true, vertical: true, tabular: true }}
-        panes={panes}
+        tabs={employeeTabs}
       />
     );
   }

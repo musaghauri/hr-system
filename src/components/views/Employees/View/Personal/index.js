@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Header, Grid } from 'semantic-ui-react';
+import { Header, Grid, Icon } from 'semantic-ui-react';
 import Link from 'next/link';
+import { formatDate } from '@utils/date';
 
 class Personal extends Component {
   render() {
@@ -46,7 +47,11 @@ class Personal extends Component {
               <Header as="h3">
                 Active
                 <Header.Subheader>
-                  {employee && String(employee.get('isActive'))}
+                  {employee && employee.get('isActive') ? (
+                    <Icon name="check" color="green" />
+                  ) : (
+                    <Icon name="times" color="red" />
+                  )}
                 </Header.Subheader>
               </Header>
             </div>
@@ -54,7 +59,11 @@ class Personal extends Component {
               <Header as="h3">
                 Verified
                 <Header.Subheader>
-                  {employee && String(employee.get('isVerified'))}
+                  {employee && employee.get('isVerified') ? (
+                    <Icon name="check" color="green" />
+                  ) : (
+                    <Icon name="times" color="red" />
+                  )}
                 </Header.Subheader>
               </Header>
             </div>
@@ -70,7 +79,7 @@ class Personal extends Component {
               <Header as="h3">
                 Date Of Birth
                 <Header.Subheader>
-                  {info && info.get('dateOfBirth')}
+                  {info && formatDate(info.get('dateOfBirth'))}
                 </Header.Subheader>
               </Header>
             </div>

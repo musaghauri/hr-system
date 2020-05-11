@@ -19,6 +19,6 @@ export function* getEmployee(action) {
   }
 }
 
-export default function* employeesListWatcher() {
+export default function* viewEmployeeWatcher() {
   yield takeLatest(GET_EMPLOYEE, getEmployee);
 }

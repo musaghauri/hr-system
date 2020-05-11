@@ -1,66 +1,40 @@
 import React, { Component } from 'react';
-import { Header, Grid, List } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import Link from 'next/link';
+import { formatDate } from '@utils/date';
 
 class Dependent extends Component {
   render() {
     const { info } = this.props;
     return (
-      <Grid columns={4}>
-        <Grid.Row verticalAlign="middle">
-          <Grid.Column>
-            <List ordered>
-              {info.map((item, itemI) => (
-                <List.Item key={`dependent_${itemI}`}>
+      <>
+        <Card.Group>
+          {info.toArray().map((item, itemI) => (
+            <Card key={`dependant_${itemI}`}>
+              <Card.Content>
+                <Card.Header>{item.get('name')}</Card.Header>
+                <Card.Meta>
+                  {item.get('relation')} | {item.get('gender')}
+                </Card.Meta>
+                <Card.Description>
                   <div>
-                    <Header as="h3">
-                      Name
-                      <Header.Subheader>
-                        {item && item.get('name')}
-                      </Header.Subheader>
-                    </Header>
+                    <strong>Contact: </strong>
+                    <span>{formatDate(item.get('contact'))}</span>
                   </div>
                   <div>
-                    <Header as="h3">
-                      Gender
-                      <Header.Subheader>
-                        {item && item.get('gender')}
-                      </Header.Subheader>
-                    </Header>
+                    <strong>Date of Birth: </strong>
+                    <span>{formatDate(item.get('dateOfBirth'))}</span>
                   </div>
-                  <div>
-                    <Header as="h3">
-                      Relation
-                      <Header.Subheader>
-                        {item && item.get('relation')}
-                      </Header.Subheader>
-                    </Header>
-                  </div>
-                  <div>
-                    <Header as="h3">
-                      Contact
-                      <Header.Subheader>
-                        {item && item.get('contact')}
-                      </Header.Subheader>
-                    </Header>
-                  </div>
-                  <div>
-                    <Header as="h3">
-                      Date of Birth
-                      <Header.Subheader>
-                        {item && item.get('dateOfBirth')}
-                      </Header.Subheader>
-                    </Header>
-                  </div>
-                </List.Item>
-              ))}
-            </List>
-            <Link href="/employees">
-              <a>Back to Employees</a>
-            </Link>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          ))}
+        </Card.Group>
+
+        <Link href="/employees">
+          <a>Back to Employees</a>
+        </Link>
+      </>
     );
   }
 }

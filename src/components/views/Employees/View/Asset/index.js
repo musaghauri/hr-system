@@ -1,66 +1,51 @@
 import React, { Component } from 'react';
-import { Header, Grid, List } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
 import Link from 'next/link';
+import { formatDate } from '@utils/date';
 
 class Asset extends Component {
   render() {
     const { info } = this.props;
     return (
-      <Grid columns={4}>
-        <Grid.Row verticalAlign="middle">
-          <Grid.Column>
-            <List ordered>
-              {info.map((item, itemI) => (
-                <List.Item key={`asset_${itemI}`}>
+      <>
+        <Card.Group>
+          {info.toArray().map((item, itemI) => (
+            <Card key={`asset_${itemI}`}>
+              <Card.Content>
+                <Card.Header>{item.getIn(['id', 'name'])}</Card.Header>
+                <Card.Meta>{formatDate(item.get('issueDate'))}</Card.Meta>
+                <Card.Description>
+                  <p>Detail: {item.get('detail')}</p>
                   <div>
-                    <Header as="h3">
-                      Name
-                      <Header.Subheader>
-                        {item && item.getIn(['id', 'name'])}
-                      </Header.Subheader>
-                    </Header>
+                    <strong>Status: </strong>
+                    <span>
+                      {item.get('status') ? (
+                        <Icon name="check" color="green" />
+                      ) : (
+                        <Icon name="times" color="red" />
+                      )}
+                    </span>
                   </div>
                   <div>
-                    <Header as="h3">
-                      Detail
-                      <Header.Subheader>
-                        {item && item.get('detail')}
-                      </Header.Subheader>
-                    </Header>
+                    <strong>Returnable Till: </strong>
+                    <span>
+                      {item.get('returnable') ? (
+                        <Icon name="check" color="green" />
+                      ) : (
+                        <Icon name="times" color="red" />
+                      )}
+                    </span>
                   </div>
-                  <div>
-                    <Header as="h3">
-                      Returnable
-                      <Header.Subheader>
-                        {item && String(item.get('returnable'))}
-                      </Header.Subheader>
-                    </Header>
-                  </div>
-                  <div>
-                    <Header as="h3">
-                      Status
-                      <Header.Subheader>
-                        {item && String(item.get('status'))}
-                      </Header.Subheader>
-                    </Header>
-                  </div>
-                  <div>
-                    <Header as="h3">
-                      Issue Date
-                      <Header.Subheader>
-                        {item && item.get('issueDate')}
-                      </Header.Subheader>
-                    </Header>
-                  </div>
-                </List.Item>
-              ))}
-            </List>
-            <Link href="/employees">
-              <a>Back to Employees</a>
-            </Link>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          ))}
+        </Card.Group>
+
+        <Link href="/employees">
+          <a>Back to Employees</a>
+        </Link>
+      </>
     );
   }
 }

@@ -37,7 +37,7 @@ class Salary extends Component {
               <Header as="h3">
                 Bank Details
                 <Header.Subheader>
-                  {info && info.get('bankDetails')}
+                  {info ? info.get('bankDetails') : 'N/A'}
                 </Header.Subheader>
               </Header>
             </div>
