@@ -86,7 +86,7 @@ class Duty extends Component {
     }
   };
 
-  Previous = e => {
+  previous = e => {
     e.preventDefault();
     const { prevStep } = this.props;
     prevStep();
@@ -249,7 +249,7 @@ class Duty extends Component {
         <Form.Group widths="equal">
           <Form.Button
             fluid
-            onClick={this.Previous}
+            onClick={this.previous}
             style={{ marginBottom: '10px' }}
             content="Previous"
           />

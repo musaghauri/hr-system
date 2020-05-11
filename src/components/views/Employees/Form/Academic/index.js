@@ -80,7 +80,7 @@ class Academic extends Component {
     nextStep();
   };
 
-  Previous = e => {
+  previous = e => {
     e.preventDefault();
     const { prevStep } = this.props;
     prevStep();
@@ -234,7 +234,7 @@ class Academic extends Component {
         <h3>Academics</h3>
         <TableGenerator headings={headings} rows={academics} name="academics" />
         <Form.Group widths="equal">
-          <Form.Button fluid onClick={this.Previous} content="Previous" />
+          <Form.Button fluid onClick={this.previous} content="Previous" />
           <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
         </Form.Group>
       </Form>
