@@ -11,6 +11,8 @@ import announcementRoutes from './announcement';
 import wishlistRoutes from './wishlist';
 import departmentRoutes from './department';
 import employeeRoutes from './employee';
+import branchRoutes from './branch';
+
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -29,5 +31,7 @@ router.use('/announcements', announcementRoutes);
 router.use('/wishlist', wishlistRoutes);
 router.use('/departments', departmentRoutes);
 router.use('/employees', employeeRoutes);
+router.use('/branches', branchRoutes);
+
 
 export default router;

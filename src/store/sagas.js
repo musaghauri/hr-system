@@ -56,6 +56,12 @@ import viewEmployeeSagas from '@redux/Employees/View/sagas';
 import addEmployeeSagas from '@redux/Employees/Add/sagas';
 import editEmployeeSagas from '@redux/Employees/Edit/sagas';
 
+import branchesListSagas from '@redux/Branches/List/sagas';
+import viewBranchSagas from '@redux/Branches/View/sagas';
+import addBranchSagas from '@redux/Branches/Add/sagas';
+import editBranchSagas from '@redux/Branches/Edit/sagas';
+
+
 export default function* mainSagas() {
   yield all([
     fork(landingPageSagas),
@@ -104,5 +110,9 @@ export default function* mainSagas() {
     fork(viewEmployeeSagas,),
     fork(addEmployeeSagas),
     fork(editEmployeeSagas)
+    fork(branchesListSagas),
+    fork(viewBranchSagas),
+    fork(addBranchSagas),
+    fork(editBranchSagas)
   ]);
 }
