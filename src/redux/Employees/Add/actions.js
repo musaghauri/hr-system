@@ -24,8 +24,6 @@ import {
   ADD_EMPLOYEE_SUCCESS,
   ADD_EMPLOYEE_FAIL,
   DELETE_ENTRY,
-  // DELETE_ENTRY_SUCCESS,
-  // DELETE_ENTRY_FAIL,
 } from './constants';
 
 export function resetReducer() {
@@ -199,17 +197,3 @@ export function deleteEntry(entry) {
     entry,
   };
 }
-
-// export function deleteEntrySuccess(index) {
-//   return {
-//     type: DELETE_ENTRY_SUCCESS,
-//     index,
-//   };
-// }
-
-// export function deleteEntryFail(error) {
-//   return {
-//     type: DELETE_ENTRY_FAIL,
-//     error,
-//   };
-// }

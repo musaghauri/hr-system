@@ -16,6 +16,9 @@ import CompanyAsset from './CompanyAsset';
 import Academic from './Academic';
 import Intro from './Intro';
 
+const TOTAL_STEPS = 10;
+const FIRST_STEP = 1;
+
 const ATTRIBUTES = [
   ['name', 'email', 'role', 'password', 'isActive', 'isVerified'],
   ['personalInformation'],
@@ -34,8 +37,7 @@ class EmployeeForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
-      totalSteps: 10,
+      step: FIRST_STEP,
     };
   }
 
@@ -52,14 +54,14 @@ class EmployeeForm extends Component {
 
   nextStep = () => {
     const { step } = this.state;
-    if (this.validateStep() && step < 10) {
+    if (this.validateStep() && step < TOTAL_STEPS) {
       this.setState({ step: step + 1 });
     }
   };
 
   prevStep = () => {
     const { step } = this.state;
-    if (step > 0) {
+    if (step > FIRST_STEP) {
       this.setState({
         step: step - 1,
       });
@@ -284,7 +286,7 @@ class EmployeeForm extends Component {
     );
 
   render() {
-    const { step, totalSteps } = this.state;
+    const { step } = this.state;
     return (
       <>
         <Grid columns={2} centered>
@@ -300,14 +302,14 @@ class EmployeeForm extends Component {
                     marginBottom: '10px',
                   }}
                 >
-                  {_times(totalSteps, i => (
+                  {_times(TOTAL_STEPS, i => (
                     <Button
                       key={`button_${i + 1}`}
                       icon
                       color="blue"
                       circular
                       active={step === i + 1}
-                      // onClick={() => this.goToStep(i + 1)}
+                      onClick={() => this.goToStep(i + 1)}
                     >
                       {i + 1}
                     </Button>

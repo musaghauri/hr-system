@@ -733,10 +733,6 @@ export const initialState = fromJS({
     loaded: false,
     error: false,
   },
-  deleteEntryStatus: {
-    loading: false,
-    loaded: false,
-  },
 });
 
 function addEmployeeReducer(state = initialState, action) {
@@ -859,21 +855,7 @@ function addEmployeeReducer(state = initialState, action) {
         .setIn(['addEmployeeStatus', 'loaded'], false)
         .setIn(['addEmployeeStatus', 'error'], action.error);
     case DELETE_ENTRY:
-      return state
-        .setIn(['deleteEntryStatus', 'loading'], true)
-        .setIn(['deleteEntryStatus', 'loaded'], false)
-        .deleteIn(action.entry);
-    // case DELETE_ENTRY_SUCCESS:
-    //   return state
-    //     .setIn(['deleteEntryStatus', 'loading'], false)
-    //     .setIn(['deleteEntryStatus', 'loaded'], true)
-    //     .setIn(['deleteEntryStatus', 'error'], false)
-    //     .deleteIn([action.name, action.index]);
-    // case DELETE_ENTRY_FAIL:
-    //   return state
-    //     .setIn(['deleteEntryStatus', 'loading'], false)
-    //     .setIn(['deleteEntryStatus', 'loaded'], false)
-    //     .setIn(['deleteEntryStatus', 'error'], action.error);
+      return state.deleteIn(action.entry);
     default:
       return state;
   }

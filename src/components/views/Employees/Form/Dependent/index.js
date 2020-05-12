@@ -83,14 +83,8 @@ class Dependent extends Component {
     this.setState({ index });
   };
 
-  previous = e => {
-    e.preventDefault();
-    const { prevStep } = this.props;
-    prevStep();
-  };
-
   render() {
-    const { formDetails, makeRows } = this.props;
+    const { formDetails, makeRows, prevStep } = this.props;
     const { index, headings } = this.state;
     const dependents = makeRows(
       headings,
@@ -259,7 +253,7 @@ class Dependent extends Component {
           name="dependents"
         />
         <Form.Group widths="equal">
-          <Form.Button fluid onClick={this.previous} content="Previous" />
+          <Form.Button fluid onClick={prevStep} content="Previous" />
           <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
         </Form.Group>
       </Form>

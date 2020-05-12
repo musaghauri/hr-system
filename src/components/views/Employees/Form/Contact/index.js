@@ -54,12 +54,6 @@ class Contact extends Component {
     nextStep();
   };
 
-  previous = e => {
-    e.preventDefault();
-    const { prevStep } = this.props;
-    prevStep();
-  };
-
   addAnotherEntry = e => {
     e.preventDefault();
     const { formDetails, addAnotherEntry, validateStep } = this.props;
@@ -83,7 +77,7 @@ class Contact extends Component {
   };
 
   render() {
-    const { formDetails, makeRows } = this.props;
+    const { formDetails, makeRows, prevStep } = this.props;
     const { index, headings } = this.state;
     const contacts = makeRows(
       headings,
@@ -237,7 +231,7 @@ class Contact extends Component {
         <h3>Contacts</h3>
         <TableGenerator headings={headings} rows={contacts} name="contacts" />
         <Form.Group widths="equal">
-          <Form.Button fluid onClick={this.previous} content="Previous" />
+          <Form.Button fluid onClick={prevStep} content="Previous" />
           <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
         </Form.Group>
       </Form>

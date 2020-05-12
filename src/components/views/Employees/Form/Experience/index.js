@@ -80,14 +80,8 @@ class Experience extends Component {
     nextStep();
   };
 
-  previous = e => {
-    e.preventDefault();
-    const { prevStep } = this.props;
-    prevStep();
-  };
-
   render() {
-    const { formDetails, makeRows } = this.props;
+    const { formDetails, makeRows, prevStep } = this.props;
     const { index, headings } = this.state;
     const experience = makeRows(
       headings,
@@ -298,7 +292,7 @@ class Experience extends Component {
           name="experience"
         />
         <Form.Group widths="equal">
-          <Form.Button fluid onClick={this.previous} content="Previous" />
+          <Form.Button fluid onClick={prevStep} content="Previous" />
           <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
         </Form.Group>
       </Form>

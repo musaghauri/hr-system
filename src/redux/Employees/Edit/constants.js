@@ -38,5 +38,3 @@ export const GET_ASSETS_SUCCESS = 'HRMS/Employees/Edit/GET_ASSETS_SUCCESS';
 export const GET_ASSETS_FAIL = 'HRMS/Employees/Edit/GET_ASSETS_FAIL';
 
 export const DELETE_ENTRY = 'HRMS/Employees/Edit/DELETE_ENTRY';
-// export const DELETE_ENTRY_SUCCESS = 'HRMS/Employees/Edit/DELETE_ENTRY_SUCCESS';
-// export const DELETE_ENTRY_FAIL = 'HRMS/Employees/Edit/DELETE_ENTRY_FAIL';

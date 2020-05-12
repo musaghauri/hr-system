@@ -86,12 +86,6 @@ class Duty extends Component {
     }
   };
 
-  previous = e => {
-    e.preventDefault();
-    const { prevStep } = this.props;
-    prevStep();
-  };
-
   render() {
     const {
       formDetails,
@@ -100,6 +94,7 @@ class Duty extends Component {
       submitStatus,
       successMessage,
       makeRows,
+      prevStep,
     } = this.props;
     const { index, headings } = this.state;
     const duties = makeRows(
@@ -249,7 +244,7 @@ class Duty extends Component {
         <Form.Group widths="equal">
           <Form.Button
             fluid
-            onClick={this.previous}
+            onClick={prevStep}
             style={{ marginBottom: '10px' }}
             content="Previous"
           />

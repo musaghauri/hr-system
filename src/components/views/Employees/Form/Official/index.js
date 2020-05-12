@@ -15,14 +15,13 @@ class Official extends Component {
     nextStep();
   };
 
-  previous = e => {
-    e.preventDefault();
-    const { prevStep } = this.props;
-    prevStep();
-  };
-
   render() {
-    const { formDetails, departments, getDepartmentsStatus } = this.props;
+    const {
+      formDetails,
+      departments,
+      getDepartmentsStatus,
+      prevStep,
+    } = this.props;
     return (
       <Form>
         <Header textAlign="center" as="h3">
@@ -414,7 +413,7 @@ class Official extends Component {
           />
         </Form.Group>
         <Form.Group widths="equal">
-          <Form.Button fluid onClick={this.previous} content="Previous" />
+          <Form.Button fluid onClick={prevStep} content="Previous" />
           <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
         </Form.Group>
       </Form>

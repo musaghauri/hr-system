@@ -17,12 +17,6 @@ class Personal extends Component {
     nextStep();
   };
 
-  previous = e => {
-    e.preventDefault();
-    const { prevStep } = this.props;
-    prevStep();
-  };
-
   render() {
     const {
       formDetails,
@@ -34,6 +28,7 @@ class Personal extends Component {
       getCountriesStatus,
       getStatesStatus,
       getCitiesStatus,
+      prevStep,
     } = this.props;
     return (
       <Form>
@@ -558,7 +553,7 @@ class Personal extends Component {
           onChange={this.handleChange}
         />
         <Form.Group widths="equal">
-          <Form.Button fluid onClick={this.previous} content="Previous" />
+          <Form.Button fluid onClick={prevStep} content="Previous" />
           <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
         </Form.Group>
       </Form>

@@ -81,14 +81,14 @@ class CompanyAsset extends Component {
     nextStep();
   };
 
-  previous = e => {
-    e.preventDefault();
-    const { prevStep } = this.props;
-    prevStep();
-  };
-
   render() {
-    const { formDetails, assets, getAssetsStatus, makeRows } = this.props;
+    const {
+      formDetails,
+      assets,
+      getAssetsStatus,
+      makeRows,
+      prevStep,
+    } = this.props;
     const { index, headings } = this.state;
     console.log(formDetails.getIn(['companyAssets']).toJS());
     const asssetRows = makeRows(
@@ -241,7 +241,7 @@ class CompanyAsset extends Component {
         <h3>Assets</h3>
         <TableGenerator headings={headings} rows={asssetRows} name="assets" />
         <Form.Group widths="equal">
-          <Form.Button fluid onClick={this.previous} content="Previous" />
+          <Form.Button fluid onClick={prevStep} content="Previous" />
           <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
         </Form.Group>
       </Form>
