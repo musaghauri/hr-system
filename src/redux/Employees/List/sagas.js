@@ -41,7 +41,7 @@ export function* deleteEmployee(action) {
   }
 }
 
-export default function* addPermissionWatcher() {
+export default function* EmployeesListWatcher() {
   yield takeLatest(GET_EMPLOYEES, getEmployees);
   yield takeLatest(DELETE_EMPLOYEE, deleteEmployee);
 }

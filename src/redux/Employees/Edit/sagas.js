@@ -196,7 +196,7 @@ export function* editEmployee(action) {
   }
 }
 
-export default function* editPermissionWatcher() {
+export default function* editEmployeeWatcher() {
   yield takeLatest(GET_ROLES, getRoles);
   yield takeLatest(GET_COUNTRIES, getCountries);
   yield takeLatest(GET_STATES, getStates);
