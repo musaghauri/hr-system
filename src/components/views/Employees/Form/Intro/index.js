@@ -7,14 +7,8 @@ class Intro extends Component {
     updateValue(['formDetails', name, 'value'], value);
   };
 
-  saveAndContinue = e => {
-    e.preventDefault();
-    const { nextStep } = this.props;
-    nextStep();
-  };
-
   render() {
-    const { formDetails, roles, getRolesStatus } = this.props;
+    const { formDetails, roles, getRolesStatus, nextStep } = this.props;
     const isActive = formDetails.getIn(['isActive', 'value']);
     const isVerified = formDetails.getIn(['isVerified', 'value']);
     return (
@@ -102,7 +96,7 @@ class Intro extends Component {
             }
           />
         </Form.Group>
-        <Button fluid onClick={this.saveAndContinue}>
+        <Button fluid onClick={nextStep}>
           Next
         </Button>
       </Form>

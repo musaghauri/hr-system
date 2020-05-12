@@ -9,18 +9,13 @@ class Official extends Component {
     updateValue(['formDetails', 'officialInformation', name, 'value'], value);
   };
 
-  saveAndContinue = e => {
-    e.preventDefault();
-    const { nextStep } = this.props;
-    nextStep();
-  };
-
   render() {
     const {
       formDetails,
       departments,
       getDepartmentsStatus,
       prevStep,
+      nextStep,
     } = this.props;
     return (
       <Form>
@@ -414,7 +409,7 @@ class Official extends Component {
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Button fluid onClick={prevStep} content="Previous" />
-          <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
+          <Form.Button fluid onClick={nextStep} content="Next" />
         </Form.Group>
       </Form>
     );

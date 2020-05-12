@@ -8,14 +8,8 @@ class Salary extends Component {
     updateValue(['formDetails', 'salarySettings', name, 'value'], value);
   };
 
-  saveAndContinue = e => {
-    e.preventDefault();
-    const { nextStep } = this.props;
-    nextStep();
-  };
-
   render() {
-    const { formDetails, prevStep } = this.props;
+    const { formDetails, prevStep, nextStep } = this.props;
     return (
       <Form>
         <Header textAlign="center" as="h3">
@@ -140,7 +134,7 @@ class Salary extends Component {
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Button fluid onClick={prevStep} content="Previous" />
-          <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
+          <Form.Button fluid onClick={nextStep} content="Next" />
         </Form.Group>
       </Form>
     );

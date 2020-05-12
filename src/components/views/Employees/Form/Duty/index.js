@@ -73,7 +73,7 @@ class Duty extends Component {
     this.setState({ index });
   };
 
-  saveAndContinue = e => {
+  handleSubmit = e => {
     e.preventDefault();
     const { validateForm, updateValue, handleSubmit, formDetails } = this.props;
     const modifiedUser = formDetails.toJS();
@@ -253,7 +253,7 @@ class Duty extends Component {
             loading={submitStatus.get('loading')}
             color={submitColor}
             type="submit"
-            onClick={this.saveAndContinue}
+            onClick={this.handleSubmit}
             style={{ marginBottom: '10px' }}
             content={submitLabel}
           />

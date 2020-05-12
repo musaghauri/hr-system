@@ -11,12 +11,6 @@ class Personal extends Component {
     updateValue(['formDetails', 'personalInformation', name, 'value'], value);
   };
 
-  saveAndContinue = e => {
-    e.preventDefault();
-    const { nextStep } = this.props;
-    nextStep();
-  };
-
   render() {
     const {
       formDetails,
@@ -29,6 +23,7 @@ class Personal extends Component {
       getStatesStatus,
       getCitiesStatus,
       prevStep,
+      nextStep,
     } = this.props;
     return (
       <Form>
@@ -554,7 +549,7 @@ class Personal extends Component {
         />
         <Form.Group widths="equal">
           <Form.Button fluid onClick={prevStep} content="Previous" />
-          <Form.Button fluid onClick={this.saveAndContinue} content="Next" />
+          <Form.Button fluid onClick={nextStep} content="Next" />
         </Form.Group>
       </Form>
     );
