@@ -309,7 +309,7 @@ class EmployeeForm extends Component {
                       color="blue"
                       circular
                       active={step === i + 1}
-                      onClick={() => this.goToStep(i + 1)}
+                      // onClick={() => this.goToStep(i + 1)}
                     >
                       {i + 1}
                     </Button>
