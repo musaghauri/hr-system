@@ -33,9 +33,9 @@ function Get(params, populate= ['','']) {
 
 function UpdateById(employeeId, employeeBody, user = null) {
   return new Promise((resolve, reject) => {
-    const { name = null } = employeeBody;
+    const { email = null } = employeeBody;
 
-    ifAttributeExists({ name }, name, employeeId).then(data => {
+    ifAttributeExists({ email }, email, employeeId).then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,
@@ -54,9 +54,9 @@ function UpdateById(employeeId, employeeBody, user = null) {
 
 function Create(employeeBody, user = null) {
   return new Promise((resolve, reject) => {
-    const { name = null } = employeeBody;
+    const { email = null } = employeeBody;
     
-    ifAttributeExists({ name }, name).then(data => {
+    ifAttributeExists({ email }, email).then(data => {
       if(!!(_get(data, 'status'))) {
         reject({
           status: httpStatus.BAD_REQUEST,

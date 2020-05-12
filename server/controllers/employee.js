@@ -11,7 +11,7 @@ import EmployeeHelper from '../helpers/Employee.js';
 function get(req, res) {
   const { employeeId } = req.params;
   const { populate = true } = req.query;
-  let populateQuery = [
+  const populateQuery = [
     {
       path: 'personalInformation.city',
       model: 'City',
@@ -37,7 +37,7 @@ function get(req, res) {
       },
       {
         path: 'personalInformation.nationality',
-        model: 'Country'
+        model: 'Country',
       },
       {
         path: 'officialInformation.department',
@@ -45,8 +45,9 @@ function get(req, res) {
       },
       {
         path: 'companyAssets.id',
-        model: 'Asset'
-      });
+        model: 'Asset',
+      }
+    );
   console.log({ populateQuery });
   EmployeeHelper.GetById(employeeId, populateQuery)
     .then(employee => {
