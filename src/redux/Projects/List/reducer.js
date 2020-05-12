@@ -13,10 +13,6 @@ import {
 export const initialState = fromJS({
   headings: [
     {
-      label: 'ID',
-      name: '_id',
-    },
-    {
       label: 'Name',
       name: 'name',
     },
