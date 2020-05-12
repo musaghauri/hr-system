@@ -73,7 +73,7 @@ const userSchema = new Schema(
       },
       designation: String,
       socialSecurity: Number,
-      healthBenefits: [String],
+      healthBenefits: String,
       providentFund: Number,
       department: {
         type: Schema.Types.ObjectId,
@@ -85,11 +85,11 @@ const userSchema = new Schema(
     },
     contactInformation: [
       {
-        title: {
+        title: String,
+        type: {
           type: String,
           enum: ['Mobile', 'Landline', 'Email']
         },
-        type: String,
         detail: String
       }
     ],
@@ -120,7 +120,7 @@ const userSchema = new Schema(
         salary: Number,
       },
     ],
-    dependants: [
+    dependents: [
       {
         name: String,
         gender: {
@@ -143,8 +143,8 @@ const userSchema = new Schema(
         },
         detail: String,
         returnable: Boolean,
-        status: String,
-        issueData: Date
+        status: Boolean,
+        issueDate: Date
       },
     ],
     leaveBalance: Number,
@@ -153,7 +153,7 @@ const userSchema = new Schema(
         job: String,
         frequency: String,
         effectiveFrom: Date,
-        enchancedTill: Date
+        enhancedTill: Date
       },
     ],
   },

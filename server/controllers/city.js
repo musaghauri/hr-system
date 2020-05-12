@@ -12,7 +12,6 @@ function get(req, res) {
   const { cityId } = req.params;
   const { populate = true } = req.query;
   let populateQuery = [];
-  console.log({ populate });
   if (populate === true)
     populateQuery = [
       {

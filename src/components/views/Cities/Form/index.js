@@ -49,7 +49,7 @@ class CityForm extends Component {
       getCountriesStatus,
       getStatesStatus,
     } = this.props;
-    console.log({ countries: countries.toJS() });
+    // console.log({ countries: countries.toJS() });
     return (
       <Grid columns={4} centered style={{ marginTop: '200px' }}>
         <Grid.Row verticalAlign="middle">
