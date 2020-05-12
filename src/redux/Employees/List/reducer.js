@@ -1,19 +1,23 @@
 import { fromJS } from 'immutable';
-import { RESET_REDUCER } from './constants';
+import {
+  RESET_REDUCER,
+  GET_EMPLOYEES,
+  GET_EMPLOYEES_SUCCESS,
+  GET_EMPLOYEES_FAIL,
+  DELETE_EMPLOYEE,
+  DELETE_EMPLOYEE_SUCCESS,
+  DELETE_EMPLOYEE_FAIL,
+} from './constants';
 
 export const initialState = fromJS({
   headings: [
-    {
-      label: 'ID',
-      name: 'id',
-    },
     {
       label: 'Name',
       name: 'name',
     },
     {
-      label: 'Detail',
-      name: 'detail',
+      label: 'Email',
+      name: 'email',
     },
     {
       label: 'Department',
@@ -24,8 +28,8 @@ export const initialState = fromJS({
       name: 'isActive',
     },
     {
-      label: 'Status',
-      name: 'status',
+      label: 'Verified',
+      name: 'isVerified',
     },
     {
       label: 'Edit',
@@ -40,38 +44,58 @@ export const initialState = fromJS({
       name: 'view',
     },
   ],
-  employees: [
-    {
-      id: 1,
-      name: 'employee 1',
-      detail: 'cell 1',
-      department: 'first',
-      isActive: true,
-      status: 'permanent',
-    },
-    {
-      id: 2,
-      name: 'employee 2',
-      detail: 'cell 2',
-      department: 'first',
-      isActive: false,
-      status: 'freelancer',
-    },
-    {
-      id: 3,
-      name: 'employee 3',
-      detail: 'cell 3',
-      department: 'first',
-      isActive: false,
-      status: 'permanent',
-    },
-  ],
+  employees: {
+    items: [],
+    total_count: 0,
+  },
+  getEmployeesStatus: {
+    loading: false,
+    loaded: false,
+    error: false,
+  },
+  deleteEmployeeStatus: {
+    loading: false,
+    loaded: false,
+    error: false,
+  },
 });
 
 function employeesListReducer(state = initialState, action) {
   switch (action.type) {
     case RESET_REDUCER:
       return initialState;
+    case GET_EMPLOYEES:
+      return state
+        .setIn(['getEmployeesStatus', 'loading'], true)
+        .setIn(['getEmployeesStatus', 'loaded'], false)
+        .setIn(['getEmployeesStatus', 'error'], false);
+    case GET_EMPLOYEES_SUCCESS:
+      return state
+        .setIn(['getEmployeesStatus', 'loading'], false)
+        .setIn(['getEmployeesStatus', 'loaded'], true)
+        .setIn(['getEmployeesStatus', 'error'], false)
+        .set('employees', fromJS(action.employees));
+    case GET_EMPLOYEES_FAIL:
+      return state
+        .setIn(['getEmployeesStatus', 'loading'], false)
+        .setIn(['getEmployeesStatus', 'loaded'], false)
+        .setIn(['getEmployeesStatus', 'error'], action.error);
+    case DELETE_EMPLOYEE:
+      return state
+        .setIn(['deleteEmployeeStatus', 'loading'], true)
+        .setIn(['deleteEmployeeStatus', 'loaded'], false)
+        .setIn(['deleteEmployeeStatus', 'error'], false);
+    case DELETE_EMPLOYEE_SUCCESS:
+      return state
+        .setIn(['deleteEmployeeStatus', 'loading'], false)
+        .setIn(['deleteEmployeeStatus', 'loaded'], true)
+        .setIn(['deleteEmployeeStatus', 'error'], false)
+        .deleteIn(['employees', 'items', action.index]);
+    case DELETE_EMPLOYEE_FAIL:
+      return state
+        .setIn(['deleteEmployeeStatus', 'loading'], false)
+        .setIn(['deleteEmployeeStatus', 'loaded'], false)
+        .setIn(['deleteEmployeeStatus', 'error'], action.error);
     default:
       return state;
   }

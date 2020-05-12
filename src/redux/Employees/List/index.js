@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import EmployeesList from '@components/views/Employees/List';
 import Router from 'next/router';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Label, Header } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
-import { resetReducer } from './actions';
-import { selectHeadings, selectEmployees } from './selectors';
+import { resetReducer, deleteEmployee } from './actions';
+import {
+  selectHeadings,
+  selectEmployees,
+  selectDeleteEmployeeStatus,
+} from './selectors';
 
 class EmployeesListContainer extends Component {
   componentWillUnmount() {
@@ -16,7 +20,8 @@ class EmployeesListContainer extends Component {
   }
 
   blockEmployee = (id, index) => {
-    console.log('BLOCK EMPLOYEE: ', { id, index });
+    const { onDeleteEmployee } = this.props;
+    onDeleteEmployee(id, index);
   };
 
   makeRows = employees => {
@@ -30,7 +35,7 @@ class EmployeesListContainer extends Component {
             handleChange: () =>
               Router.replace(
                 '/employee/[employeeId]/edit',
-                `/employee/${employee.get('id')}/edit`
+                `/employee/${employee.get('_id')}/edit`
               ),
           };
         }
@@ -41,7 +46,7 @@ class EmployeesListContainer extends Component {
             handleChange: () =>
               Router.replace(
                 '/employee/[employeeId]',
-                `/employee/${employee.get('id')}`
+                `/employee/${employee.get('_id')}`
               ),
           };
         }
@@ -49,10 +54,13 @@ class EmployeesListContainer extends Component {
           return {
             value: <Icon name="trash alternate" color="red" />,
             isFunctional: true,
-            handleChange: () => this.blockEmployee(employee.get('id'), eIndex),
+            handleChange: () => this.blockEmployee(employee.get('_id'), eIndex),
           };
         }
-        if (heading.get('name') === 'isActive') {
+        if (
+          heading.get('name') === 'isActive' ||
+          heading.get('name') === 'isVerified'
+        ) {
           return {
             value: employee.get(heading.get('name')) ? (
               <Icon name="check" color="green" />
@@ -62,6 +70,22 @@ class EmployeesListContainer extends Component {
             isFunctional: false,
           };
         }
+        if (heading.get('name') === 'department') {
+          const department = employee.getIn([
+            'officialInformation',
+            'department',
+            'name',
+          ]);
+          return {
+            value: department && (
+              <Label color="green" horizontal>
+                {department}
+              </Label>
+            ),
+            isFunctional: false,
+          };
+        }
+
         return {
           value: employee.get(heading.get('name')),
           isFunctional: false,
@@ -71,19 +95,27 @@ class EmployeesListContainer extends Component {
   };
 
   render() {
-    const { headings, employees } = this.props;
-    const rows = this.makeRows(employees);
+    const { headings, employees, deleteEmployeeStatus } = this.props;
+    const rows = employees && this.makeRows(employees.get('items'));
+    if (deleteEmployeeStatus.get('loading'))
+      return (
+        <Header as="h1" textAlign="center">
+          Loading ...
+        </Header>
+      );
     return <EmployeesList headings={headings} employees={rows} />;
   }
 }
 const mapStateToProps = createStructuredSelector({
   headings: selectHeadings(),
   employees: selectEmployees(),
+  deleteEmployeeStatus: selectDeleteEmployeeStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     onResetReducer: bindActionCreators(resetReducer, dispatch),
+    onDeleteEmployee: bindActionCreators(deleteEmployee, dispatch),
   };
 }
 

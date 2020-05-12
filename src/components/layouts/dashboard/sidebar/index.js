@@ -29,6 +29,7 @@ class SidebarComponent extends Component {
             display: 'flex',
             flexDirection: 'column',
             flex: 1,
+            transform: 'none',
           }}
           as={Segment}
         >
@@ -63,7 +64,7 @@ class SidebarComponent extends Component {
               )
             )}
           </Sidebar>
-          <Sidebar.Pusher>
+          <Sidebar.Pusher style={{ overflow: 'scroll' }}>
             <Segment basic>{children}</Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>

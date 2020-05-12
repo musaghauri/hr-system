@@ -56,6 +56,11 @@ import viewProjectSagas from '@redux/Projects/View/sagas';
 import addProjectSagas from '@redux/Projects/Add/sagas';
 import editProjectSagas from '@redux/Projects/Edit/sagas';
 
+import employeesListSagas from '@redux/Employees/List/sagas';
+import viewEmployeeSagas from '@redux/Employees/View/sagas';
+import addEmployeeSagas from '@redux/Employees/Add/sagas';
+import editEmployeeSagas from '@redux/Employees/Edit/sagas';
+
 import branchesListSagas from '@redux/Branches/List/sagas';
 import viewBranchSagas from '@redux/Branches/View/sagas';
 import addBranchSagas from '@redux/Branches/Add/sagas';
@@ -109,9 +114,13 @@ export default function* mainSagas() {
     fork(viewProjectSagas),
     fork(addProjectSagas),
     fork(editProjectSagas),
+    fork(employeesListSagas),
+    fork(viewEmployeeSagas),
+    fork(addEmployeeSagas),
+    fork(editEmployeeSagas),
     fork(branchesListSagas),
     fork(viewBranchSagas),
     fork(addBranchSagas),
-    fork(editBranchSagas)
+    fork(editBranchSagas),
   ]);
 }
