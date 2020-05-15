@@ -66,6 +66,11 @@ import addBranchReducer from '@redux/Branches/Add/reducer';
 import editBranchReducer from '@redux/Branches/Edit/reducer';
 import viewBranchReducer from '@redux/Branches/View/reducer';
 
+import documentsListReducer from '@redux/Documents/List/reducer';
+import addDocumentReducer from '@redux/Documents/Add/reducer';
+import editDocumentReducer from '@redux/Documents/Edit/reducer';
+import viewDocumentReducer from '@redux/Documents/View/reducer';
+
 export default combineReducers({
   landingPage: landingPageReducer,
   login: loginReducer,
@@ -117,6 +122,10 @@ export default combineReducers({
   viewDepartment: viewDepartmentReducer,
   branchesList: branchesListReducer,
   addBranch: addBranchReducer,
-  editBranch: editBranchReducer, 
+  editBranch: editBranchReducer,
   viewBranch: viewBranchReducer,
+  documentsList: documentsListReducer,
+  addDocument: addDocumentReducer,
+  editDocument: editDocumentReducer,
+  viewDocumment: viewDocumentReducer,
 });

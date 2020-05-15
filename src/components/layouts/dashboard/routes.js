@@ -16,6 +16,12 @@ const routes = [
     icon: 'dashboard',
   },
   {
+    name: 'documents',
+    label: 'Documents',
+    route: '/documents/new',
+    icon: 'document',
+  },
+  {
     name: 'employees',
     label: 'Employees',
     route: '/employees',
