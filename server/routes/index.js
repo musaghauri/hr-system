@@ -10,6 +10,7 @@ import priorityRoutes from './priority';
 import announcementRoutes from './announcement';
 import wishlistRoutes from './wishlist';
 import departmentRoutes from './department';
+import projectRoutes from './project';
 import employeeRoutes from './employee';
 import branchRoutes from './branch';
 
@@ -30,6 +31,7 @@ router.use('/priorities', priorityRoutes);
 router.use('/announcements', announcementRoutes);
 router.use('/wishlist', wishlistRoutes);
 router.use('/departments', departmentRoutes);
+router.use('/projects', projectRoutes);
 router.use('/employees', employeeRoutes);
 router.use('/branches', branchRoutes);
 

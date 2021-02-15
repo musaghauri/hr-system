@@ -101,13 +101,19 @@ export const loadFormDetails = (formDetails, user, uploadImageStatus) => {
         if (Array.isArray(itemValue)) {
           // Array Object
           itemValue.map((arrayItem, itemI) => {
-            tempFormDetails[item][itemI] = _cloneDeep(tempFormDetails[item][0]);
-            Object.keys(arrayItem).forEach(itemKey => {
-              if (tempFormDetails[item][itemI][itemKey]) {
-                tempFormDetails[item][itemI][itemKey].value =
-                  arrayItem[itemKey];
-              }
-            });
+            if (typeof arrayItem === 'object') {
+              tempFormDetails[item][itemI] = _cloneDeep(
+                tempFormDetails[item][0]
+              );
+              Object.keys(arrayItem).forEach(itemKey => {
+                if (tempFormDetails[item][itemI][itemKey]) {
+                  tempFormDetails[item][itemI][itemKey].value =
+                    arrayItem[itemKey];
+                }
+              });
+            } else {
+              tempFormDetails[item].value = itemValue;
+            }
           });
         } else {
           // JSON Object
